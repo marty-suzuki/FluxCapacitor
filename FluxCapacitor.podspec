@@ -21,16 +21,16 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/ca-atmosphere/FluxCapacitor'
+  s.homepage         = 'https://github.com/marty-suzuki/FluxCapacitor'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'ca-atmosphere' => 's1180183@gmail.com' }
-  s.source           = { :git => 'https://github.com/ca-atmosphere/FluxCapacitor.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'Taiki Suzuki' => 's1180183@gmail.com' }
+  s.source           = { :git => 'https://github.com/marty-suzuki/FluxCapacitor', :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/marty_suzuki'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
-  s.source_files = 'FluxCapacitor/Classes/**/*'
+s.source_files = 'FluxCapacitor/*.{swift}'
   
   # s.resource_bundles = {
   #   'FluxCapacitor' => ['FluxCapacitor/Assets/*.png']
