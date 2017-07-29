@@ -1,0 +1,6 @@
+use_frameworks!
+target 'FluxCapacitor_Tests' do
+  pod 'FluxCapacitor', :path => '../'
+  
+  
+end
