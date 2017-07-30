@@ -19,24 +19,29 @@ extension DispatchValue {
 public final class Dispatcher {
     public static let shared = Dispatcher()
     
-    let dataStore = DataStore()
+    let registrationDataStore = DataStore()
+    //let subscriptionDataStore = DataStore()
     
     private init() {}
     
-    public func register<T: Storable>(_ object: T, handler: @escaping (T.DispatchValueType) -> ()) {
-        dataStore.insert(object, handler: handler)
+    func register<T: Storable>(_ object: T, handler: @escaping (T.DispatchValueType) -> ()) {
+        registrationDataStore.insert(object, handler: handler)
     }
     
-    public func unregister<T: Storable>(_ object: T) {
-        dataStore[T.DispatchValueType.dispatchKey] = nil
+    func unregister<T: Storable>(_ object: T) {
+        registrationDataStore[T.DispatchValueType.dispatchKey] = nil
     }
     
     public func dispatch<T: DispatchValue>(_ dispatchValue: T) {
-        guard let hadnler = dataStore[T.dispatchKey]?.handler as? (T) -> () else { return }
+        guard let hadnler = registrationDataStore[T.dispatchKey]?.handler as? (T) -> () else { return }
         hadnler(dispatchValue)
     }
     
     public func unregisterAll() {
-        dataStore.removeAll()
+        registrationDataStore.removeAll()
+    }
+    
+    func subscribe(in object: AnyObject, handler: () -> ()) {
+        
     }
 }
