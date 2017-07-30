@@ -17,7 +17,7 @@ extension Storable {
     static var dispatcher: Dispatcher { return .shared }
     
     public static func instantiate() -> Self {
-        return dispatcher.registrationDataStore.object(for: Self.self) ?? .init()
+        return dispatcher.observerDataStore.object(for: Self.self) ?? .init()
     }
     
     public var dispatcher: Dispatcher { return .shared }
@@ -27,10 +27,22 @@ extension Storable {
     }
     
     public func register(handler: @escaping (DispatchValueType) -> Void) {
-        dispatcher.register(self, handler: handler)
+        dispatcher.register(self) { [weak self] value in
+            handler(value)
+            guard let me = self else { return }
+            let subscribers = me.dispatcher.subscriberDataStore.subscribers(of: me)
+            subscribers.forEach {
+                guard let h = $0.handler as? (DispatchValueType) -> () else { return }
+                h(value)
+            }
+        }
     }
     
-    public func subscribe(in object: AnyObject, handler: () -> ()) {
-        dispatcher.subscribe(in: object, handler: handler)
+    public func subscribe(changed handler: @escaping (DispatchValueType) -> ()) -> Dust {
+        let key = DispatchValueType.dispatchKey
+        let token = dispatcher.subscriberDataStore.insert(self, handler: handler).token
+        return Dust { [weak self] in
+            self?.dispatcher.subscriberDataStore.removeSubscriber(ofKey: key, andToken: token)
+        }
     }
 }

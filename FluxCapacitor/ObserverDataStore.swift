@@ -1,5 +1,5 @@
 //
-//  DataStore.swift
+//  ObserverDataStore.swift
 //  FluxCapacitor
 //
 //  Created by marty-suzuki on 2017/07/29.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class DataStore {
+final class ObserverDataStore {
     struct Observer {
         weak private(set) var object: AnyObject?
         let handler: Any

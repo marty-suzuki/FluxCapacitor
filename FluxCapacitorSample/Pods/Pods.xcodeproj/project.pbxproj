@@ -10,7 +10,9 @@
 		0BA2F05D9751ADC77A334F079A2C3DC6 /* Pods-FluxCapacitorSample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FC0DB69A8997231663C2704C00E11B2 /* Pods-FluxCapacitorSample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17E83D408566C86D636BA8675C938A2E /* FluxCapacitor-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3867A356DD2FAFA34FF021550BF3BCB3 /* FluxCapacitor-dummy.m */; };
 		306C6A01A03A03215FF5457787758012 /* FluxCapacitor-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D7D5A4ED25AC60A217482D10CF319894 /* FluxCapacitor-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		37C8BA6A1F2CA87D003AFBD7 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA691F2CA87D003AFBD7 /* DataStore.swift */; };
+		37C8BA6A1F2CA87D003AFBD7 /* ObserverDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA691F2CA87D003AFBD7 /* ObserverDataStore.swift */; };
+		37C8BA741F2E466B003AFBD7 /* SubscriberDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA731F2E466B003AFBD7 /* SubscriberDataStore.swift */; };
+		37C8BA761F2E4AA0003AFBD7 /* Dust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA751F2E4AA0003AFBD7 /* Dust.swift */; };
 		567BE87E99B91208462BBA5298C31EA4 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C85C595F7B6C87CF63EDCBCE46A2F9 /* Dispatcher.swift */; };
 		9B3E88B7D093EDA3ABEFDE77A7B7C438 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		C05C7FF50499F6544774DC115575B9B6 /* Pods-FluxCapacitorSample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BF3E2C582123AF8F1F48058E5B6369 /* Pods-FluxCapacitorSample-dummy.m */; };
@@ -35,7 +37,9 @@
 		1D5E89464404CFE390A5F26E7A9BB706 /* Pods-FluxCapacitorSample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FluxCapacitorSample-acknowledgements.plist"; sourceTree = "<group>"; };
 		2F26E1CB570F8E6C1DFEA8497EEE34F3 /* Storable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
 		332943364FCEF15F75AF85D8E8E51C08 /* FluxCapacitor-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FluxCapacitor-prefix.pch"; sourceTree = "<group>"; };
-		37C8BA691F2CA87D003AFBD7 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		37C8BA691F2CA87D003AFBD7 /* ObserverDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverDataStore.swift; sourceTree = "<group>"; };
+		37C8BA731F2E466B003AFBD7 /* SubscriberDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberDataStore.swift; sourceTree = "<group>"; };
+		37C8BA751F2E4AA0003AFBD7 /* Dust.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dust.swift; sourceTree = "<group>"; };
 		3867A356DD2FAFA34FF021550BF3BCB3 /* FluxCapacitor-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FluxCapacitor-dummy.m"; sourceTree = "<group>"; };
 		42772337240387135E9A4CFBDA87D439 /* FluxCapacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FluxCapacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50510724B7C7F5D86466EA268902401A /* Pods-FluxCapacitorSample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FluxCapacitorSample-resources.sh"; sourceTree = "<group>"; };
@@ -154,7 +158,9 @@
 				ADA3786690D2BC275FB00A0065C78114 /* Actionable.swift */,
 				54C85C595F7B6C87CF63EDCBCE46A2F9 /* Dispatcher.swift */,
 				2F26E1CB570F8E6C1DFEA8497EEE34F3 /* Storable.swift */,
-				37C8BA691F2CA87D003AFBD7 /* DataStore.swift */,
+				37C8BA691F2CA87D003AFBD7 /* ObserverDataStore.swift */,
+				37C8BA731F2E466B003AFBD7 /* SubscriberDataStore.swift */,
+				37C8BA751F2E4AA0003AFBD7 /* Dust.swift */,
 			);
 			path = FluxCapacitor;
 			sourceTree = "<group>";
@@ -278,10 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C8BA741F2E466B003AFBD7 /* SubscriberDataStore.swift in Sources */,
 				D9B753D7A6A08F9CA0C96DDF5D809D21 /* Actionable.swift in Sources */,
+				37C8BA761F2E4AA0003AFBD7 /* Dust.swift in Sources */,
 				567BE87E99B91208462BBA5298C31EA4 /* Dispatcher.swift in Sources */,
 				17E83D408566C86D636BA8675C938A2E /* FluxCapacitor-dummy.m in Sources */,
-				37C8BA6A1F2CA87D003AFBD7 /* DataStore.swift in Sources */,
+				37C8BA6A1F2CA87D003AFBD7 /* ObserverDataStore.swift in Sources */,
 				D0D0ADD7C022C6A9F2BC8BF8A6BF5A53 /* Storable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
