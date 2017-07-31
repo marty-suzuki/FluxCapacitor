@@ -17,7 +17,7 @@ extension DispatchValue {
 }
 
 public final class Dispatcher {
-    public static let shared = Dispatcher()
+    static let shared = Dispatcher()
     
     let observerDataStore = ObserverDataStore()
     let subscriberDataStore = SubscriberDataStore()

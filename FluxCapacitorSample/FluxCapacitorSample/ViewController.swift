@@ -11,7 +11,7 @@ import FluxCapacitor
 
 class ViewController: UIViewController {
 
-    var store: SearchStore? = SearchStore()
+    var store: SearchStore? = SearchStore.instantiate()
     let action = SearchAction()
     
     var dustBuster = DustBuster()
@@ -87,7 +87,7 @@ final class SearchStore: Storable {
         unregister()
     }
     
-    required init() {
+    required init(dispatcher: Dispatcher) {
         register { [weak self] dispatchValue in
             switch dispatchValue {
             case .isLoading(let value):

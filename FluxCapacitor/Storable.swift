@@ -10,14 +10,14 @@ import Foundation
 
 public protocol Storable: class {
     associatedtype DispatchValueType: DispatchValue
-    init()
+    init(dispatcher: Dispatcher)
 }
 
 extension Storable {
     static var dispatcher: Dispatcher { return .shared }
     
     public static func instantiate() -> Self {
-        return dispatcher.observerDataStore.object(for: Self.self) ?? .init()
+        return dispatcher.observerDataStore.object(for: Self.self) ?? .init(dispatcher: dispatcher)
     }
     
     public var dispatcher: Dispatcher { return .shared }
