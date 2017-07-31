@@ -7,22 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37C8BA521F2C9DB8003AFBD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA511F2C9DB8003AFBD7 /* AppDelegate.swift */; };
-		37C8BA541F2C9DB8003AFBD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA531F2C9DB8003AFBD7 /* ViewController.swift */; };
-		37C8BA571F2C9DB8003AFBD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA551F2C9DB8003AFBD7 /* Main.storyboard */; };
-		37C8BA591F2C9DB8003AFBD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA581F2C9DB8003AFBD7 /* Assets.xcassets */; };
-		37C8BA5C1F2C9DB8003AFBD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA5A1F2C9DB8003AFBD7 /* LaunchScreen.storyboard */; };
+		37C8BA811F2FAA32003AFBD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA7B1F2FAA32003AFBD7 /* Assets.xcassets */; };
+		37C8BA821F2FAA32003AFBD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA7C1F2FAA32003AFBD7 /* LaunchScreen.storyboard */; };
+		37C8BA831F2FAA32003AFBD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA7E1F2FAA32003AFBD7 /* Main.storyboard */; };
+		37C8BA881F2FAA72003AFBD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA861F2FAA72003AFBD7 /* AppDelegate.swift */; };
+		37C8BA8C1F2FAAEA003AFBD7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA8B1F2FAAEA003AFBD7 /* FavoriteViewController.swift */; };
+		37C8BA8E1F2FAAFD003AFBD7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA8D1F2FAAFD003AFBD7 /* SearchViewController.swift */; };
 		5D255F67E5F7130D863F6C5F /* Pods_FluxCapacitorSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		37C8BA4E1F2C9DB8003AFBD7 /* FluxCapacitorSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FluxCapacitorSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		37C8BA511F2C9DB8003AFBD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		37C8BA531F2C9DB8003AFBD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		37C8BA561F2C9DB8003AFBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		37C8BA581F2C9DB8003AFBD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		37C8BA5B1F2C9DB8003AFBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		37C8BA5D1F2C9DB8003AFBD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37C8BA7B1F2FAA32003AFBD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		37C8BA7D1F2FAA32003AFBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		37C8BA7F1F2FAA32003AFBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		37C8BA801F2FAA32003AFBD7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37C8BA861F2FAA72003AFBD7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		37C8BA8B1F2FAAEA003AFBD7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		37C8BA8D1F2FAAFD003AFBD7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluxCapacitorSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BA935772B827618E28B121C /* Pods-FluxCapacitorSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.release.xcconfig"; sourceTree = "<group>"; };
 		E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -61,14 +63,63 @@
 		37C8BA501F2C9DB8003AFBD7 /* FluxCapacitorSample */ = {
 			isa = PBXGroup;
 			children = (
-				37C8BA511F2C9DB8003AFBD7 /* AppDelegate.swift */,
-				37C8BA531F2C9DB8003AFBD7 /* ViewController.swift */,
-				37C8BA551F2C9DB8003AFBD7 /* Main.storyboard */,
-				37C8BA581F2C9DB8003AFBD7 /* Assets.xcassets */,
-				37C8BA5A1F2C9DB8003AFBD7 /* LaunchScreen.storyboard */,
-				37C8BA5D1F2C9DB8003AFBD7 /* Info.plist */,
+				37C8BA7A1F2FAA32003AFBD7 /* Resources */,
+				37C8BA771F2FAA0E003AFBD7 /* Sources */,
 			);
 			path = FluxCapacitorSample;
+			sourceTree = "<group>";
+		};
+		37C8BA771F2FAA0E003AFBD7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BA851F2FAA72003AFBD7 /* Common */,
+				37C8BA871F2FAA72003AFBD7 /* UI */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		37C8BA7A1F2FAA32003AFBD7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BA7B1F2FAA32003AFBD7 /* Assets.xcassets */,
+				37C8BA7C1F2FAA32003AFBD7 /* LaunchScreen.storyboard */,
+				37C8BA801F2FAA32003AFBD7 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		37C8BA851F2FAA72003AFBD7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BA861F2FAA72003AFBD7 /* AppDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		37C8BA871F2FAA72003AFBD7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BA7E1F2FAA32003AFBD7 /* Main.storyboard */,
+				37C8BA891F2FAAD8003AFBD7 /* Favorite */,
+				37C8BA8A1F2FAAD8003AFBD7 /* Search */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		37C8BA891F2FAAD8003AFBD7 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BA8B1F2FAAEA003AFBD7 /* FavoriteViewController.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		37C8BA8A1F2FAAD8003AFBD7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BA8D1F2FAAFD003AFBD7 /* SearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		C4E070B8352E3432CA1635D7 /* Pods */ = {
@@ -150,9 +201,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37C8BA5C1F2C9DB8003AFBD7 /* LaunchScreen.storyboard in Resources */,
-				37C8BA591F2C9DB8003AFBD7 /* Assets.xcassets in Resources */,
-				37C8BA571F2C9DB8003AFBD7 /* Main.storyboard in Resources */,
+				37C8BA811F2FAA32003AFBD7 /* Assets.xcassets in Resources */,
+				37C8BA831F2FAA32003AFBD7 /* Main.storyboard in Resources */,
+				37C8BA821F2FAA32003AFBD7 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,28 +262,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37C8BA541F2C9DB8003AFBD7 /* ViewController.swift in Sources */,
-				37C8BA521F2C9DB8003AFBD7 /* AppDelegate.swift in Sources */,
+				37C8BA8E1F2FAAFD003AFBD7 /* SearchViewController.swift in Sources */,
+				37C8BA8C1F2FAAEA003AFBD7 /* FavoriteViewController.swift in Sources */,
+				37C8BA881F2FAA72003AFBD7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		37C8BA551F2C9DB8003AFBD7 /* Main.storyboard */ = {
+		37C8BA7C1F2FAA32003AFBD7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				37C8BA561F2C9DB8003AFBD7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		37C8BA5A1F2C9DB8003AFBD7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				37C8BA5B1F2C9DB8003AFBD7 /* Base */,
+				37C8BA7D1F2FAA32003AFBD7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		37C8BA7E1F2FAA32003AFBD7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37C8BA7F1F2FAA32003AFBD7 /* Base */,
+			);
+			name = Main.storyboard;
+			path = ../../Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -338,7 +391,7 @@
 			baseConfigurationReference = E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = FluxCapacitorSample/Info.plist;
+				INFOPLIST_FILE = FluxCapacitorSample/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.FluxCapacitorSample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -351,7 +404,7 @@
 			baseConfigurationReference = 8BA935772B827618E28B121C /* Pods-FluxCapacitorSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = FluxCapacitorSample/Info.plist;
+				INFOPLIST_FILE = FluxCapacitorSample/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.FluxCapacitorSample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,6 +431,7 @@
 				37C8BA621F2C9DB8003AFBD7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
