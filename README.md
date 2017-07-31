@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 [![Platform](https://img.shields.io/cocoapods/p/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 
+![FluxCapacitor](./Images/FluxCapacitor.png)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -19,6 +21,8 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "FluxCapacitor"
 ```
+
+![dustbuster](./Images/dustbuster.png)
 
 ## Author
 
