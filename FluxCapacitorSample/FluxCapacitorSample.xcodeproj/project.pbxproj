@@ -14,6 +14,10 @@
 		37C8BA8C1F2FAAEA003AFBD7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA8B1F2FAAEA003AFBD7 /* FavoriteViewController.swift */; };
 		37C8BA8E1F2FAAFD003AFBD7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA8D1F2FAAFD003AFBD7 /* SearchViewController.swift */; };
 		37C8BA961F30D8E7003AFBD7 /* GithubApiSession.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C8BA951F30D8E7003AFBD7 /* GithubApiSession.framework */; };
+		37C8BA9C1F30F174003AFBD7 /* Dispatcher.Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BA9B1F30F174003AFBD7 /* Dispatcher.Repository.swift */; };
+		37C8BAA01F30F1AE003AFBD7 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C8BA9D1F30F1AE003AFBD7 /* Nuke.framework */; };
+		37C8BAA11F30F1AE003AFBD7 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C8BA9E1F30F1AE003AFBD7 /* RxCocoa.framework */; };
+		37C8BAA21F30F1AE003AFBD7 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C8BA9F1F30F1AE003AFBD7 /* RxSwift.framework */; };
 		5D255F67E5F7130D863F6C5F /* Pods_FluxCapacitorSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +31,10 @@
 		37C8BA8B1F2FAAEA003AFBD7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		37C8BA8D1F2FAAFD003AFBD7 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		37C8BA951F30D8E7003AFBD7 /* GithubApiSession.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GithubApiSession.framework; path = Carthage/Build/iOS/GithubApiSession.framework; sourceTree = "<group>"; };
+		37C8BA9B1F30F174003AFBD7 /* Dispatcher.Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.Repository.swift; sourceTree = "<group>"; };
+		37C8BA9D1F30F1AE003AFBD7 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
+		37C8BA9E1F30F1AE003AFBD7 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		37C8BA9F1F30F1AE003AFBD7 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluxCapacitorSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BA935772B827618E28B121C /* Pods-FluxCapacitorSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.release.xcconfig"; sourceTree = "<group>"; };
 		E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -37,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C8BAA01F30F1AE003AFBD7 /* Nuke.framework in Frameworks */,
+				37C8BAA11F30F1AE003AFBD7 /* RxCocoa.framework in Frameworks */,
+				37C8BAA21F30F1AE003AFBD7 /* RxSwift.framework in Frameworks */,
 				37C8BA961F30D8E7003AFBD7 /* GithubApiSession.framework in Frameworks */,
 				5D255F67E5F7130D863F6C5F /* Pods_FluxCapacitorSample.framework in Frameworks */,
 			);
@@ -95,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA861F2FAA72003AFBD7 /* AppDelegate.swift */,
+				37C8BA981F30E69C003AFBD7 /* Flux */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -125,6 +137,30 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		37C8BA981F30E69C003AFBD7 /* Flux */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BA991F30E6CF003AFBD7 /* Repository */,
+				37C8BA9A1F30E6CF003AFBD7 /* User */,
+			);
+			path = Flux;
+			sourceTree = "<group>";
+		};
+		37C8BA991F30E6CF003AFBD7 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BA9B1F30F174003AFBD7 /* Dispatcher.Repository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		37C8BA9A1F30E6CF003AFBD7 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		C4E070B8352E3432CA1635D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +173,9 @@
 		D8A968412CB16AE3704A2777 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37C8BA9D1F30F1AE003AFBD7 /* Nuke.framework */,
+				37C8BA9E1F30F1AE003AFBD7 /* RxCocoa.framework */,
+				37C8BA9F1F30F1AE003AFBD7 /* RxSwift.framework */,
 				37C8BA951F30D8E7003AFBD7 /* GithubApiSession.framework */,
 				4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */,
 			);
@@ -237,6 +276,9 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/GithubApiSession.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Nuke.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 			);
 			outputPaths = (
 			);
@@ -284,6 +326,7 @@
 				37C8BA8E1F2FAAFD003AFBD7 /* SearchViewController.swift in Sources */,
 				37C8BA8C1F2FAAEA003AFBD7 /* FavoriteViewController.swift in Sources */,
 				37C8BA881F2FAA72003AFBD7 /* AppDelegate.swift in Sources */,
+				37C8BA9C1F30F174003AFBD7 /* Dispatcher.Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
