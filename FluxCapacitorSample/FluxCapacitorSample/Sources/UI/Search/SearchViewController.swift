@@ -7,17 +7,35 @@
 //
 
 import UIKit
+import RxSwift
 
 final class SearchViewController: UIViewController {
-
+    private let searchBar: UISearchBar = UISearchBar(frame: .zero)
+    private let action = UserAction()
+    private let store = UserStore.instantiate()
+    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        navigationItem.titleView = searchBar
+        
+        observeStore()
+        
+        action.fetchUsers(withQuery: "marty-suzuki", after: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func observeStore() {
+        store.users
+            .subscribe(onNext: {
+                print($0)
+            })
+            .disposed(by: disposeBag)
+        
+        store.isUserFetching
+            .subscribe(onNext: {
+                print($0)
+            })
+            .disposed(by: disposeBag)
     }
 }

@@ -7,17 +7,36 @@
 //
 
 import UIKit
+import FluxCapacitor
 
 final class FavoriteViewController: UIViewController {
-
+    private let aciont = RepositoryAction()
+    private let store = RepositoryStore.instantiate()
+    private let dustBuster = DustBuster()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        title = "Favorite"
+        
+        observeStoreChanges()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func observeStoreChanges() {
+        store.subscribe { [weak self] value in
+            DispatchQueue.main.async {
+                switch value {
+                case .addBookmark:
+                    break
+                case .removeBookmark:
+                    break
+                case .removeAllBookmarks:
+                    break
+                default:
+                    break
+                }
+            }
+        }
+        .cleaned(by: dustBuster)
     }
 }

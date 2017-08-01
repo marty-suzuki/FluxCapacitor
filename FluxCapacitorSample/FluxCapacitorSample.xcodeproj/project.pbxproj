@@ -18,6 +18,12 @@
 		37C8BAA01F30F1AE003AFBD7 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C8BA9D1F30F1AE003AFBD7 /* Nuke.framework */; };
 		37C8BAA11F30F1AE003AFBD7 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C8BA9E1F30F1AE003AFBD7 /* RxCocoa.framework */; };
 		37C8BAA21F30F1AE003AFBD7 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C8BA9F1F30F1AE003AFBD7 /* RxSwift.framework */; };
+		37C8BAA41F30F558003AFBD7 /* Dispatcher.User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAA31F30F558003AFBD7 /* Dispatcher.User.swift */; };
+		37C8BAA61F30F5A4003AFBD7 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAA51F30F5A4003AFBD7 /* UserStore.swift */; };
+		37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAA71F30F674003AFBD7 /* UserAction.swift */; };
+		37C8BAAB1F30F779003AFBD7 /* ApiSession.rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAAA1F30F779003AFBD7 /* ApiSession.rx.swift */; };
+		37C8BAAD1F310235003AFBD7 /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAAC1F310235003AFBD7 /* RepositoryAction.swift */; };
+		37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAAE1F31036E003AFBD7 /* RepositoryStore.swift */; };
 		5D255F67E5F7130D863F6C5F /* Pods_FluxCapacitorSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +41,12 @@
 		37C8BA9D1F30F1AE003AFBD7 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
 		37C8BA9E1F30F1AE003AFBD7 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		37C8BA9F1F30F1AE003AFBD7 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		37C8BAA31F30F558003AFBD7 /* Dispatcher.User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.User.swift; sourceTree = "<group>"; };
+		37C8BAA51F30F5A4003AFBD7 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		37C8BAA71F30F674003AFBD7 /* UserAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
+		37C8BAAA1F30F779003AFBD7 /* ApiSession.rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiSession.rx.swift; sourceTree = "<group>"; };
+		37C8BAAC1F310235003AFBD7 /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryAction.swift; sourceTree = "<group>"; };
+		37C8BAAE1F31036E003AFBD7 /* RepositoryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryStore.swift; sourceTree = "<group>"; };
 		4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluxCapacitorSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BA935772B827618E28B121C /* Pods-FluxCapacitorSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.release.xcconfig"; sourceTree = "<group>"; };
 		E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA861F2FAA72003AFBD7 /* AppDelegate.swift */,
+				37C8BAA91F30F760003AFBD7 /* Extension */,
 				37C8BA981F30E69C003AFBD7 /* Flux */,
 			);
 			path = Common;
@@ -150,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA9B1F30F174003AFBD7 /* Dispatcher.Repository.swift */,
+				37C8BAAE1F31036E003AFBD7 /* RepositoryStore.swift */,
+				37C8BAAC1F310235003AFBD7 /* RepositoryAction.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -157,8 +172,19 @@
 		37C8BA9A1F30E6CF003AFBD7 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				37C8BAA31F30F558003AFBD7 /* Dispatcher.User.swift */,
+				37C8BAA51F30F5A4003AFBD7 /* UserStore.swift */,
+				37C8BAA71F30F674003AFBD7 /* UserAction.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		37C8BAA91F30F760003AFBD7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BAAA1F30F779003AFBD7 /* ApiSession.rx.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		C4E070B8352E3432CA1635D7 /* Pods */ = {
@@ -323,10 +349,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C8BAA61F30F5A4003AFBD7 /* UserStore.swift in Sources */,
+				37C8BAA41F30F558003AFBD7 /* Dispatcher.User.swift in Sources */,
 				37C8BA8E1F2FAAFD003AFBD7 /* SearchViewController.swift in Sources */,
 				37C8BA8C1F2FAAEA003AFBD7 /* FavoriteViewController.swift in Sources */,
+				37C8BAAB1F30F779003AFBD7 /* ApiSession.rx.swift in Sources */,
+				37C8BAAD1F310235003AFBD7 /* RepositoryAction.swift in Sources */,
 				37C8BA881F2FAA72003AFBD7 /* AppDelegate.swift in Sources */,
+				37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */,
 				37C8BA9C1F30F174003AFBD7 /* Dispatcher.Repository.swift in Sources */,
+				37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
