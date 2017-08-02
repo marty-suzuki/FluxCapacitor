@@ -21,7 +21,6 @@
 		37C8BAA41F30F558003AFBD7 /* Dispatcher.User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAA31F30F558003AFBD7 /* Dispatcher.User.swift */; };
 		37C8BAA61F30F5A4003AFBD7 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAA51F30F5A4003AFBD7 /* UserStore.swift */; };
 		37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAA71F30F674003AFBD7 /* UserAction.swift */; };
-		37C8BAAB1F30F779003AFBD7 /* ApiSession.rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAAA1F30F779003AFBD7 /* ApiSession.rx.swift */; };
 		37C8BAAD1F310235003AFBD7 /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAAC1F310235003AFBD7 /* RepositoryAction.swift */; };
 		37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAAE1F31036E003AFBD7 /* RepositoryStore.swift */; };
 		5D255F67E5F7130D863F6C5F /* Pods_FluxCapacitorSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */; };
@@ -44,7 +43,6 @@
 		37C8BAA31F30F558003AFBD7 /* Dispatcher.User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.User.swift; sourceTree = "<group>"; };
 		37C8BAA51F30F5A4003AFBD7 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		37C8BAA71F30F674003AFBD7 /* UserAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
-		37C8BAAA1F30F779003AFBD7 /* ApiSession.rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiSession.rx.swift; sourceTree = "<group>"; };
 		37C8BAAC1F310235003AFBD7 /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryAction.swift; sourceTree = "<group>"; };
 		37C8BAAE1F31036E003AFBD7 /* RepositoryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryStore.swift; sourceTree = "<group>"; };
 		4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluxCapacitorSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA861F2FAA72003AFBD7 /* AppDelegate.swift */,
-				37C8BAA91F30F760003AFBD7 /* Extension */,
 				37C8BA981F30E69C003AFBD7 /* Flux */,
 			);
 			path = Common;
@@ -177,14 +174,6 @@
 				37C8BAA71F30F674003AFBD7 /* UserAction.swift */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		37C8BAA91F30F760003AFBD7 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				37C8BAAA1F30F779003AFBD7 /* ApiSession.rx.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		C4E070B8352E3432CA1635D7 /* Pods */ = {
@@ -353,7 +342,6 @@
 				37C8BAA41F30F558003AFBD7 /* Dispatcher.User.swift in Sources */,
 				37C8BA8E1F2FAAFD003AFBD7 /* SearchViewController.swift in Sources */,
 				37C8BA8C1F2FAAEA003AFBD7 /* FavoriteViewController.swift in Sources */,
-				37C8BAAB1F30F779003AFBD7 /* ApiSession.rx.swift in Sources */,
 				37C8BAAD1F310235003AFBD7 /* RepositoryAction.swift in Sources */,
 				37C8BA881F2FAA72003AFBD7 /* AppDelegate.swift in Sources */,
 				37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */,
