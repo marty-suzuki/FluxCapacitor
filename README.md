@@ -19,6 +19,10 @@ FluxCapacitor makes implementing [Flux](https://facebook.github.io/flux/) design
 - Swift 3.1 or later
 - iOS 9.0 or later
 
+## Todo
+
+- [ ] improve README
+
 ## Installation
 
 ### CocoaPods
@@ -39,6 +43,45 @@ github "marty-suzuki/FluxCapacitor"
 ```
 
 ## Usage
+
+This is ViewController sample that uses flux. If ViewController calls fetchRepositories method of RepositoryAction, it is reloaded automatically with subscribe method of RepositoryStore after fetched repositories from Github. Introducing how to implement flux design pattern with **FluxCapacitor**.
+
+```swift
+final class UserRepositoryViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+
+    private let repositoryAction = RepositoryAction()
+    private let repositoryStore = RepositoryStore.instantiate()
+    private let userStore = UserStore.instantiate()
+    private let dustBuster = DustBuster()
+    private let dataSource = UserRepositoryViewDataSource()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        dataSource.configure(with: tableView)
+        observeStore()
+
+        if let user = userStore.selectedUser {
+            repositoryAction.fetchRepositories(withUserId: user.id, after: nil)
+        }
+    }
+
+    private func observeStore() {
+        repositoryStore.subscribe { [weak self] changes in
+            DispatchQueue.main.async {
+                switch changes {
+                case .addRepositories,
+                     .removeAllRepositories,
+                     .isRepositoryFetching:
+                    self?.tableView.reloadData()
+                }
+            }
+        }
+        .cleaned(by: dustBuster)
+    }
+}
+```
 
 ### Dispatcher
 
@@ -135,8 +178,6 @@ func observeStore() {
 ### with RxSwift
 
 You can use FluxCapacitor with RxSwift like [this link](./FluxCapacitorSample/FluxCapacitorSample/Sources/Common/Flux/User/UserStore.swift).
-
-
 
 ## Example
 
