@@ -31,11 +31,25 @@ final class UserStore: Storable {
         return _selectedUser.value
     }
     private let _selectedUser = Variable<User?>(nil)
+
+    let lastPageInfo: Observable<PageInfo?>
+    var lastPageInfoValue: PageInfo? {
+        return _lastPageInfo.value
+    }
+    private let _lastPageInfo = Variable<PageInfo?>(nil)
+
+    let lastSearchQuery: Observable<String>
+    var lastSearchQueryValue: String {
+        return _lastSearchQuery.value
+    }
+    private let _lastSearchQuery = Variable<String>("")
     
     init(dispatcher: Dispatcher) {
         self.isUserFetching = _isUserFetching.asObservable()
         self.users = _users.asObservable()
         self.selectedUesr = _selectedUser.asObservable()
+        self.lastPageInfo = _lastPageInfo.asObservable()
+        self.lastSearchQuery = _lastSearchQuery.asObservable()
 
         register { [weak self] in
             switch $0 {
@@ -47,6 +61,10 @@ final class UserStore: Storable {
                 self?._users.value.removeAll()
             case .selectedUser(let value):
                 self?._selectedUser.value = value
+            case .lastPageInfo(let value):
+                self?._lastPageInfo.value = value
+            case .lastSearchQuery(let value):
+                self?._lastSearchQuery.value = value
             }
         }
     }

@@ -21,7 +21,7 @@ final class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Favorite"
+        title = "Local Favorite"
 
         dataSource.configure(with: tableView)
         observeBookmarkChanges()

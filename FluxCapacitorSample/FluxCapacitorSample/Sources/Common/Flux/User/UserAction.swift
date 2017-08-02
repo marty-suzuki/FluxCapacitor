@@ -22,13 +22,15 @@ final class UserAction: Actionable {
     }
     
     func fetchUsers(withQuery query: String, after: String?) {
+        invoke(.lastSearchQuery(query))
+        if query.isEmpty { return }
         disposeBag = DisposeBag()
         invoke(.isUserFetching(true))
         let request = SearchUserRequest(query: query, after: after)
         session.rx.send(request)
-            .map { $0.nodes }
             .subscribe(onNext: { [weak self] in
-                self?.invoke(.addUsers($0))
+                self?.invoke(.addUsers($0.nodes))
+                self?.invoke(.lastPageInfo($0.pageInfo))
             }, onDisposed: { [weak self] in
                 self?.invoke(.isUserFetching(false))
             })

@@ -12,6 +12,21 @@ final class SearchViewDataSource: NSObject {
     fileprivate let action: UserAction
     fileprivate let store: UserStore
 
+    fileprivate var isReachedBottom: Bool = false {
+        didSet {
+            if isReachedBottom && isReachedBottom != oldValue {
+                let query = store.lastSearchQueryValue
+                guard
+                    !query.isEmpty,
+                    let pageInfo = store.lastPageInfoValue,
+                    pageInfo.hasNextPage,
+                    let after = pageInfo.endCursor
+                else { return }
+                action.fetchUsers(withQuery: query, after: after)
+            }
+        }
+    }
+
     init(action: UserAction = .init(), store: UserStore = .instantiate()) {
         self.action = action
         self.store = store
@@ -45,5 +60,10 @@ extension SearchViewDataSource: UITableViewDelegate {
 
         let user = store.usersValue[indexPath.row]
         action.invoke(.selectedUser(user))
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let maxScrollDistance = max(0, scrollView.contentSize.height - scrollView.bounds.size.height)
+        isReachedBottom = maxScrollDistance <= scrollView.contentOffset.y
     }
 }

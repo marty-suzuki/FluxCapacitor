@@ -25,11 +25,49 @@ final class SearchViewController: UIViewController {
         navigationItem.titleView = searchBar
 
         dataSource.configure(with: tableView)
+        observeUI()
         observeStore()
-        
-        action.fetchUsers(withQuery: "marty-suzuki", after: nil)
     }
-    
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if searchBar.isFirstResponder {
+            searchBar.resignFirstResponder()
+        }
+    }
+
+    private func observeUI() {
+        searchBar.rx.text.orEmpty
+            .debounce(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] text in
+                self?.action.invoke(.removeAllUsers)
+                self?.action.invoke(.lastPageInfo(nil))
+                self?.action.invoke(.lastSearchQuery(""))
+                self?.action.fetchUsers(withQuery: text, after: nil)
+            })
+            .disposed(by: disposeBag)
+
+        Observable.merge(searchBar.rx.cancelButtonClicked.asObservable(),
+                         searchBar.rx.searchButtonClicked.asObservable())
+            .subscribe(onNext: { [weak self] in
+                self?.searchBar.resignFirstResponder()
+            })
+            .disposed(by: disposeBag)
+
+        searchBar.rx.textDidBeginEditing
+            .subscribe(onNext: { [weak self] in
+                self?.searchBar.showsCancelButton = true
+            })
+            .disposed(by: disposeBag)
+
+        searchBar.rx.textDidEndEditing
+            .subscribe(onNext: { [weak self] in
+                self?.searchBar.showsCancelButton = false
+            })
+            .disposed(by: disposeBag)
+    }
+
     private func observeStore() {
         store.users
             .observeOn(MainScheduler.instance)

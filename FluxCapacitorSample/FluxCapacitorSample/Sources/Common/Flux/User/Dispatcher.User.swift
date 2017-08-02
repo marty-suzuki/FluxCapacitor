@@ -16,5 +16,7 @@ extension Dispatcher {
         case addUsers([GithubApiSession.User])
         case removeAllUsers
         case selectedUser(GithubApiSession.User?)
+        case lastPageInfo(PageInfo?)
+        case lastSearchQuery(String)
     }
 }
