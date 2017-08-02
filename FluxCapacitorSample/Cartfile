@@ -1,3 +1,4 @@
 github "marty-suzuki/GithubApiClientForSample"
 github "ReactiveX/RxSwift" ~> 3.0
 github "kean/Nuke" ~> 5.0
+github "marty-suzuki/NoticeObserveKit"

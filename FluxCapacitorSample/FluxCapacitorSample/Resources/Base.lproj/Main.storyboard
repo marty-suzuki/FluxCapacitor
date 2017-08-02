@@ -104,6 +104,7 @@
                     <navigationItem key="navigationItem" id="Khd-db-lWx"/>
                     <connections>
                         <outlet property="tableView" destination="qBr-LQ-pYJ" id="Bat-6j-Ids"/>
+                        <outlet property="tableViewBottomConstraint" destination="1V2-sS-TKm" id="ixX-1O-btj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="el1-Pc-kMt" userLabel="First Responder" sceneMemberID="firstResponder"/>

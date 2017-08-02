@@ -30,6 +30,10 @@
 		9DDE2F231F31719A005CC4E2 /* SearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F221F31719A005CC4E2 /* SearchViewDataSource.swift */; };
 		9DDE2F251F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F241F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift */; };
 		9DDE2F271F319CBE005CC4E2 /* FavoriteViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F261F319CBE005CC4E2 /* FavoriteViewDataSource.swift */; };
+		9DEE5D271F31E3FF00225822 /* NoticeObserveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEE5D261F31E3FF00225822 /* NoticeObserveKit.framework */; };
+		9DEE5D2A1F31E48600225822 /* UIKeyboardWillHide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEE5D291F31E48600225822 /* UIKeyboardWillHide.swift */; };
+		9DEE5D2C1F31E49800225822 /* UIKeyboardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEE5D2B1F31E49800225822 /* UIKeyboardInfo.swift */; };
+		9DEE5D2E1F31E4B000225822 /* UIKeyboardWillShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEE5D2D1F31E4B000225822 /* UIKeyboardWillShow.swift */; };
 		EDB9D4A61F3192FC00FC6B61 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB9D4A51F3192FC00FC6B61 /* RepositoryViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +64,10 @@
 		9DDE2F221F31719A005CC4E2 /* SearchViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewDataSource.swift; sourceTree = "<group>"; };
 		9DDE2F241F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryViewDataSource.swift; sourceTree = "<group>"; };
 		9DDE2F261F319CBE005CC4E2 /* FavoriteViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewDataSource.swift; sourceTree = "<group>"; };
+		9DEE5D261F31E3FF00225822 /* NoticeObserveKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NoticeObserveKit.framework; path = Carthage/Build/iOS/NoticeObserveKit.framework; sourceTree = "<group>"; };
+		9DEE5D291F31E48600225822 /* UIKeyboardWillHide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKeyboardWillHide.swift; sourceTree = "<group>"; };
+		9DEE5D2B1F31E49800225822 /* UIKeyboardInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKeyboardInfo.swift; sourceTree = "<group>"; };
+		9DEE5D2D1F31E4B000225822 /* UIKeyboardWillShow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKeyboardWillShow.swift; sourceTree = "<group>"; };
 		E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
 		EDB9D4A51F3192FC00FC6B61 /* RepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DEE5D271F31E3FF00225822 /* NoticeObserveKit.framework in Frameworks */,
 				9DDE2F1C1F316D6D005CC4E2 /* SafariServices.framework in Frameworks */,
 				37C8BAA01F30F1AE003AFBD7 /* Nuke.framework in Frameworks */,
 				37C8BAA11F30F1AE003AFBD7 /* RxCocoa.framework in Frameworks */,
@@ -131,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA861F2FAA72003AFBD7 /* AppDelegate.swift */,
+				9DEE5D281F31E47900225822 /* NoticeObserver */,
 				37C8BA981F30E69C003AFBD7 /* Flux */,
 			);
 			path = Common;
@@ -205,6 +215,16 @@
 			path = UserRepository;
 			sourceTree = "<group>";
 		};
+		9DEE5D281F31E47900225822 /* NoticeObserver */ = {
+			isa = PBXGroup;
+			children = (
+				9DEE5D2B1F31E49800225822 /* UIKeyboardInfo.swift */,
+				9DEE5D291F31E48600225822 /* UIKeyboardWillHide.swift */,
+				9DEE5D2D1F31E4B000225822 /* UIKeyboardWillShow.swift */,
+			);
+			path = NoticeObserver;
+			sourceTree = "<group>";
+		};
 		C4E070B8352E3432CA1635D7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +237,7 @@
 		D8A968412CB16AE3704A2777 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9DEE5D261F31E3FF00225822 /* NoticeObserveKit.framework */,
 				9DDE2F1B1F316D6D005CC4E2 /* SafariServices.framework */,
 				37C8BA9D1F30F1AE003AFBD7 /* Nuke.framework */,
 				37C8BA9E1F30F1AE003AFBD7 /* RxCocoa.framework */,
@@ -333,6 +354,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Nuke.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NoticeObserveKit.framework",
 			);
 			outputPaths = (
 			);
@@ -387,9 +409,12 @@
 				37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */,
 				9DDE2F1F1F316DAF005CC4E2 /* UserRepositoryViewController.swift in Sources */,
 				37C8BA9C1F30F174003AFBD7 /* Dispatcher.Repository.swift in Sources */,
+				9DEE5D2C1F31E49800225822 /* UIKeyboardInfo.swift in Sources */,
 				EDB9D4A61F3192FC00FC6B61 /* RepositoryViewController.swift in Sources */,
 				9DDE2F251F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift in Sources */,
+				9DEE5D2A1F31E48600225822 /* UIKeyboardWillHide.swift in Sources */,
 				37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */,
+				9DEE5D2E1F31E4B000225822 /* UIKeyboardWillShow.swift in Sources */,
 				9DDE2F271F319CBE005CC4E2 /* FavoriteViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
