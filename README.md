@@ -1,11 +1,11 @@
+![Logo](./Images/Logo.png)
+
 # FluxCapacitor
 
 [![CI Status](http://img.shields.io/travis/ca-atmosphere/FluxCapacitor.svg?style=flat)](https://travis-ci.org/ca-atmosphere/FluxCapacitor)
 [![Version](https://img.shields.io/cocoapods/v/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 [![License](https://img.shields.io/cocoapods/l/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 [![Platform](https://img.shields.io/cocoapods/p/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
-
-![FluxCapacitor](./Images/FluxCapacitor.png)
 
 ## Example
 
