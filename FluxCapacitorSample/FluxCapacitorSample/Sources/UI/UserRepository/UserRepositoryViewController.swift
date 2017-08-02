@@ -23,9 +23,9 @@ final class UserRepositoryViewController: UIViewController {
     private let user: User
 
     init?(userAction: UserAction = .init(),
-         userStore: UserStore = .instantiate(),
-         repositoryAction: RepositoryAction = .init(),
-         repositoryStore: RepositoryStore = .instantiate()) {
+          userStore: UserStore = .instantiate(),
+          repositoryAction: RepositoryAction = .init(),
+          repositoryStore: RepositoryStore = .instantiate()) {
         guard let user = userStore.selectedUserValue else { return nil }
         self.user = user
         self.userAction = userAction

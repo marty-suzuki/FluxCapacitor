@@ -2,18 +2,26 @@
 
 # FluxCapacitor
 
-[![CI Status](http://img.shields.io/travis/ca-atmosphere/FluxCapacitor.svg?style=flat)](https://travis-ci.org/ca-atmosphere/FluxCapacitor)
 [![Version](https://img.shields.io/cocoapods/v/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 [![License](https://img.shields.io/cocoapods/l/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 [![Platform](https://img.shields.io/cocoapods/p/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-## Example
+FluxCapacitor makes implementing [Flux](https://facebook.github.io/flux/) design pattern easily with protocols and typealias.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+- Storable protocol
+- Actionable protocol
+- DispatchValueType
+
 
 ## Requirements
 
+- Swift 3.1 or later
+- iOS 9.0 or later
+
 ## Installation
+
+### CocoaPods
 
 FluxCapacitor is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -22,11 +30,135 @@ it, simply add the following line to your Podfile:
 pod "FluxCapacitor"
 ```
 
+### Carthage
+
+If you’re using [Carthage](https://github.com/Carthage/Carthage), simply add FluxCapacitor to your `Cartfile`:
+
+```ruby
+github "marty-suzuki/FluxCapacitor"
+```
+
+## Usage
+
+### Dispatcher
+
+First of all, implementing `DispatchValue`. It connects Action and Store, but it plays a role that don't depend each other.
+
+```swift
+extension Dispatcher {
+    enum Repository: DispatchValue {
+        case isRepositoryFetching(Bool)
+        case addRepositories([GithubApiSession.Repository])
+        case removeAllRepositories
+    }
+}
+```
+
+### Store
+
+If you call register method, that closure returns dispatched value related DispatchValueType.　Please update store's value with Associated Values.
+
+```swift
+final class RepositoryStore: Storable {
+    typealias DispatchValueType = Dispatcher.Repository
+
+    private(set) var isRepositoryFetching = false
+    private(set) var repositories: [Repository] = []
+
+    init(dispatcher: Dispatcher) {
+        register { [weak self] in
+            switch $0 {
+            case .isRepositoryFetching(let value):
+                self?.isRepositoryFetching = value
+            case .addRepositories(let value):
+                self?.repositories.append(contentsOf: value)
+            case .removeAllRepositories:
+                self?.repositories.removeAll()
+            }
+        }
+    }
+```
+
+### Action
+
+If you call invoke method, it can dispatch value related DispatchValueType.
+
+```swift
+final class RepositoryAction: Actionable {
+    typealias DispatchValueType = Dispatcher.Repository
+
+    private let session: ApiSession
+
+    init(session: ApiSession = .shared) {
+        self.session = session
+    }
+
+    func fetchRepositories(withUserId id: String, after: String?) {
+        invoke(.isRepositoryFetching(true))
+        let request = UserNodeRequest(id: id, after: after)
+        _ = session.send(request) { [weak self] in
+            switch $0 {
+            case .success(let value):
+                self?.invoke(.addRepositories(value.nodes))
+            case .failure:
+                break
+            }
+            self?.invoke(.isRepositoryFetching(false))
+        }
+    }
+}
+```
+
+### Observe changes
+
+You can initialize a store with `instantiate()`. If reference of store is left, that method returns remained one. If reference is not left, that method returns new instance.
+You can observe changes by store's subscribe method. When called subscribe, it returns `Dust`. So, clean up with `DustBuster`.
+
+```swift
+let dustBuster = DustBuster()
+
+func observeStore() {
+    RepositoryStore.instantiate().subscribe {
+        switch $0 {
+        case .addRepositories,
+             .removeAllRepositories,
+             .isRepositoryFetching:
+            break
+        }
+    }
+    .cleaned(by: dustBuster)
+}
+```
+
 ![dustbuster](./Images/dustbuster.png)
+
+### with RxSwift
+
+You can use FluxCapacitor with RxSwift like [this link](./FluxCapacitorSample/FluxCapacitorSample/Sources/Common/Flux/User/UserStore.swift).
+
+
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` and `carthage update` from the Example directory first.
+
+To run this sample, you must set Github Personal access token.
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    // Override point for customization after application launch.
+    ApiSession.shared.token = "/** Github Personal access token **/"
+    return true
+}
+```
+
+Application structure is like below.
+
+![flux_image](./Images/flux_image.png)
 
 ## Author
 
-ca-atmosphere, s1180183@gmail.com
+marty-suzuki, s1180183@gmail.com
 
 ## License
 

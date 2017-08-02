@@ -24,8 +24,8 @@ final class RepositoryViewController: SFSafariViewController {
     private let repository: Repository
 
     init?(action: RepositoryAction = .init(),
-         store: RepositoryStore = .instantiate(),
-         entersReaderIfAvailable: Bool = true) {
+          store: RepositoryStore = .instantiate(),
+          entersReaderIfAvailable: Bool = true) {
         guard let repository = store.selectedRepository else { return nil }
         self.repository = repository
         self.action = action
