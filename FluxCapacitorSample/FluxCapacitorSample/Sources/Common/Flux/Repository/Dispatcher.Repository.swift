@@ -16,6 +16,7 @@ extension Dispatcher {
         case addRepositories([GithubApiSession.Repository])
         case removeAllRepositories
         case selectedRepository(GithubApiSession.Repository?)
+        case lastPageInfo(PageInfo?)
         
         case addBookmark(GithubApiSession.Repository)
         case removeBookmark(GithubApiSession.Repository)

@@ -9,12 +9,30 @@
 import UIKit
 
 final class UserRepositoryViewDataSource: NSObject {
-    fileprivate let action: RepositoryAction
-    fileprivate let store: RepositoryStore
+    private let userStore: UserStore
+    fileprivate let repositoryAction: RepositoryAction
+    fileprivate let repositoryStore: RepositoryStore
 
-    init(action: RepositoryAction = .init(), store: RepositoryStore = .instantiate()) {
-        self.action = action
-        self.store = store
+    fileprivate var isReachedBottom: Bool = false {
+        didSet {
+            if isReachedBottom && isReachedBottom != oldValue {
+                guard
+                    let user = userStore.selectedUserValue,
+                    let pageInfo = repositoryStore.lastPageInfo,
+                    pageInfo.hasNextPage,
+                    let after = pageInfo.endCursor
+                else { return }
+                repositoryAction.fetchRepositories(withUserId: user.id, after: after)
+            }
+        }
+    }
+
+    init(userStore: UserStore = .instantiate(),
+         repositoryAction: RepositoryAction = .init(),
+         repositoryStore: RepositoryStore = .instantiate()) {
+        self.userStore = userStore
+        self.repositoryAction = repositoryAction
+        self.repositoryStore = repositoryStore
 
         super.init()
     }
@@ -29,12 +47,12 @@ final class UserRepositoryViewDataSource: NSObject {
 
 extension UserRepositoryViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return store.repositories.count
+        return repositoryStore.repositories.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
-        cell.textLabel?.text = store.repositories[indexPath.row].name
+        cell.textLabel?.text = repositoryStore.repositories[indexPath.row].name
         return cell
     }
 }
@@ -43,7 +61,12 @@ extension UserRepositoryViewDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
 
-        let repository = store.repositories[indexPath.row]
-        action.invoke(.selectedRepository(repository))
+        let repository = repositoryStore.repositories[indexPath.row]
+        repositoryAction.invoke(.selectedRepository(repository))
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let maxScrollDistance = max(0, scrollView.contentSize.height - scrollView.bounds.size.height)
+        isReachedBottom = maxScrollDistance <= scrollView.contentOffset.y
     }
 }

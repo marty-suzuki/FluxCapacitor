@@ -8,24 +8,26 @@
 
 import UIKit
 import FluxCapacitor
+import GithubApiSession
 import SafariServices
 
 final class UserRepositoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private let userAction: UserAction
-    private let userStore: UserStore
     private let repositoryAction: RepositoryAction
     private let repositoryStore: RepositoryStore
     private let dustBuster = DustBuster()
     private let dataSource = UserRepositoryViewDataSource()
+    private let user: User
 
-    init(userAction: UserAction = .init(),
+    init?(userAction: UserAction = .init(),
          userStore: UserStore = .instantiate(),
          repositoryAction: RepositoryAction = .init(),
          repositoryStore: RepositoryStore = .instantiate()) {
+        guard let user = userStore.selectedUserValue else { return nil }
+        self.user = user
         self.userAction = userAction
-        self.userStore = userStore
         self.repositoryAction = repositoryAction
         self.repositoryStore = repositoryStore
 
@@ -45,14 +47,12 @@ final class UserRepositoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Repositories"
+        title = "\(user.login)'s Repositories"
 
         dataSource.configure(with: tableView)
         observeStore()
 
-        if let user = userStore.selectedUserValue {
-            repositoryAction.fetchRepositories(withUserId: user.id, after: nil)
-        }
+        repositoryAction.fetchRepositories(withUserId: user.id, after: nil)
     }
 
     private func observeStore() {

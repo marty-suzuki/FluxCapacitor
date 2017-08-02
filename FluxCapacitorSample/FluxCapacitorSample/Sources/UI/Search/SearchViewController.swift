@@ -122,7 +122,7 @@ final class SearchViewController: UIViewController {
 
     private var showUserRepository: AnyObserver<Void> {
         return UIBindingObserver(UIElement: self) { me, _ in
-            let vc = UserRepositoryViewController()
+            guard let vc = UserRepositoryViewController() else { return }
             me.navigationController?.pushViewController(vc, animated: true)
         }.asObserver()
     }

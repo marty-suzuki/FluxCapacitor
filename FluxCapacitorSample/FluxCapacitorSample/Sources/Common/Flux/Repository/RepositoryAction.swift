@@ -26,9 +26,9 @@ final class RepositoryAction: Actionable {
         invoke(.isRepositoryFetching(true))
         let request = UserNodeRequest(id: id, after: after)
         session.rx.send(request)
-            .map { $0.nodes }
             .subscribe(onNext: { [weak self] in
-                self?.invoke(.addRepositories($0))
+                self?.invoke(.lastPageInfo($0.pageInfo))
+                self?.invoke(.addRepositories($0.nodes))
             }, onDisposed: { [weak self] in
                 self?.invoke(.isRepositoryFetching(false))
             })
