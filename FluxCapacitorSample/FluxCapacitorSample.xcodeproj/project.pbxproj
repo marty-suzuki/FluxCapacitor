@@ -23,6 +23,14 @@
 		37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAA71F30F674003AFBD7 /* UserAction.swift */; };
 		37C8BAAD1F310235003AFBD7 /* RepositoryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAAC1F310235003AFBD7 /* RepositoryAction.swift */; };
 		37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAAE1F31036E003AFBD7 /* RepositoryStore.swift */; };
+		37C8BAB21F31FC2F003AFBD7 /* NSObjectProtocol.className.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAB11F31FC2F003AFBD7 /* NSObjectProtocol.className.swift */; };
+		37C8BAB41F31FCFF003AFBD7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAB31F31FCFF003AFBD7 /* LoadingView.swift */; };
+		37C8BAB61F31FD10003AFBD7 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BAB51F31FD10003AFBD7 /* LoadingView.xib */; };
+		37C8BABC1F320985003AFBD7 /* Nibable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BABB1F320985003AFBD7 /* Nibable.swift */; };
+		37C8BABF1F3213F6003AFBD7 /* RepositoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BABD1F3213F6003AFBD7 /* RepositoryViewCell.swift */; };
+		37C8BAC01F3213F6003AFBD7 /* RepositoryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BABE1F3213F6003AFBD7 /* RepositoryViewCell.xib */; };
+		37C8BAC31F32140A003AFBD7 /* UserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAC11F32140A003AFBD7 /* UserViewCell.swift */; };
+		37C8BAC41F32140A003AFBD7 /* UserViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BAC21F32140A003AFBD7 /* UserViewCell.xib */; };
 		5D255F67E5F7130D863F6C5F /* Pods_FluxCapacitorSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */; };
 		9DDE2F1C1F316D6D005CC4E2 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDE2F1B1F316D6D005CC4E2 /* SafariServices.framework */; };
 		9DDE2F1F1F316DAF005CC4E2 /* UserRepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F1E1F316DAF005CC4E2 /* UserRepositoryViewController.swift */; };
@@ -56,6 +64,14 @@
 		37C8BAA71F30F674003AFBD7 /* UserAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAction.swift; sourceTree = "<group>"; };
 		37C8BAAC1F310235003AFBD7 /* RepositoryAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryAction.swift; sourceTree = "<group>"; };
 		37C8BAAE1F31036E003AFBD7 /* RepositoryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryStore.swift; sourceTree = "<group>"; };
+		37C8BAB11F31FC2F003AFBD7 /* NSObjectProtocol.className.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectProtocol.className.swift; sourceTree = "<group>"; };
+		37C8BAB31F31FCFF003AFBD7 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		37C8BAB51F31FD10003AFBD7 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		37C8BABB1F320985003AFBD7 /* Nibable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nibable.swift; sourceTree = "<group>"; };
+		37C8BABD1F3213F6003AFBD7 /* RepositoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewCell.swift; sourceTree = "<group>"; };
+		37C8BABE1F3213F6003AFBD7 /* RepositoryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryViewCell.xib; sourceTree = "<group>"; };
+		37C8BAC11F32140A003AFBD7 /* UserViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewCell.swift; sourceTree = "<group>"; };
+		37C8BAC21F32140A003AFBD7 /* UserViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserViewCell.xib; sourceTree = "<group>"; };
 		4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluxCapacitorSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BA935772B827618E28B121C /* Pods-FluxCapacitorSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.release.xcconfig"; sourceTree = "<group>"; };
 		9DDE2F1B1F316D6D005CC4E2 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
@@ -150,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA7E1F2FAA32003AFBD7 /* Main.storyboard */,
+				37C8BAB01F31FBFB003AFBD7 /* Common */,
 				EDB9D4A41F3192FC00FC6B61 /* Repository */,
 				37C8BA8A1F2FAAD8003AFBD7 /* Search */,
 				37C8BA891F2FAAD8003AFBD7 /* Favorite */,
@@ -203,6 +220,21 @@
 				37C8BAA71F30F674003AFBD7 /* UserAction.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		37C8BAB01F31FBFB003AFBD7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				37C8BAC11F32140A003AFBD7 /* UserViewCell.swift */,
+				37C8BAC21F32140A003AFBD7 /* UserViewCell.xib */,
+				37C8BAB11F31FC2F003AFBD7 /* NSObjectProtocol.className.swift */,
+				37C8BABB1F320985003AFBD7 /* Nibable.swift */,
+				37C8BAB31F31FCFF003AFBD7 /* LoadingView.swift */,
+				37C8BAB51F31FD10003AFBD7 /* LoadingView.xib */,
+				37C8BABD1F3213F6003AFBD7 /* RepositoryViewCell.swift */,
+				37C8BABE1F3213F6003AFBD7 /* RepositoryViewCell.xib */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		9DDE2F1D1F316D91005CC4E2 /* UserRepository */ = {
@@ -323,6 +355,9 @@
 				37C8BA831F2FAA32003AFBD7 /* Main.storyboard in Resources */,
 				9DDE2F211F316DCC005CC4E2 /* UserRepositoryViewController.xib in Resources */,
 				37C8BA821F2FAA32003AFBD7 /* LaunchScreen.storyboard in Resources */,
+				37C8BAC41F32140A003AFBD7 /* UserViewCell.xib in Resources */,
+				37C8BAC01F3213F6003AFBD7 /* RepositoryViewCell.xib in Resources */,
+				37C8BAB61F31FD10003AFBD7 /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,22 +434,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C8BAB21F31FC2F003AFBD7 /* NSObjectProtocol.className.swift in Sources */,
+				37C8BABC1F320985003AFBD7 /* Nibable.swift in Sources */,
 				37C8BAA61F30F5A4003AFBD7 /* UserStore.swift in Sources */,
 				37C8BAA41F30F558003AFBD7 /* Dispatcher.User.swift in Sources */,
 				37C8BA8E1F2FAAFD003AFBD7 /* SearchViewController.swift in Sources */,
 				37C8BA8C1F2FAAEA003AFBD7 /* FavoriteViewController.swift in Sources */,
 				37C8BAAD1F310235003AFBD7 /* RepositoryAction.swift in Sources */,
+				37C8BAC31F32140A003AFBD7 /* UserViewCell.swift in Sources */,
 				9DDE2F231F31719A005CC4E2 /* SearchViewDataSource.swift in Sources */,
 				37C8BA881F2FAA72003AFBD7 /* AppDelegate.swift in Sources */,
 				37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */,
 				9DDE2F1F1F316DAF005CC4E2 /* UserRepositoryViewController.swift in Sources */,
 				37C8BA9C1F30F174003AFBD7 /* Dispatcher.Repository.swift in Sources */,
+				37C8BABF1F3213F6003AFBD7 /* RepositoryViewCell.swift in Sources */,
 				9DEE5D2C1F31E49800225822 /* UIKeyboardInfo.swift in Sources */,
 				EDB9D4A61F3192FC00FC6B61 /* RepositoryViewController.swift in Sources */,
 				9DDE2F251F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift in Sources */,
 				9DEE5D2A1F31E48600225822 /* UIKeyboardWillHide.swift in Sources */,
 				37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */,
 				9DEE5D2E1F31E4B000225822 /* UIKeyboardWillShow.swift in Sources */,
+				37C8BAB41F31FCFF003AFBD7 /* LoadingView.swift in Sources */,
 				9DDE2F271F319CBE005CC4E2 /* FavoriteViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

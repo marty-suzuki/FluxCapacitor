@@ -41,7 +41,8 @@ final class UserRepositoryViewDataSource: NSObject {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
+        tableView.register(RepositoryViewCell.nib, forCellReuseIdentifier: RepositoryViewCell.className)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
     }
 }
 
@@ -51,8 +52,10 @@ extension UserRepositoryViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
-        cell.textLabel?.text = repositoryStore.repositories[indexPath.row].name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryViewCell.className, for: indexPath) as? RepositoryViewCell else {
+            return tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className, for: indexPath)
+        }
+        cell.configure(with: repositoryStore.repositories[indexPath.row])
         return cell
     }
 }
@@ -63,6 +66,10 @@ extension UserRepositoryViewDataSource: UITableViewDelegate {
 
         let repository = repositoryStore.repositories[indexPath.row]
         repositoryAction.invoke(.selectedRepository(repository))
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return RepositoryViewCell.defaultHeight
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

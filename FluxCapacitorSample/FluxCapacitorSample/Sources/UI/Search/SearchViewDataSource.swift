@@ -38,7 +38,8 @@ final class SearchViewDataSource: NSObject {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
+        tableView.register(UserViewCell.nib , forCellReuseIdentifier: UserViewCell.className)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
     }
 }
 
@@ -48,8 +49,10 @@ extension SearchViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
-        cell.textLabel?.text = store.usersValue[indexPath.row].login
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserViewCell.className, for: indexPath) as? UserViewCell else {
+            return tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className, for: indexPath)
+        }
+        cell.configure(with: store.usersValue[indexPath.row])
         return cell
     }
 }
@@ -60,6 +63,10 @@ extension SearchViewDataSource: UITableViewDelegate {
 
         let user = store.usersValue[indexPath.row]
         action.invoke(.selectedUser(user))
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UserViewCell.defaultHeight
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
