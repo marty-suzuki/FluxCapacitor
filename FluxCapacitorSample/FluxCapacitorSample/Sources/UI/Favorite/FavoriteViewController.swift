@@ -10,6 +10,8 @@ import UIKit
 import FluxCapacitor
 
 final class FavoriteViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    
     private let aciont = RepositoryAction()
     private let store = RepositoryStore.instantiate()
     private let dustBuster = DustBuster()

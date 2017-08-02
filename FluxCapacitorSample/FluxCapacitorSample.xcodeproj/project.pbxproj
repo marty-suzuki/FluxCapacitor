@@ -27,6 +27,8 @@
 		9DDE2F1C1F316D6D005CC4E2 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDE2F1B1F316D6D005CC4E2 /* SafariServices.framework */; };
 		9DDE2F1F1F316DAF005CC4E2 /* UserRepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F1E1F316DAF005CC4E2 /* UserRepositoryViewController.swift */; };
 		9DDE2F211F316DCC005CC4E2 /* UserRepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DDE2F201F316DCC005CC4E2 /* UserRepositoryViewController.xib */; };
+		9DDE2F231F31719A005CC4E2 /* SearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F221F31719A005CC4E2 /* SearchViewDataSource.swift */; };
+		9DDE2F251F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F241F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		9DDE2F1B1F316D6D005CC4E2 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		9DDE2F1E1F316DAF005CC4E2 /* UserRepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryViewController.swift; sourceTree = "<group>"; };
 		9DDE2F201F316DCC005CC4E2 /* UserRepositoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserRepositoryViewController.xib; sourceTree = "<group>"; };
+		9DDE2F221F31719A005CC4E2 /* SearchViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewDataSource.swift; sourceTree = "<group>"; };
+		9DDE2F241F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryViewDataSource.swift; sourceTree = "<group>"; };
 		E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA8D1F2FAAFD003AFBD7 /* SearchViewController.swift */,
+				9DDE2F221F31719A005CC4E2 /* SearchViewDataSource.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 			children = (
 				9DDE2F1E1F316DAF005CC4E2 /* UserRepositoryViewController.swift */,
 				9DDE2F201F316DCC005CC4E2 /* UserRepositoryViewController.xib */,
+				9DDE2F241F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift */,
 			);
 			path = UserRepository;
 			sourceTree = "<group>";
@@ -362,10 +368,12 @@
 				37C8BA8E1F2FAAFD003AFBD7 /* SearchViewController.swift in Sources */,
 				37C8BA8C1F2FAAEA003AFBD7 /* FavoriteViewController.swift in Sources */,
 				37C8BAAD1F310235003AFBD7 /* RepositoryAction.swift in Sources */,
+				9DDE2F231F31719A005CC4E2 /* SearchViewDataSource.swift in Sources */,
 				37C8BA881F2FAA72003AFBD7 /* AppDelegate.swift in Sources */,
 				37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */,
 				9DDE2F1F1F316DAF005CC4E2 /* UserRepositoryViewController.swift in Sources */,
 				37C8BA9C1F30F174003AFBD7 /* Dispatcher.Repository.swift in Sources */,
+				9DDE2F251F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift in Sources */,
 				37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,6 +16,7 @@ final class RepositoryStore: Storable {
     private(set) var isRepositoryFetching = false
     private(set) var bookmarks: [Repository] = []
     private(set) var repositories: [Repository] = []
+    private(set) var selectedRepository: Repository? = nil
     
     init(dispatcher: Dispatcher) {
         register { [weak self] in
@@ -28,6 +29,9 @@ final class RepositoryStore: Storable {
                 if let index = self?.bookmarks.index(where: { $0.url == value.url }) {
                     self?.bookmarks.remove(at: index)
                 }
+            case .selectedRepository(let value):
+                self?.selectedRepository = value
+
             case .removeAllBookmarks:
                 self?.bookmarks.removeAll()
             case .addRepositories(let value):

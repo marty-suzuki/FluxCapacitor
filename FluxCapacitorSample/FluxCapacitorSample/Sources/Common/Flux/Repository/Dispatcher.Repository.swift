@@ -15,6 +15,7 @@ extension Dispatcher {
         case isRepositoryFetching(Bool)
         case addRepositories([GithubApiSession.Repository])
         case removeAllRepositories
+        case selectedRepository(GithubApiSession.Repository?)
         
         case addBookmark(GithubApiSession.Repository)
         case removeBookmark(GithubApiSession.Repository)
