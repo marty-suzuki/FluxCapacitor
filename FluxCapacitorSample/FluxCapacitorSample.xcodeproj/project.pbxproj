@@ -29,6 +29,7 @@
 		9DDE2F211F316DCC005CC4E2 /* UserRepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DDE2F201F316DCC005CC4E2 /* UserRepositoryViewController.xib */; };
 		9DDE2F231F31719A005CC4E2 /* SearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F221F31719A005CC4E2 /* SearchViewDataSource.swift */; };
 		9DDE2F251F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F241F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift */; };
+		9DDE2F271F319CBE005CC4E2 /* FavoriteViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F261F319CBE005CC4E2 /* FavoriteViewDataSource.swift */; };
 		EDB9D4A61F3192FC00FC6B61 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB9D4A51F3192FC00FC6B61 /* RepositoryViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		9DDE2F201F316DCC005CC4E2 /* UserRepositoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserRepositoryViewController.xib; sourceTree = "<group>"; };
 		9DDE2F221F31719A005CC4E2 /* SearchViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewDataSource.swift; sourceTree = "<group>"; };
 		9DDE2F241F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryViewDataSource.swift; sourceTree = "<group>"; };
+		9DDE2F261F319CBE005CC4E2 /* FavoriteViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewDataSource.swift; sourceTree = "<group>"; };
 		E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
 		EDB9D4A51F3192FC00FC6B61 /* RepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA8B1F2FAAEA003AFBD7 /* FavoriteViewController.swift */,
+				9DDE2F261F319CBE005CC4E2 /* FavoriteViewDataSource.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				EDB9D4A61F3192FC00FC6B61 /* RepositoryViewController.swift in Sources */,
 				9DDE2F251F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift in Sources */,
 				37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */,
+				9DDE2F271F319CBE005CC4E2 /* FavoriteViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

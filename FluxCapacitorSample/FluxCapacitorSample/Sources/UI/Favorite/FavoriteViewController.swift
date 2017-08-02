@@ -14,17 +14,30 @@ final class FavoriteViewController: UIViewController {
     
     private let aciont = RepositoryAction()
     private let store = RepositoryStore.instantiate()
+    private let dataSource = FavoriteViewDataSource()
     private let dustBuster = DustBuster()
+    private var selectedRepositoryDustBuster = DustBuster()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Favorite"
-        
-        observeStoreChanges()
+
+        dataSource.configure(with: tableView)
+        observeBookmarkChanges()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        observeSelectedRepositoryChanges()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        selectedRepositoryDustBuster = DustBuster()
     }
     
-    private func observeStoreChanges() {
+    private func observeBookmarkChanges() {
         store.subscribe { [weak self] value in
             DispatchQueue.main.async {
                 switch value {
@@ -36,5 +49,24 @@ final class FavoriteViewController: UIViewController {
             }
         }
         .cleaned(by: dustBuster)
+    }
+
+    private func observeSelectedRepositoryChanges() {
+        store.subscribe { [weak self] value in
+            DispatchQueue.main.async {
+                switch value {
+                case .selectedRepository:
+                    self?.showRepository()
+                default:
+                    break
+                }
+            }
+        }
+        .cleaned(by: selectedRepositoryDustBuster)
+    }
+
+    private func showRepository() {
+        guard let webview = RepositoryViewController() else { return }
+        navigationController?.pushViewController(webview, animated: true)
     }
 }

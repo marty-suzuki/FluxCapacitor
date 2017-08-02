@@ -11,6 +11,14 @@ import SafariServices
 import GithubApiSession
 
 final class RepositoryViewController: SFSafariViewController {
+    private(set) lazy var favoriteButtonItem: UIBarButtonItem = {
+        let title = self.store.bookmarks.contains(where: { $0.url == self.repository.url }) ? "Remove" : "Add"
+        return UIBarButtonItem(title: title,
+                               style: .plain,
+                               target: self,
+                               action: #selector(RepositoryViewController.favoriteButtonTap(_:)))
+    }()
+
     private let action: RepositoryAction
     private let store: RepositoryStore
     private let repository: Repository
@@ -34,7 +42,16 @@ final class RepositoryViewController: SFSafariViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let bookmarkItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = bookmarkItem
+        navigationItem.rightBarButtonItem = favoriteButtonItem
+    }
+
+    @objc private func favoriteButtonTap(_ sender: UIBarButtonItem) {
+        if store.bookmarks.contains(where: { $0.url == repository.url }) {
+            action.invoke(.removeBookmark(repository))
+            favoriteButtonItem.title = "Add"
+        } else {
+            action.invoke(.addBookmark(repository))
+            favoriteButtonItem.title = "Remove"
+        }
     }
 }

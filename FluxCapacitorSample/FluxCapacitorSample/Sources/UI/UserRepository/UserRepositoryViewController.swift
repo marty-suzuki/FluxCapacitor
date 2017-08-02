@@ -60,7 +60,7 @@ final class UserRepositoryViewController: UIViewController {
             DispatchQueue.main.async {
                 switch changes {
                 case .selectedRepository:
-                    self?.showWebView()
+                    self?.showRepository()
                 case .addRepositories, .removeAllRepositories:
                     self?.tableView.reloadData()
                 default:
@@ -71,7 +71,7 @@ final class UserRepositoryViewController: UIViewController {
         .cleaned(by: dustBuster)
     }
 
-    private func showWebView() {
+    private func showRepository() {
         guard let webview = RepositoryViewController() else { return }
         navigationController?.pushViewController(webview, animated: true)
     }

@@ -17,27 +17,30 @@ final class RepositoryStore: Storable {
     private(set) var bookmarks: [Repository] = []
     private(set) var repositories: [Repository] = []
     private(set) var selectedRepository: Repository? = nil
-    
+
     init(dispatcher: Dispatcher) {
         register { [weak self] in
             switch $0 {
             case .isRepositoryFetching(let value):
                 self?.isRepositoryFetching = value
-            case .addBookmark(let value):
-                self?.bookmarks.append(value)
-            case .removeBookmark(let value):
-                if let index = self?.bookmarks.index(where: { $0.url == value.url }) {
-                    self?.bookmarks.remove(at: index)
-                }
-            case .selectedRepository(let value):
-                self?.selectedRepository = value
-
-            case .removeAllBookmarks:
-                self?.bookmarks.removeAll()
             case .addRepositories(let value):
                 self?.repositories.append(contentsOf: value)
             case .removeAllRepositories:
                 self?.repositories.removeAll()
+            case .selectedRepository(let value):
+                self?.selectedRepository = value
+
+            case .addBookmark(let value):
+                if self?.bookmarks.index(where: { $0.url == value.url }) == nil {
+                    self?.bookmarks.append(value)
+                }
+            case .removeBookmark(let value):
+                if let index = self?.bookmarks.index(where: { $0.url == value.url }) {
+                    self?.bookmarks.remove(at: index)
+                }
+            case .removeAllBookmarks:
+                self?.bookmarks.removeAll()
+
             }
         }
     }
