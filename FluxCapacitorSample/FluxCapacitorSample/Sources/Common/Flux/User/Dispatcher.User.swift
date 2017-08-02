@@ -15,5 +15,6 @@ extension Dispatcher {
         case isUserFetching(Bool)
         case addUsers([GithubApiSession.User])
         case removeAllUsers
+        case selectedUser(GithubApiSession.User?)
     }
 }

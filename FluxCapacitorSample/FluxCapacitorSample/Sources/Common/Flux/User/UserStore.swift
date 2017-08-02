@@ -25,11 +25,18 @@ final class UserStore: Storable {
         return _users.value
     }
     private let _users = Variable<[User]>([])
+
+    let selectedUesr: Observable<User?>
+    var selectedUserValue: User? {
+        return _selectedUser.value
+    }
+    private let _selectedUser = Variable<User?>(nil)
     
     init(dispatcher: Dispatcher) {
         self.isUserFetching = _isUserFetching.asObservable()
         self.users = _users.asObservable()
-        
+        self.selectedUesr = _selectedUser.asObservable()
+
         register { [weak self] in
             switch $0 {
             case .isUserFetching(let value):
@@ -38,6 +45,8 @@ final class UserStore: Storable {
                 self?._users.value.append(contentsOf: value)
             case .removeAllUsers:
                 self?._users.value.removeAll()
+            case .selectedUser(let value):
+                self?._selectedUser.value = value
             }
         }
     }
