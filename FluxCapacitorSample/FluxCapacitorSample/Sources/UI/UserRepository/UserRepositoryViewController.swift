@@ -13,6 +13,7 @@ import SafariServices
 
 final class UserRepositoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var counterLabel: UILabel!
 
     private let userAction: UserAction
     private let repositoryAction: RepositoryAction
@@ -48,6 +49,7 @@ final class UserRepositoryViewController: UIViewController {
         super.viewDidLoad()
 
         title = "\(user.login)'s Repositories"
+        edgesForExtendedLayout = []
 
         dataSource.configure(with: tableView)
         observeStore()
@@ -61,14 +63,22 @@ final class UserRepositoryViewController: UIViewController {
                 switch changes {
                 case .selectedRepository:
                     self?.showRepository()
-                case .addRepositories, .removeAllRepositories:
+                case .addRepositories,
+                     .removeAllRepositories,
+                     .isRepositoryFetching:
                     self?.tableView.reloadData()
+                case .repositoryTotalCount:
+                    self?.setTotalCount()
                 default:
                     break
                 }
             }
         }
         .cleaned(by: dustBuster)
+    }
+    
+    private func setTotalCount() {
+        counterLabel.text = "\(repositoryStore.repositories.count) / \(repositoryStore.repositoryTotalCount)"
     }
 
     private func showRepository() {

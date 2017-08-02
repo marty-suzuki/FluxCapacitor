@@ -44,12 +44,19 @@ final class UserStore: Storable {
     }
     private let _lastSearchQuery = Variable<String>("")
     
+    let userTotalCount: Observable<Int>
+    var userTotalCountValue: Int {
+        return _userTotalCount.value
+    }
+    private let _userTotalCount = Variable<Int>(0)
+    
     init(dispatcher: Dispatcher) {
         self.isUserFetching = _isUserFetching.asObservable()
         self.users = _users.asObservable()
         self.selectedUesr = _selectedUser.asObservable()
         self.lastPageInfo = _lastPageInfo.asObservable()
         self.lastSearchQuery = _lastSearchQuery.asObservable()
+        self.userTotalCount = _userTotalCount.asObservable()
 
         register { [weak self] in
             switch $0 {
@@ -65,6 +72,8 @@ final class UserStore: Storable {
                 self?._lastPageInfo.value = value
             case .lastSearchQuery(let value):
                 self?._lastSearchQuery.value = value
+            case .userTotalCount(let value):
+                self?._userTotalCount.value = value
             }
         }
     }

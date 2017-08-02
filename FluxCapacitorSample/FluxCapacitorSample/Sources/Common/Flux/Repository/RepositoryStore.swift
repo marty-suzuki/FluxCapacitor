@@ -19,6 +19,7 @@ final class RepositoryStore: Storable {
     private(set) var selectedRepository: Repository? = nil
     private(set) var lastPageInfo: PageInfo? = nil
     private(set) var lastTask: URLSessionTask? = nil
+    private(set) var repositoryTotalCount: Int = 0
 
     init(dispatcher: Dispatcher) {
         register { [weak self] in
@@ -36,6 +37,8 @@ final class RepositoryStore: Storable {
             case .lastTask(let value):
                 self?.lastTask?.cancel()
                 self?.lastTask = value
+            case .repositoryTotalCount(let value):
+                self?.repositoryTotalCount = value
 
             case .addBookmark(let value):
                 if self?.bookmarks.index(where: { $0.url == value.url }) == nil {

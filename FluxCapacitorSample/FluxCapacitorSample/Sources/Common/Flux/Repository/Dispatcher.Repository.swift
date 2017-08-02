@@ -18,6 +18,7 @@ extension Dispatcher {
         case selectedRepository(GithubApiSession.Repository?)
         case lastPageInfo(PageInfo?)
         case lastTask(URLSessionTask?)
+        case repositoryTotalCount(Int)
         
         case addBookmark(GithubApiSession.Repository)
         case removeBookmark(GithubApiSession.Repository)

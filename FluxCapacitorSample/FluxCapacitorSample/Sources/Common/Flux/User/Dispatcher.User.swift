@@ -14,6 +14,7 @@ extension Dispatcher {
     enum User: DispatchValue {
         case isUserFetching(Bool)
         case addUsers([GithubApiSession.User])
+        case userTotalCount(Int)
         case removeAllUsers
         case selectedUser(GithubApiSession.User?)
         case lastPageInfo(PageInfo?)

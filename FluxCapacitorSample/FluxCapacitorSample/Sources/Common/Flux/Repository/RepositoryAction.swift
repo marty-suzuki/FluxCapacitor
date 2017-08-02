@@ -27,6 +27,7 @@ final class RepositoryAction: Actionable {
             case .success(let value):
                 self?.invoke(.lastPageInfo(value.pageInfo))
                 self?.invoke(.addRepositories(value.nodes))
+                self?.invoke(.repositoryTotalCount(value.totalCount))
             case .failure:
                 break
             }

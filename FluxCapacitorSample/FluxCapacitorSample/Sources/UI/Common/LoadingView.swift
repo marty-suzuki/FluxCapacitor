@@ -10,10 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class LoadingView: UIView {
+final class LoadingView: UIView, Nibable {
     static let defaultHeight: CGFloat = 44
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    static func instantiate() -> LoadingView {
+        return nib.instantiate(withOwner: nil, options: nil).first as! LoadingView
+    }
     
     var isLoading: Bool = false {
         didSet {

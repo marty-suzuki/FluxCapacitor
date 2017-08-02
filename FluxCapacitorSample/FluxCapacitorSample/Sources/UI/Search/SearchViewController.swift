@@ -14,6 +14,7 @@ import NoticeObserveKit
 final class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var counterLabel: UILabel!
     
     private let searchBar: UISearchBar = UISearchBar(frame: .zero)
     private let action = UserAction()
@@ -27,7 +28,8 @@ final class SearchViewController: UIViewController {
         
         navigationItem.titleView = searchBar
         searchBar.placeholder = "Input user name"
-
+        tableView.contentInset.top = 44
+        
         dataSource.configure(with: tableView)
         observeUI()
         observeStore()
@@ -75,6 +77,7 @@ final class SearchViewController: UIViewController {
                 self?.action.invoke(.removeAllUsers)
                 self?.action.invoke(.lastPageInfo(nil))
                 self?.action.invoke(.lastSearchQuery(""))
+                self?.action.invoke(.userTotalCount(0))
                 self?.action.fetchUsers(withQuery: text, after: nil)
             })
             .disposed(by: disposeBag)
@@ -100,16 +103,11 @@ final class SearchViewController: UIViewController {
     }
 
     private func observeStore() {
-        store.users
+        Observable.merge(store.users.map { _ in },
+                         store.isUserFetching.map { _ in })
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
-            })
-            .disposed(by: disposeBag)
-        
-        store.isUserFetching
-            .subscribe(onNext: {
-                _ = $0
             })
             .disposed(by: disposeBag)
 
@@ -117,6 +115,13 @@ final class SearchViewController: UIViewController {
             .filter { $0 != nil }
             .map { _ in  }
             .bind(to: showUserRepository)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(store.users, store.userTotalCount)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] users, count in
+                self?.counterLabel.text = "\(users.count) / \(count)"
+            })
             .disposed(by: disposeBag)
     }
 

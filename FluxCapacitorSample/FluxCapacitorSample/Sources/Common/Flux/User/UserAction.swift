@@ -31,6 +31,7 @@ final class UserAction: Actionable {
             .subscribe(onNext: { [weak self] in
                 self?.invoke(.addUsers($0.nodes))
                 self?.invoke(.lastPageInfo($0.pageInfo))
+                self?.invoke(.userTotalCount($0.totalCount))
             }, onDisposed: { [weak self] in
                 self?.invoke(.isUserFetching(false))
             })
