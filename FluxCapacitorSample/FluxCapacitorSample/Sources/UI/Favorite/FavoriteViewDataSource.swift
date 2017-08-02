@@ -29,7 +29,6 @@ final class FavoriteViewDataSource: NSObject {
 
 extension FavoriteViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("repositories.count = \(store.repositories.count)")
         return store.bookmarks.count
     }
 

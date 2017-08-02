@@ -40,7 +40,7 @@ final class SearchViewController: UIViewController {
         
         store.isUserFetching
             .subscribe(onNext: {
-                print($0)
+                _ = $0
             })
             .disposed(by: disposeBag)
 
