@@ -8,6 +8,7 @@
 
 import UIKit
 import FluxCapacitor
+import SafariServices
 
 final class UserRepositoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -28,7 +29,8 @@ final class UserRepositoryViewController: UIViewController {
         self.repositoryAction = repositoryAction
         self.repositoryStore = repositoryStore
 
-        super.init(nibName: "UserRepositoryViewController", bundle: nil)
+        super.init(nibName: String(describing: UserRepositoryViewController.self), bundle: nil)
+        hidesBottomBarWhenPushed = true
     }
 
     deinit {
@@ -43,6 +45,8 @@ final class UserRepositoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Repositories"
+
         dataSource.configure(with: tableView)
         observeStore()
 
@@ -55,17 +59,20 @@ final class UserRepositoryViewController: UIViewController {
         repositoryStore.subscribe { [weak self] changes in
             DispatchQueue.main.async {
                 switch changes {
-                case .addRepositories:
-                    print(self?.repositoryStore.repositories ?? [])
-                    break
-                case .removeAllRepositories:
-                    break
+                case .selectedRepository:
+                    self?.showWebView()
+                case .addRepositories, .removeAllRepositories:
+                    self?.tableView.reloadData()
                 default:
-                    return
+                    break
                 }
-                self?.tableView.reloadData()
             }
         }
         .cleaned(by: dustBuster)
+    }
+
+    private func showWebView() {
+        guard let webview = RepositoryViewController() else { return }
+        navigationController?.pushViewController(webview, animated: true)
     }
 }

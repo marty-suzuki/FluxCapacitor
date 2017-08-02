@@ -28,12 +28,8 @@ final class FavoriteViewController: UIViewController {
         store.subscribe { [weak self] value in
             DispatchQueue.main.async {
                 switch value {
-                case .addBookmark:
-                    break
-                case .removeBookmark:
-                    break
-                case .removeAllBookmarks:
-                    break
+                case .addBookmark, .removeBookmark, .removeAllBookmarks:
+                    self?.tableView.reloadData()
                 default:
                     break
                 }

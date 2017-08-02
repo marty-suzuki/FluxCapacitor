@@ -29,6 +29,7 @@
 		9DDE2F211F316DCC005CC4E2 /* UserRepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DDE2F201F316DCC005CC4E2 /* UserRepositoryViewController.xib */; };
 		9DDE2F231F31719A005CC4E2 /* SearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F221F31719A005CC4E2 /* SearchViewDataSource.swift */; };
 		9DDE2F251F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F241F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift */; };
+		EDB9D4A61F3192FC00FC6B61 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB9D4A51F3192FC00FC6B61 /* RepositoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		9DDE2F221F31719A005CC4E2 /* SearchViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewDataSource.swift; sourceTree = "<group>"; };
 		9DDE2F241F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryViewDataSource.swift; sourceTree = "<group>"; };
 		E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
+		EDB9D4A51F3192FC00FC6B61 /* RepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA7E1F2FAA32003AFBD7 /* Main.storyboard */,
+				EDB9D4A41F3192FC00FC6B61 /* Repository */,
 				37C8BA8A1F2FAAD8003AFBD7 /* Search */,
 				37C8BA891F2FAAD8003AFBD7 /* Favorite */,
 				9DDE2F1D1F316D91005CC4E2 /* UserRepository */,
@@ -219,6 +222,14 @@
 				4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EDB9D4A41F3192FC00FC6B61 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				EDB9D4A51F3192FC00FC6B61 /* RepositoryViewController.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,6 +384,7 @@
 				37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */,
 				9DDE2F1F1F316DAF005CC4E2 /* UserRepositoryViewController.swift in Sources */,
 				37C8BA9C1F30F174003AFBD7 /* Dispatcher.Repository.swift in Sources */,
+				EDB9D4A61F3192FC00FC6B61 /* RepositoryViewController.swift in Sources */,
 				9DDE2F251F3184B2005CC4E2 /* UserRepositoryViewDataSource.swift in Sources */,
 				37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */,
 			);
