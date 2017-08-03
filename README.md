@@ -11,8 +11,7 @@ FluxCapacitor makes implementing [Flux](https://facebook.github.io/flux/) design
 
 - Storable protocol
 - Actionable protocol
-- DispatchValueType
-
+- DispatchValue protocol
 
 ## Requirements
 
@@ -44,7 +43,7 @@ github "marty-suzuki/FluxCapacitor"
 
 ## Usage
 
-This is ViewController sample that uses flux. If ViewController calls fetchRepositories method of RepositoryAction, it is reloaded automatically with subscribe method of RepositoryStore after fetched repositories from Github. Introducing how to implement flux design pattern with **FluxCapacitor**.
+This is ViewController sample that uses Flux design pattern. If ViewController calls fetchRepositories method of RepositoryAction, it is reloaded automatically with subscribe method of RepositoryStore after fetched repositories from Github. Introducing how to implement Flux design pattern with **FluxCapacitor**.
 
 ```swift
 final class UserRepositoryViewController: UIViewController {
@@ -99,7 +98,7 @@ extension Dispatcher {
 
 ### Store
 
-If you call register method, that closure returns dispatched value related DispatchValueType.　Please update store's value with Associated Values.
+Implementing `Store` with `Storable` protocol. If you call register method, that closure returns dispatched value related DispatchValueType.　Please update store's value with Associated Values.
 
 ```swift
 final class RepositoryStore: Storable {
@@ -124,7 +123,7 @@ final class RepositoryStore: Storable {
 
 ### Action
 
-If you call invoke method, it can dispatch value related DispatchValueType.
+Implementing `Action` with `Actionable` protocol. If you call invoke method, it can dispatch value related DispatchValueType.
 
 ```swift
 final class RepositoryAction: Actionable {
@@ -181,9 +180,7 @@ You can use FluxCapacitor with RxSwift like [this link](./FluxCapacitorSample/Fl
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` and `carthage update` from the Example directory first.
-
-To run this sample, you must set Github Personal access token.
+To run the example project, clone the repo, and run `pod install` and `carthage update` from the Example directory first. In addition, you must set Github Personal access token.
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -196,6 +193,11 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 Application structure is like below.
 
 ![flux_image](./Images/flux_image.png)
+
+- [SearchViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/Search) (with RxSwift) You can search Github user.
+- [FavoriteViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/Favorite) You can stock　favorites on memory.
+- [UserRepositoryViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/UserRepository)　You can display a user's repositories.
+- [RepositoryViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/Repository) You can display webpage of repository, and add favorites on memory.
 
 ## Author
 
