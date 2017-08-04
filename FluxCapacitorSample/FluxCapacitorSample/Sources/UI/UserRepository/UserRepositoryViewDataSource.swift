@@ -8,6 +8,7 @@
 
 import UIKit
 import FluxCapacitor
+import GithubKit
 
 final class UserRepositoryViewDataSource: NSObject {
     private let userStore: UserStore
@@ -54,8 +55,7 @@ final class UserRepositoryViewDataSource: NSObject {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.register(RepositoryViewCell.nib, forCellReuseIdentifier: RepositoryViewCell.className)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
+        tableView.registerCell(RepositoryViewCell.self)
         tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: UITableViewHeaderFooterView.className)
     }
 }
@@ -66,9 +66,7 @@ extension UserRepositoryViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryViewCell.className, for: indexPath) as? RepositoryViewCell else {
-            return tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className, for: indexPath)
-        }
+        let cell = tableView.dequeueReusableCell(RepositoryViewCell.self, for: indexPath)
         cell.configure(with: repositoryStore.repositories[indexPath.row])
         return cell
     }
@@ -96,7 +94,7 @@ extension UserRepositoryViewDataSource: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return RepositoryViewCell.defaultHeight
+        return RepositoryViewCell.calculateHeight(with: repositoryStore.repositories[indexPath.row], and: tableView)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

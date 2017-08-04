@@ -8,20 +8,20 @@
 
 import Foundation
 import FluxCapacitor
-import GithubApiSession
+import GithubKit
 
 extension Dispatcher {
     enum Repository: DispatchValue {
         case isRepositoryFetching(Bool)
-        case addRepositories([GithubApiSession.Repository])
+        case addRepositories([GithubKit.Repository])
         case removeAllRepositories
-        case selectedRepository(GithubApiSession.Repository?)
+        case selectedRepository(GithubKit.Repository?)
         case lastPageInfo(PageInfo?)
         case lastTask(URLSessionTask?)
         case repositoryTotalCount(Int)
         
-        case addBookmark(GithubApiSession.Repository)
-        case removeBookmark(GithubApiSession.Repository)
+        case addBookmark(GithubKit.Repository)
+        case removeBookmark(GithubKit.Repository)
         case removeAllBookmarks
     }
 }

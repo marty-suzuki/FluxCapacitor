@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import GithubKit
 
 final class SearchViewDataSource: NSObject {
     fileprivate let action: UserAction
@@ -46,8 +47,7 @@ final class SearchViewDataSource: NSObject {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.register(UserViewCell.nib , forCellReuseIdentifier: UserViewCell.className)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
+        tableView.registerCell(UserViewCell.self)
         tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: UITableViewHeaderFooterView.className)
     }
 }
@@ -58,9 +58,7 @@ extension SearchViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserViewCell.className, for: indexPath) as? UserViewCell else {
-            return tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className, for: indexPath)
-        }
+        let cell = tableView.dequeueReusableCell(UserViewCell.self, for: indexPath)
         cell.configure(with: store.usersValue[indexPath.row])
         return cell
     }
@@ -88,7 +86,7 @@ extension SearchViewDataSource: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UserViewCell.defaultHeight
+        return UserViewCell.calculateHeight(with: store.usersValue[indexPath.row], and: tableView)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

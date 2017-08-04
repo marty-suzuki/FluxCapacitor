@@ -8,8 +8,7 @@
 
 import UIKit
 import FluxCapacitor
-import GithubApiSession
-import SafariServices
+import GithubKit
 
 final class UserRepositoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GithubKit
 
 final class FavoriteViewDataSource: NSObject {
     fileprivate let store: RepositoryStore
@@ -23,8 +24,7 @@ final class FavoriteViewDataSource: NSObject {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.register(RepositoryViewCell.nib, forCellReuseIdentifier: RepositoryViewCell.className)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
+        tableView.registerCell(RepositoryViewCell.self)
     }
 }
 
@@ -34,9 +34,7 @@ extension FavoriteViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoryViewCell.className, for: indexPath) as? RepositoryViewCell else {
-            return tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className, for: indexPath)
-        }
+        let cell = tableView.dequeueReusableCell(RepositoryViewCell.self, for: indexPath)
         cell.configure(with: store.bookmarks[indexPath.row])
         return cell
     }
@@ -51,6 +49,6 @@ extension FavoriteViewDataSource: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return RepositoryViewCell.defaultHeight
+        return RepositoryViewCell.calculateHeight(with: store.bookmarks[indexPath.row], and: tableView)
     }
 }

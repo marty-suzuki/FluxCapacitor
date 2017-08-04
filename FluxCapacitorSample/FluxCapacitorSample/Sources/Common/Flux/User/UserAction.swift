@@ -8,7 +8,7 @@
 
 import Foundation
 import FluxCapacitor
-import GithubApiSession
+import GithubKit
 import RxSwift
 
 final class UserAction: Actionable {

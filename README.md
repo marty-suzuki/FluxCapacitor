@@ -195,9 +195,11 @@ Application structure is like below.
 ![flux_image](./Images/flux_image.png)
 
 - [SearchViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/Search) (with RxSwift) You can search Github user.
-- [FavoriteViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/Favorite) You can stock　favorites on memory.
-- [UserRepositoryViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/UserRepository)　You can display a user's repositories.
+- [FavoriteViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/Favorite) You can stock favorites on memory.
+- [UserRepositoryViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/UserRepository) You can display a user's repositories.
 - [RepositoryViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/Repository) You can display webpage of repository, and add favorites on memory.
+
+[GithubKitForSample](https://github.com/marty-suzuki/GithubKitForSample) is used in this sample project.
 
 ## Author
 

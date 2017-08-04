@@ -8,7 +8,7 @@
 
 import UIKit
 import SafariServices
-import GithubApiSession
+import GithubKit
 
 final class RepositoryViewController: SFSafariViewController {
     private(set) lazy var favoriteButtonItem: UIBarButtonItem = {

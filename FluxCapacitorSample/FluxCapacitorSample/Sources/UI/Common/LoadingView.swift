@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import GithubKit
 
 final class LoadingView: UIView, Nibable {
     static let defaultHeight: CGFloat = 44

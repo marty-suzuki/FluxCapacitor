@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GithubApiSession
+import GithubKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

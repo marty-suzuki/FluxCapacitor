@@ -8,15 +8,15 @@
 
 import Foundation
 import FluxCapacitor
-import GithubApiSession
+import GithubKit
 
 extension Dispatcher {
     enum User: DispatchValue {
         case isUserFetching(Bool)
-        case addUsers([GithubApiSession.User])
+        case addUsers([GithubKit.User])
         case userTotalCount(Int)
         case removeAllUsers
-        case selectedUser(GithubApiSession.User?)
+        case selectedUser(GithubKit.User?)
         case lastPageInfo(PageInfo?)
         case lastSearchQuery(String)
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 import FluxCapacitor
-import GithubApiSession
+import GithubKit
 
 final class RepositoryStore: Storable {
     typealias DispatchValueType = Dispatcher.Repository
