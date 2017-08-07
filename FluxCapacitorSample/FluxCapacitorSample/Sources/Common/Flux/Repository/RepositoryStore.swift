@@ -14,7 +14,7 @@ final class RepositoryStore: Storable {
     typealias DispatchValueType = Dispatcher.Repository
     
     private(set) var isRepositoryFetching = false
-    private(set) var bookmarks: [Repository] = []
+    private(set) var favorites: [Repository] = []
     private(set) var repositories: [Repository] = []
     private(set) var selectedRepository: Repository? = nil
     private(set) var lastPageInfo: PageInfo? = nil
@@ -40,16 +40,16 @@ final class RepositoryStore: Storable {
             case .repositoryTotalCount(let value):
                 self?.repositoryTotalCount = value
 
-            case .addBookmark(let value):
-                if self?.bookmarks.index(where: { $0.url == value.url }) == nil {
-                    self?.bookmarks.append(value)
+            case .addFavorite(let value):
+                if self?.favorites.index(where: { $0.url == value.url }) == nil {
+                    self?.favorites.append(value)
                 }
-            case .removeBookmark(let value):
-                if let index = self?.bookmarks.index(where: { $0.url == value.url }) {
-                    self?.bookmarks.remove(at: index)
+            case .removeFavorite(let value):
+                if let index = self?.favorites.index(where: { $0.url == value.url }) {
+                    self?.favorites.remove(at: index)
                 }
-            case .removeAllBookmarks:
-                self?.bookmarks.removeAll()
+            case .removeAllFavorites:
+                self?.favorites.removeAll()
             }
         }
     }

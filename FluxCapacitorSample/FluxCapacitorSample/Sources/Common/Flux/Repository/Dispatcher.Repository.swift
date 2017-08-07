@@ -20,8 +20,8 @@ extension Dispatcher {
         case lastTask(URLSessionTask?)
         case repositoryTotalCount(Int)
         
-        case addBookmark(GithubKit.Repository)
-        case removeBookmark(GithubKit.Repository)
-        case removeAllBookmarks
+        case addFavorite(GithubKit.Repository)
+        case removeFavorite(GithubKit.Repository)
+        case removeAllFavorites
     }
 }

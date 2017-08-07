@@ -1,0 +1,10 @@
+framework module GithubApiSession {
+  umbrella header "GithubApiSession.h"
+
+  export *
+  module * { export * }
+}
+
+module GithubApiSession.Swift {
+    header "GithubApiSession-Swift.h"
+}
