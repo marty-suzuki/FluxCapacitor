@@ -1,9 +1,0 @@
-{
-  "commitish" : "0.3.0",
-  "iOS" : [
-    {
-      "hash" : "cfe0f2a6fb2076fa054f47e9c408fbd59e6fa6261026a44e9300eb5e718328b8",
-      "name" : "GithubApiSession"
-    }
-  ]
-}
