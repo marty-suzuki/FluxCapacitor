@@ -2,7 +2,7 @@
 
 # FluxCapacitor
 
-[![Build Status](https://travis-ci.org/marty-suzuki/FluxCapacitor.svg?branch=master)](https://travis-ci.org/marty-suzuki/FluxCapacitor)
+[![Build Status](https://www.bitrise.io/app/da28e1f04e6fe024/status.svg?token=bvDkmuaRPMxKy8BewHLGzA)](https://www.bitrise.io/app/da28e1f04e6fe024)
 [![Version](https://img.shields.io/cocoapods/v/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 [![License](https://img.shields.io/cocoapods/l/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 [![Platform](https://img.shields.io/cocoapods/p/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
