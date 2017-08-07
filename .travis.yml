@@ -11,6 +11,6 @@ branches:
   only:
     - master
 script:
-  - xcodebuild test -workspace FluxCapacitor.xcworkspace -scheme FluxCapacitorTests -configuration Debug -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 6s" | xcpretty -c
+  - xcodebuild test -workspace FluxCapacitor.xcworkspace -scheme FluxCapacitorTests -configuration Debug -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 7" | xcpretty -c
 notifications:
 email: false

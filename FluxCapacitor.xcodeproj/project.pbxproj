@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37BE2AFD1F38AF91003DC1F8 /* ActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE2AFC1F38AF91003DC1F8 /* ActionTests.swift */; };
 		9D7F42171F3876B1007827A7 /* TestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F42161F3876B1007827A7 /* TestAction.swift */; };
 		9D7F421A1F3876DF007827A7 /* Dispatcher.Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F42191F3876DF007827A7 /* Dispatcher.Test.swift */; };
 		9D7F421C1F3876EB007827A7 /* TestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F421B1F3876EB007827A7 /* TestStore.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37BE2AFC1F38AF91003DC1F8 /* ActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTests.swift; sourceTree = "<group>"; };
 		9D7F42161F3876B1007827A7 /* TestAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAction.swift; sourceTree = "<group>"; };
 		9D7F42191F3876DF007827A7 /* Dispatcher.Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatcher.Test.swift; sourceTree = "<group>"; };
 		9D7F421B1F3876EB007827A7 /* TestStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStore.swift; sourceTree = "<group>"; };
@@ -113,10 +115,11 @@
 		9DA4909A1F3873A9002E4D79 /* FluxCapacitorTests */ = {
 			isa = PBXGroup;
 			children = (
+				37BE2AFC1F38AF91003DC1F8 /* ActionTests.swift */,
+				9DA4909B1F3873A9002E4D79 /* StoreTests.swift */,
 				9D7F42151F387698007827A7 /* Action */,
 				9D7F42181F3876C6007827A7 /* DispatchValue */,
 				9D7F42141F387698007827A7 /* Store */,
-				9DA4909B1F3873A9002E4D79 /* StoreTests.swift */,
 				9DA4909D1F3873A9002E4D79 /* Info.plist */,
 			);
 			path = FluxCapacitorTests;
@@ -260,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37BE2AFD1F38AF91003DC1F8 /* ActionTests.swift in Sources */,
 				9DA4909C1F3873A9002E4D79 /* StoreTests.swift in Sources */,
 				9D7F42171F3876B1007827A7 /* TestAction.swift in Sources */,
 				9D7F421A1F3876DF007827A7 /* Dispatcher.Test.swift in Sources */,

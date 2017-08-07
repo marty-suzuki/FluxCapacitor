@@ -19,10 +19,6 @@ FluxCapacitor makes implementing [Flux](https://facebook.github.io/flux/) design
 - Swift 3.1 or later
 - iOS 9.0 or later
 
-## Todo
-
-- [ ] Unit testing
-
 ## Installation
 
 ### CocoaPods
