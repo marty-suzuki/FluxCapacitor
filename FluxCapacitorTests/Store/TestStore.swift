@@ -12,9 +12,13 @@ import FluxCapacitor
 class TestStore: Storable {
     typealias DispatchValueType = Dispatcher.Test
 
-    private(set) var numbers: [Int] = []
+    var numbers: [Int] = []
+    
+    let dispatcher: Dispatcher
 
     required init(dispatcher: Dispatcher) {
+        self.dispatcher = dispatcher
+        
         register { [weak self] in
             switch $0 {
             case .addNumber(let value):

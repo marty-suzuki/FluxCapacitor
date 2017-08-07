@@ -10,13 +10,17 @@ import Foundation
 
 public final class Dust {
     private var cleanAction: (() -> ())?
+    private var mutex: pthread_mutex_t = pthread_mutex_t()
     
-    deinit {
-        clean()
-    }
+    private(set) var isCleaned: Bool = false
     
     init(_ cleanAction: @escaping () -> ()) {
         self.cleanAction = cleanAction
+        pthread_mutex_init(&mutex, nil)
+    }
+    
+    deinit {
+        pthread_mutex_destroy(&mutex)
     }
     
     public func cleaned(by buster: DustBuster) {
@@ -24,8 +28,11 @@ public final class Dust {
     }
     
     public func clean() {
-        guard let action = cleanAction else { return }
+        defer { pthread_mutex_unlock(&mutex) }
+        pthread_mutex_lock(&mutex)
+        guard let action = cleanAction, !isCleaned else { return }
         cleanAction = nil
+        isCleaned = true
         action()
     }
 }
@@ -40,6 +47,7 @@ public final class DustBuster {
     
     deinit {
         lock()
+        dusts.forEach { $0.clean() }
         dusts.removeAll(keepingCapacity: false)
         unlock()
         pthread_mutex_destroy(&mutex)
