@@ -2,6 +2,7 @@
 
 # FluxCapacitor
 
+[![Build Status](https://travis-ci.org/marty-suzuki/FluxCapacitor.svg?branch=master)](https://travis-ci.org/marty-suzuki/FluxCapacitor)
 [![Version](https://img.shields.io/cocoapods/v/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 [![License](https://img.shields.io/cocoapods/l/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
 [![Platform](https://img.shields.io/cocoapods/p/FluxCapacitor.svg?style=flat)](http://cocoapods.org/pods/FluxCapacitor)
@@ -20,7 +21,7 @@ FluxCapacitor makes implementing [Flux](https://facebook.github.io/flux/) design
 
 ## Todo
 
-- [ ] improve README
+- [ ] Unit testing
 
 ## Installation
 

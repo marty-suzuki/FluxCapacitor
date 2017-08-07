@@ -24,6 +24,26 @@ class FluxCapacitorTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let action = TestAction()
+
+        let store = TestStore.instantiate()
+        XCTAssertEqual(store.numbers, [])
+
+        action.invoke(.addNumber(1))
+        XCTAssertEqual(store.numbers.first, 1)
+
+        action.invoke(.addNumber(2))
+        action.invoke(.addNumber(3))
+        XCTAssertEqual(store.numbers.count, 3)
+
+        action.invoke(.removeNumber(1))
+        XCTAssertEqual(store.numbers.first, 2)
+
+        action.invoke(.removeAllNumbers)
+        XCTAssertEqual(store.numbers, [])
+
+        let store2 = TestStore.instantiate()
+        XCTAssertEqual(store.numbers, store2.numbers)
     }
     
     func testPerformanceExample() {
@@ -32,5 +52,4 @@ class FluxCapacitorTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
 }

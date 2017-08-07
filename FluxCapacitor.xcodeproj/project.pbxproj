@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D7F42171F3876B1007827A7 /* TestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F42161F3876B1007827A7 /* TestAction.swift */; };
+		9D7F421A1F3876DF007827A7 /* Dispatcher.Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F42191F3876DF007827A7 /* Dispatcher.Test.swift */; };
+		9D7F421C1F3876EB007827A7 /* TestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F421B1F3876EB007827A7 /* TestStore.swift */; };
 		9DA490971F3873A9002E4D79 /* FluxCapacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA4908D1F3873A9002E4D79 /* FluxCapacitor.framework */; };
 		9DA4909C1F3873A9002E4D79 /* FluxCapacitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4909B1F3873A9002E4D79 /* FluxCapacitorTests.swift */; };
 		9DA490B01F3873F1002E4D79 /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA490A81F3873F1002E4D79 /* Actionable.swift */; };
@@ -29,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D7F42161F3876B1007827A7 /* TestAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAction.swift; sourceTree = "<group>"; };
+		9D7F42191F3876DF007827A7 /* Dispatcher.Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatcher.Test.swift; sourceTree = "<group>"; };
+		9D7F421B1F3876EB007827A7 /* TestStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStore.swift; sourceTree = "<group>"; };
 		9DA4908D1F3873A9002E4D79 /* FluxCapacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FluxCapacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DA490961F3873A9002E4D79 /* FluxCapacitorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FluxCapacitorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DA4909B1F3873A9002E4D79 /* FluxCapacitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluxCapacitorTests.swift; sourceTree = "<group>"; };
@@ -62,6 +68,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D7F42141F387698007827A7 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				9D7F421B1F3876EB007827A7 /* TestStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		9D7F42151F387698007827A7 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				9D7F42161F3876B1007827A7 /* TestAction.swift */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		9D7F42181F3876C6007827A7 /* DispatchValue */ = {
+			isa = PBXGroup;
+			children = (
+				9D7F42191F3876DF007827A7 /* Dispatcher.Test.swift */,
+			);
+			path = DispatchValue;
+			sourceTree = "<group>";
+		};
 		9DA490831F3873A9002E4D79 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +113,9 @@
 		9DA4909A1F3873A9002E4D79 /* FluxCapacitorTests */ = {
 			isa = PBXGroup;
 			children = (
+				9D7F42151F387698007827A7 /* Action */,
+				9D7F42181F3876C6007827A7 /* DispatchValue */,
+				9D7F42141F387698007827A7 /* Store */,
 				9DA4909B1F3873A9002E4D79 /* FluxCapacitorTests.swift */,
 				9DA4909D1F3873A9002E4D79 /* Info.plist */,
 			);
@@ -228,6 +261,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DA4909C1F3873A9002E4D79 /* FluxCapacitorTests.swift in Sources */,
+				9D7F42171F3876B1007827A7 /* TestAction.swift in Sources */,
+				9D7F421A1F3876DF007827A7 /* Dispatcher.Test.swift in Sources */,
+				9D7F421C1F3876EB007827A7 /* TestStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
