@@ -1,0 +1,3 @@
+github "ReactiveX/RxSwift" ~> 3.0
+github "0x73/SwiftIconFont"
+github "kean/Nuke" ~> 5.0

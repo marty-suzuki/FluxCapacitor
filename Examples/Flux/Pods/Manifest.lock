@@ -1,0 +1,16 @@
+PODS:
+  - FluxCapacitor (0.3.0)
+
+DEPENDENCIES:
+  - FluxCapacitor (from `../../`)
+
+EXTERNAL SOURCES:
+  FluxCapacitor:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  FluxCapacitor: 778ff8481fa7cd4333f44b9920e06f83960eb192
+
+PODFILE CHECKSUM: 3627bc0a5213b6549d0693b658b652e6d34624cc
+
+COCOAPODS: 1.2.1

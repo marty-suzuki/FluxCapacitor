@@ -174,7 +174,7 @@ func observeStore() {
 
 ### with RxSwift
 
-You can use FluxCapacitor with RxSwift like [this link](./FluxCapacitorSample/FluxCapacitorSample/Sources/Common/Flux/User/UserStore.swift).
+You can use FluxCapacitor with RxSwift like [this link](./Examples/FLux/FluxCapacitorSample/Sources/Common/Flux/User/UserStore.swift).
 
 ## Example
 
@@ -198,6 +198,10 @@ Application structure is like below.
 - [RepositoryViewController](./FluxCapacitorSample/FluxCapacitorSample/Sources/UI/Repository) You can display webpage of repository, and add favorites on memory.
 
 [GithubKitForSample](https://github.com/marty-suzuki/GithubKitForSample) is used in this sample project.
+
+### Additional
+
+Flux + MVVM Sample is [here](./Examples/Flux+MVVM).
 
 ## Author
 

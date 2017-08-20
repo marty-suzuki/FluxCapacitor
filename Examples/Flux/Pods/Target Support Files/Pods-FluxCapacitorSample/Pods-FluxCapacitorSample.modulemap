@@ -1,0 +1,6 @@
+framework module Pods_FluxCapacitorSample {
+  umbrella header "Pods-FluxCapacitorSample-umbrella.h"
+
+  export *
+  module * { export * }
+}

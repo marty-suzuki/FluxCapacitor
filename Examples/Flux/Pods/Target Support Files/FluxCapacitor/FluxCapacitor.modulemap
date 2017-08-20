@@ -1,0 +1,6 @@
+framework module FluxCapacitor {
+  umbrella header "FluxCapacitor-umbrella.h"
+
+  export *
+  module * { export * }
+}
