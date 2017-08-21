@@ -17,7 +17,6 @@ extension Dispatcher {
         case removeAllRepositories
         case selectedRepository(GithubKit.Repository?)
         case lastPageInfo(PageInfo?)
-        case lastTask(URLSessionTask?)
         case repositoryTotalCount(Int)
         
         case addFavorite(GithubKit.Repository)

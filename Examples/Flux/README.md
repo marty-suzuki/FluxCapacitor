@@ -28,6 +28,8 @@ Application structure is like below.
 - [UserRepositoryViewController](./FluxCapacitorSample/Sources/UI/UserRepository) You can display a user's repositories.
 - [RepositoryViewController](./FluxCapacitorSample/Sources/UI/Repository) You can display webpage of repository, and add favorites on memory.
 
+[This](./FluxCapacitorSampleTests) is test code.
+
 [GithubKitForSample](https://github.com/marty-suzuki/GithubKitForSample) is used in this sample project.
 
 ## Author

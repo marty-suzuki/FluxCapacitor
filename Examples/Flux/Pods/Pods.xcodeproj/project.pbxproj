@@ -8,15 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		02F62E1FCCFD2C6E11630BA2C3D41D44 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B5A89A0E44382E43393A2EDD99609A /* Storable.swift */; };
-		0BA2F05D9751ADC77A334F079A2C3DC6 /* Pods-FluxCapacitorSample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FC0DB69A8997231663C2704C00E11B2 /* Pods-FluxCapacitorSample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0BA2F05D9751ADC77A334F079A2C3DC6 /* Pods-FluxCapacitorSample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 161155E0D5FD021E2356B29E0BE8EE7C /* Pods-FluxCapacitorSample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2556F9059E86CBFA47CB9983C2915A10 /* Dust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F56C33A23E4AC6730D9DEB4E19C405 /* Dust.swift */; };
 		2AAF515D36F145BC8A8AE3ABAA5ABDE3 /* SubscriberDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C939001F492B0CC8B684F30DA2F3AAF4 /* SubscriberDataStore.swift */; };
 		2E6E23C8A38355ACC3AA9582CBEC652C /* FluxCapacitor-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 251F3D7CE534471F7A83CC1155D3FD84 /* FluxCapacitor-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40BB0371D42A9CC221BC1BC1DC31E8D0 /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D9F0C80B70C7AF401BF602BF6E4396 /* Actionable.swift */; };
 		6DED7404A028326C6D972C41B7A502AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		78FD469E68D5C19026FF93EC45BC7221 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		7A05C2BC6741E46809D015EF2E012F8D /* Pods-FluxCapacitorSampleTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 44891E32F7E168383BF225E7792B9D2A /* Pods-FluxCapacitorSampleTests-dummy.m */; };
 		B52A95DEDADD6A58BAB04829E88A7A65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		B82B68BD5309BA159C1DEA8CFE9EF901 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3173EF9BB4D73EFA8611A7902C83893 /* Dispatcher.swift */; };
-		C05C7FF50499F6544774DC115575B9B6 /* Pods-FluxCapacitorSample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BF3E2C582123AF8F1F48058E5B6369 /* Pods-FluxCapacitorSample-dummy.m */; };
+		C05C7FF50499F6544774DC115575B9B6 /* Pods-FluxCapacitorSample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC50DBB34CCCF14DBDEB6AB1C2C12306 /* Pods-FluxCapacitorSample-dummy.m */; };
+		C9A76950A93A60C4B327623DEDAF005D /* Pods-FluxCapacitorSampleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B006C7FDB40541C47EC4B3A7C1FFC1C7 /* Pods-FluxCapacitorSampleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1272FEE2D276C132281A106D9F67520 /* FluxCapacitor-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D61F03ECA65C6FC1735D5513ABCA3AA /* FluxCapacitor-dummy.m */; };
 		E277A53382EA4E0FF44FB58A306F7D4F /* ObserverDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABB40DCA32B3A6E42954E7D9809A7A7 /* ObserverDataStore.swift */; };
 /* End PBXBuildFile section */
@@ -29,35 +32,53 @@
 			remoteGlobalIDString = B8A749F002049AE81D7C02EA58D49FF5;
 			remoteInfo = FluxCapacitor;
 		};
+		EC4696FA1F9D0940B0EA7CF73C1F4625 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8A749F002049AE81D7C02EA58D49FF5;
+			remoteInfo = FluxCapacitor;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		09F56C33A23E4AC6730D9DEB4E19C405 /* Dust.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Dust.swift; sourceTree = "<group>"; };
-		1D5E89464404CFE390A5F26E7A9BB706 /* Pods-FluxCapacitorSample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FluxCapacitorSample-acknowledgements.plist"; sourceTree = "<group>"; };
+		161155E0D5FD021E2356B29E0BE8EE7C /* Pods-FluxCapacitorSample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FluxCapacitorSample-umbrella.h"; sourceTree = "<group>"; };
+		1CD17F10DF99FE2F862A82E5FECCE2DC /* Pods-FluxCapacitorSample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FluxCapacitorSample-resources.sh"; sourceTree = "<group>"; };
 		251F3D7CE534471F7A83CC1155D3FD84 /* FluxCapacitor-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FluxCapacitor-umbrella.h"; sourceTree = "<group>"; };
+		27E8B7B2790BD5F6645FB356FF4AD64B /* Pods-FluxCapacitorSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FluxCapacitorSample.release.xcconfig"; sourceTree = "<group>"; };
 		2D61F03ECA65C6FC1735D5513ABCA3AA /* FluxCapacitor-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FluxCapacitor-dummy.m"; sourceTree = "<group>"; };
-		42772337240387135E9A4CFBDA87D439 /* FluxCapacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FluxCapacitor.framework; path = FluxCapacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		50510724B7C7F5D86466EA268902401A /* Pods-FluxCapacitorSample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FluxCapacitorSample-resources.sh"; sourceTree = "<group>"; };
+		2E65C24E9A3A198BF991FED1A536189F /* Pods-FluxCapacitorSampleTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-FluxCapacitorSampleTests.modulemap"; sourceTree = "<group>"; };
+		33ADDB7921554F3582041CF9CE65DB05 /* Pods-FluxCapacitorSample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-FluxCapacitorSample.modulemap"; sourceTree = "<group>"; };
+		38C92E04583C2E48844A19EF93BE9758 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44891E32F7E168383BF225E7792B9D2A /* Pods-FluxCapacitorSampleTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FluxCapacitorSampleTests-dummy.m"; sourceTree = "<group>"; };
+		528232EC12B07068859BE57B53A7896B /* Pods-FluxCapacitorSample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FluxCapacitorSample-acknowledgements.plist"; sourceTree = "<group>"; };
 		5ABB40DCA32B3A6E42954E7D9809A7A7 /* ObserverDataStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ObserverDataStore.swift; sourceTree = "<group>"; };
+		60D0E9D1984FAA061DAF5F7E35C7D01F /* Pods-FluxCapacitorSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FluxCapacitorSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		64F8CA9DEED167359F14B50E1D68B767 /* Pods-FluxCapacitorSample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FluxCapacitorSample-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6F8543D7304C941D90A8FCAA615701E7 /* Pods-FluxCapacitorSample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-FluxCapacitorSample.modulemap"; sourceTree = "<group>"; };
-		6FC0DB69A8997231663C2704C00E11B2 /* Pods-FluxCapacitorSample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FluxCapacitorSample-umbrella.h"; sourceTree = "<group>"; };
+		76BFAAE971DE68B0186B4AD5F8EBE4B5 /* Pods-FluxCapacitorSampleTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FluxCapacitorSampleTests-frameworks.sh"; sourceTree = "<group>"; };
+		7A9CE474E0AAE2EB5ADF6BBFC8F65539 /* Pods-FluxCapacitorSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FluxCapacitorSampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		7B135A95A1B4BB4181E26FD128A2E8A8 /* Pods_FluxCapacitorSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FluxCapacitorSampleTests.framework; path = "Pods-FluxCapacitorSampleTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C19C5EAF7E1DD5D4340E8F5F26D8B01 /* Pods-FluxCapacitorSample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FluxCapacitorSample-frameworks.sh"; sourceTree = "<group>"; };
 		7E6C42DCAE41630137C74E2747A8AF31 /* FluxCapacitor.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FluxCapacitor.xcconfig; sourceTree = "<group>"; };
 		80D9F0C80B70C7AF401BF602BF6E4396 /* Actionable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Actionable.swift; sourceTree = "<group>"; };
 		85AD17AFEB098C2CAF5AF52825C2592D /* FluxCapacitor.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FluxCapacitor.modulemap; sourceTree = "<group>"; };
-		8DB38C0D72B6D4284E00FCC75DC01C94 /* Pods-FluxCapacitorSample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FluxCapacitorSample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8AE77098661D2027B3F1CE05BB54B6B8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F3583B0E86771050EA7B4977993254F /* Pods_FluxCapacitorSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FluxCapacitorSample.framework; path = "Pods-FluxCapacitorSample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9BB96522407584D5263E14981F678B72 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C2FCF203521FE1971CCA34EF2A7585C /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
+		A2FB4D501647A7B041B355EE5F848C70 /* Pods-FluxCapacitorSampleTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FluxCapacitorSampleTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		A9B5A89A0E44382E43393A2EDD99609A /* Storable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
+		ADC7C120AA757E1946B5A29D732B07D4 /* Pods-FluxCapacitorSampleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FluxCapacitorSampleTests-resources.sh"; sourceTree = "<group>"; };
 		AF7C0F3729F4408DEFF3A2026748E328 /* FluxCapacitor-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FluxCapacitor-prefix.pch"; sourceTree = "<group>"; };
-		B3C6973B58FD45DD631A9B8880A2CB86 /* Pods-FluxCapacitorSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FluxCapacitorSample.release.xcconfig"; sourceTree = "<group>"; };
-		B8BF3E2C582123AF8F1F48058E5B6369 /* Pods-FluxCapacitorSample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FluxCapacitorSample-dummy.m"; sourceTree = "<group>"; };
+		B006C7FDB40541C47EC4B3A7C1FFC1C7 /* Pods-FluxCapacitorSampleTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FluxCapacitorSampleTests-umbrella.h"; sourceTree = "<group>"; };
 		C3173EF9BB4D73EFA8611A7902C83893 /* Dispatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		C939001F492B0CC8B684F30DA2F3AAF4 /* SubscriberDataStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubscriberDataStore.swift; sourceTree = "<group>"; };
-		E6ECBCD40F02BE3310550BA07D367D58 /* Pods_FluxCapacitorSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_FluxCapacitorSample.framework; path = "Pods-FluxCapacitorSample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC625CC156A87B0472F3C1E894B5C7EB /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
-		ED5051251CB7E2FDD063650B764D920A /* Pods-FluxCapacitorSample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FluxCapacitorSample-frameworks.sh"; sourceTree = "<group>"; };
-		FBE727A7EB4A48AE6AE1B0FC3A8921A7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9270CC91FAE422285F8BE678BB4011E /* FluxCapacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FluxCapacitor.framework; path = FluxCapacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC50DBB34CCCF14DBDEB6AB1C2C12306 /* Pods-FluxCapacitorSample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FluxCapacitorSample-dummy.m"; sourceTree = "<group>"; };
+		F763AFA78B4C674056ECBCB82FA0FBE2 /* Pods-FluxCapacitorSampleTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FluxCapacitorSampleTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +87,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DED7404A028326C6D972C41B7A502AC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6640F3546B48F56D137D4318A7CCDB5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78FD469E68D5C19026FF93EC45BC7221 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,12 +109,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1B2FF42F060ACEC6EC6C18556A911E1B /* Targets Support Files */ = {
+		16AA31F221E8A88E871C1D887337B1BB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				77EC3A97E05CD64739396BA8B8238835 /* Pods-FluxCapacitorSample */,
+				D9270CC91FAE422285F8BE678BB4011E /* FluxCapacitor.framework */,
+				8F3583B0E86771050EA7B4977993254F /* Pods_FluxCapacitorSample.framework */,
+				7B135A95A1B4BB4181E26FD128A2E8A8 /* Pods_FluxCapacitorSampleTests.framework */,
 			);
-			name = "Targets Support Files";
+			name = Products;
 			sourceTree = "<group>";
 		};
 		2653437D18FA44383F8096D6A5061C0A /* FluxCapacitor */ = {
@@ -106,42 +137,60 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		4776D002F07B894A5D3CC3E3C2CBE62A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				42772337240387135E9A4CFBDA87D439 /* FluxCapacitor.framework */,
-				E6ECBCD40F02BE3310550BA07D367D58 /* Pods_FluxCapacitorSample.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		77EC3A97E05CD64739396BA8B8238835 /* Pods-FluxCapacitorSample */ = {
-			isa = PBXGroup;
-			children = (
-				FBE727A7EB4A48AE6AE1B0FC3A8921A7 /* Info.plist */,
-				6F8543D7304C941D90A8FCAA615701E7 /* Pods-FluxCapacitorSample.modulemap */,
-				8DB38C0D72B6D4284E00FCC75DC01C94 /* Pods-FluxCapacitorSample-acknowledgements.markdown */,
-				1D5E89464404CFE390A5F26E7A9BB706 /* Pods-FluxCapacitorSample-acknowledgements.plist */,
-				B8BF3E2C582123AF8F1F48058E5B6369 /* Pods-FluxCapacitorSample-dummy.m */,
-				ED5051251CB7E2FDD063650B764D920A /* Pods-FluxCapacitorSample-frameworks.sh */,
-				50510724B7C7F5D86466EA268902401A /* Pods-FluxCapacitorSample-resources.sh */,
-				6FC0DB69A8997231663C2704C00E11B2 /* Pods-FluxCapacitorSample-umbrella.h */,
-				EC625CC156A87B0472F3C1E894B5C7EB /* Pods-FluxCapacitorSample.debug.xcconfig */,
-				B3C6973B58FD45DD631A9B8880A2CB86 /* Pods-FluxCapacitorSample.release.xcconfig */,
-			);
-			name = "Pods-FluxCapacitorSample";
-			path = "Target Support Files/Pods-FluxCapacitorSample";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				331002718B7E7EB7A147256A3BB58579 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				4776D002F07B894A5D3CC3E3C2CBE62A /* Products */,
-				1B2FF42F060ACEC6EC6C18556A911E1B /* Targets Support Files */,
+				16AA31F221E8A88E871C1D887337B1BB /* Products */,
+				B0479A634132DA683F0649E29632A00E /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		886E6462A0EA3D14609CAD92865B9AC3 /* Pods-FluxCapacitorSample */ = {
+			isa = PBXGroup;
+			children = (
+				38C92E04583C2E48844A19EF93BE9758 /* Info.plist */,
+				33ADDB7921554F3582041CF9CE65DB05 /* Pods-FluxCapacitorSample.modulemap */,
+				64F8CA9DEED167359F14B50E1D68B767 /* Pods-FluxCapacitorSample-acknowledgements.markdown */,
+				528232EC12B07068859BE57B53A7896B /* Pods-FluxCapacitorSample-acknowledgements.plist */,
+				EC50DBB34CCCF14DBDEB6AB1C2C12306 /* Pods-FluxCapacitorSample-dummy.m */,
+				7C19C5EAF7E1DD5D4340E8F5F26D8B01 /* Pods-FluxCapacitorSample-frameworks.sh */,
+				1CD17F10DF99FE2F862A82E5FECCE2DC /* Pods-FluxCapacitorSample-resources.sh */,
+				161155E0D5FD021E2356B29E0BE8EE7C /* Pods-FluxCapacitorSample-umbrella.h */,
+				9C2FCF203521FE1971CCA34EF2A7585C /* Pods-FluxCapacitorSample.debug.xcconfig */,
+				27E8B7B2790BD5F6645FB356FF4AD64B /* Pods-FluxCapacitorSample.release.xcconfig */,
+			);
+			name = "Pods-FluxCapacitorSample";
+			path = "Target Support Files/Pods-FluxCapacitorSample";
+			sourceTree = "<group>";
+		};
+		B0479A634132DA683F0649E29632A00E /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				886E6462A0EA3D14609CAD92865B9AC3 /* Pods-FluxCapacitorSample */,
+				B13FC70F437358249B11811838C2D88A /* Pods-FluxCapacitorSampleTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		B13FC70F437358249B11811838C2D88A /* Pods-FluxCapacitorSampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				8AE77098661D2027B3F1CE05BB54B6B8 /* Info.plist */,
+				2E65C24E9A3A198BF991FED1A536189F /* Pods-FluxCapacitorSampleTests.modulemap */,
+				F763AFA78B4C674056ECBCB82FA0FBE2 /* Pods-FluxCapacitorSampleTests-acknowledgements.markdown */,
+				A2FB4D501647A7B041B355EE5F848C70 /* Pods-FluxCapacitorSampleTests-acknowledgements.plist */,
+				44891E32F7E168383BF225E7792B9D2A /* Pods-FluxCapacitorSampleTests-dummy.m */,
+				76BFAAE971DE68B0186B4AD5F8EBE4B5 /* Pods-FluxCapacitorSampleTests-frameworks.sh */,
+				ADC7C120AA757E1946B5A29D732B07D4 /* Pods-FluxCapacitorSampleTests-resources.sh */,
+				B006C7FDB40541C47EC4B3A7C1FFC1C7 /* Pods-FluxCapacitorSampleTests-umbrella.h */,
+				60D0E9D1984FAA061DAF5F7E35C7D01F /* Pods-FluxCapacitorSampleTests.debug.xcconfig */,
+				7A9CE474E0AAE2EB5ADF6BBFC8F65539 /* Pods-FluxCapacitorSampleTests.release.xcconfig */,
+			);
+			name = "Pods-FluxCapacitorSampleTests";
+			path = "Target Support Files/Pods-FluxCapacitorSampleTests";
 			sourceTree = "<group>";
 		};
 		B889766CC78C840336698F2ADB260028 /* Support Files */ = {
@@ -191,6 +240,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		AEE78CF3B5CC0816306FAA7566FA0AC2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9A76950A93A60C4B327623DEDAF005D /* Pods-FluxCapacitorSampleTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DEE88F0E69AA09D1A7106D51FD03819C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,7 +282,25 @@
 			);
 			name = "Pods-FluxCapacitorSample";
 			productName = "Pods-FluxCapacitorSample";
-			productReference = E6ECBCD40F02BE3310550BA07D367D58 /* Pods_FluxCapacitorSample.framework */;
+			productReference = 8F3583B0E86771050EA7B4977993254F /* Pods_FluxCapacitorSample.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2BA588C4302B0DD901A7B021BFC08269 /* Pods-FluxCapacitorSampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81AC05E3504B760A2EC1B1333924CD9C /* Build configuration list for PBXNativeTarget "Pods-FluxCapacitorSampleTests" */;
+			buildPhases = (
+				255949A56309AA83FFA0485F120FD12E /* Sources */,
+				D6640F3546B48F56D137D4318A7CCDB5 /* Frameworks */,
+				AEE78CF3B5CC0816306FAA7566FA0AC2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5F336CD801A9DF3A250B6D13154BE6E /* PBXTargetDependency */,
+			);
+			name = "Pods-FluxCapacitorSampleTests";
+			productName = "Pods-FluxCapacitorSampleTests";
+			productReference = 7B135A95A1B4BB4181E26FD128A2E8A8 /* Pods_FluxCapacitorSampleTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B8A749F002049AE81D7C02EA58D49FF5 /* FluxCapacitor */ = {
@@ -242,7 +317,7 @@
 			);
 			name = FluxCapacitor;
 			productName = FluxCapacitor;
-			productReference = 42772337240387135E9A4CFBDA87D439 /* FluxCapacitor.framework */;
+			productReference = D9270CC91FAE422285F8BE678BB4011E /* FluxCapacitor.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -262,12 +337,13 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 4776D002F07B894A5D3CC3E3C2CBE62A /* Products */;
+			productRefGroup = 16AA31F221E8A88E871C1D887337B1BB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				B8A749F002049AE81D7C02EA58D49FF5 /* FluxCapacitor */,
 				247DAB87D0D4FC21C93AA9E95923D07C /* Pods-FluxCapacitorSample */,
+				2BA588C4302B0DD901A7B021BFC08269 /* Pods-FluxCapacitorSampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -278,6 +354,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05C7FF50499F6544774DC115575B9B6 /* Pods-FluxCapacitorSample-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		255949A56309AA83FFA0485F120FD12E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A05C2BC6741E46809D015EF2E012F8D /* Pods-FluxCapacitorSampleTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +387,12 @@
 			name = FluxCapacitor;
 			target = B8A749F002049AE81D7C02EA58D49FF5 /* FluxCapacitor */;
 			targetProxy = E3164D10FD5B006648A219AE9C781B35 /* PBXContainerItemProxy */;
+		};
+		F5F336CD801A9DF3A250B6D13154BE6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FluxCapacitor;
+			target = B8A749F002049AE81D7C02EA58D49FF5 /* FluxCapacitor */;
+			targetProxy = EC4696FA1F9D0940B0EA7CF73C1F4625 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -392,7 +482,7 @@
 		};
 		635071D852B1711E00695317348BF110 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3C6973B58FD45DD631A9B8880A2CB86 /* Pods-FluxCapacitorSample.release.xcconfig */;
+			baseConfigurationReference = 27E8B7B2790BD5F6645FB356FF4AD64B /* Pods-FluxCapacitorSample.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -430,7 +520,7 @@
 		};
 		70EF0745A51014F45F2ACC4BBA7B6D3B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC625CC156A87B0472F3C1E894B5C7EB /* Pods-FluxCapacitorSample.debug.xcconfig */;
+			baseConfigurationReference = 9C2FCF203521FE1971CCA34EF2A7585C /* Pods-FluxCapacitorSample.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -545,6 +635,83 @@
 			};
 			name = Release;
 		};
+		E8C2AC09877046EE25A16841A9D1053A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A9CE474E0AAE2EB5ADF6BBFC8F65539 /* Pods-FluxCapacitorSampleTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-FluxCapacitorSampleTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-FluxCapacitorSampleTests/Pods-FluxCapacitorSampleTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_FluxCapacitorSampleTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F4A8F2001321EB8916A2CF4E6FE8F38C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60D0E9D1984FAA061DAF5F7E35C7D01F /* Pods-FluxCapacitorSampleTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-FluxCapacitorSampleTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-FluxCapacitorSampleTests/Pods-FluxCapacitorSampleTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_FluxCapacitorSampleTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -553,6 +720,15 @@
 			buildConfigurations = (
 				4E487F173E6C9664F4E9E26B9635D23C /* Debug */,
 				BDD0139D6EB93FA375F887ABD62DAB2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81AC05E3504B760A2EC1B1333924CD9C /* Build configuration list for PBXNativeTarget "Pods-FluxCapacitorSampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A8F2001321EB8916A2CF4E6FE8F38C /* Debug */,
+				E8C2AC09877046EE25A16841A9D1053A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

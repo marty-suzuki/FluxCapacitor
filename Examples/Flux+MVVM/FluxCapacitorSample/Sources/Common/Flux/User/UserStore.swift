@@ -26,7 +26,7 @@ final class UserStore: Storable {
     }
     private let _users = Variable<[User]>([])
 
-    let selectedUesr: Observable<User?>
+    let selectedUser: Observable<User?>
     var selectedUserValue: User? {
         return _selectedUser.value
     }
@@ -53,7 +53,7 @@ final class UserStore: Storable {
     init(dispatcher: Dispatcher) {
         self.isUserFetching = _isUserFetching.asObservable()
         self.users = _users.asObservable()
-        self.selectedUesr = _selectedUser.asObservable()
+        self.selectedUser = _selectedUser.asObservable()
         self.lastPageInfo = _lastPageInfo.asObservable()
         self.lastSearchQuery = _lastSearchQuery.asObservable()
         self.userTotalCount = _userTotalCount.asObservable()

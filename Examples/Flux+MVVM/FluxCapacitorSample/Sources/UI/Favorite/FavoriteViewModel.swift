@@ -8,15 +8,12 @@
 
 import Foundation
 import RxSwift
-import FluxCapacitor
 import GithubKit
 
 final class FavoriteViewModel {
     private let action: RepositoryAction
     private let store: RepositoryStore
     private let disposeBag = DisposeBag()
-    private let dustBuster = DustBuster()
-    private var selectedRepositoryDustBuster = DustBuster()
     
     let reloadData: Observable<Void>
     private let _reloadData = PublishSubject<Void>()
@@ -24,7 +21,7 @@ final class FavoriteViewModel {
     private let _showRepository = PublishSubject<Void>()
     
     var favorites: [Repository] {
-        return store.favorites
+        return store.favoritesValue
     }
     
     init(action: RepositoryAction = .init(),
@@ -38,45 +35,27 @@ final class FavoriteViewModel {
         self.reloadData = _reloadData
         self.showRepository = _showRepository
         
-        viewDidAppear
-            .subscribe(onNext: { [weak self] in
-                guard let me = self else { return }
-                me.store.subscribe { [weak self] in
-                    switch $0 {
-                    case .selectedRepository:
-                        self?._showRepository.onNext()
-                    default:
-                        break
-                    }
-                }
-                .cleaned(by: me.selectedRepositoryDustBuster)
-            })
-            .disposed(by: disposeBag)
-        
-        viewDidDisappear
-            .subscribe(onNext: { [weak self] in
-                self?.selectedRepositoryDustBuster = DustBuster()
-            })
+        Observable.merge(viewDidAppear.map { _ in true },
+                         viewDidDisappear.map { _ in false })
+            .flatMapLatest { [weak self] shouldSubscribe -> Observable<Void> in
+                guard shouldSubscribe, let me = self else { return .empty() }
+                return me.store.selectedRepository
+                    .map { _ in }
+            }
+            .bind(to: _showRepository)
             .disposed(by: disposeBag)
         
         selectRepositoryRowAt
             .subscribe(onNext: { [weak self] in
                 guard let me = self else { return }
-                let repository = me.store.favorites[$0.row]
+                let repository = me.store.favoritesValue[$0.row]
                 me.action.invoke(.selectedRepository(repository))
             })
             .disposed(by: disposeBag)
         
-        store.subscribe { [weak self] value in
-                switch value {
-                case .addFavorite,
-                     .removeFavorite,
-                     .removeAllFavorites:
-                    self?._reloadData.onNext()
-                default:
-                    break
-                }
-            }
-            .cleaned(by: dustBuster)
+        store.favorites
+            .map { _ in }
+            .bind(to: _reloadData)
+            .disposed(by: disposeBag)
     }
 }

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        ApiSession.shared.token = "/** your token **/"
+        ApiSession.shared.token = "a17117dd25c2217e84941f240b7815f9e0ec4d38"//"/** your token **/"
         return true
     }
 

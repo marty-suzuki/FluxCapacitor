@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FluxCapacitor
 import GithubKit
 import RxSwift
 
@@ -16,9 +15,7 @@ final class UserRepositoryViewModel {
     private let userStore: UserStore
     private let repositoryAction: RepositoryAction
     private let repositoryStore: RepositoryStore
-    private let dustBuster = DustBuster()
     private let disposeBag = DisposeBag()
-    private let user: User?
     
     let showRepository: Observable<Void>
     private let _showRepository = PublishSubject<Void>()
@@ -27,18 +24,16 @@ final class UserRepositoryViewModel {
     private let repositoryTotalCount = PublishSubject<Void>()
     let counterText: Observable<String>
     private let _counterText = PublishSubject<String>()
-    private let isRepositoryFetchingChanged = PublishSubject<Void>()
+    
     let isRepositoryFetching: Observable<Bool>
-    private let _isRepositoryFetching = PublishSubject<Bool>()
-
+    var isRepositoryFetchingValue: Bool {
+        return repositoryStore.isRepositoryFetchingValue
+    }
     var username: String {
-        return user?.login ?? ""
+        return userStore.selectedUserValue?.login ?? ""
     }
     var repositories: [Repository] {
-        return repositoryStore.repositories
-    }
-    var isRepositoryFetchingValue: Bool {
-        return repositoryStore.isRepositoryFetching
+        return repositoryStore.repositoriesValue
     }
     
     init(userAction: UserAction = .init(),
@@ -51,36 +46,27 @@ final class UserRepositoryViewModel {
         self.userStore = userStore
         self.repositoryAction = repositoryAction
         self.repositoryStore = repositoryStore
-        self.user = userStore.selectedUserValue
         
         self.showRepository = _showRepository
         self.reloadData = _reloadData
         self.counterText = _counterText
-        self.isRepositoryFetching = _isRepositoryFetching
+        self.isRepositoryFetching = repositoryStore.isRepositoryFetching
         
-        repositoryStore.subscribe { [weak self] in
-                switch $0 {
-                case .selectedRepository:
-                    self?._showRepository.onNext()
-                case .isRepositoryFetching:
-                    self?.isRepositoryFetchingChanged.onNext()
-                    fallthrough
-                case .addRepositories,
-                     .removeAllRepositories:
-                    self?._reloadData.onNext()
-                case .repositoryTotalCount:
-                    self?.repositoryTotalCount.onNext()
-                default:
-                    break
-                }
-            }
-            .cleaned(by: dustBuster)
+        Observable.merge(repositoryStore.repositories.map { _ in },
+                         repositoryStore.isRepositoryFetching.map { _ in })
+            .bind(to: _reloadData)
+            .disposed(by: disposeBag)
         
-        repositoryTotalCount
-            .flatMap { [weak self] _ -> Observable<String> in
-                guard let store = self?.repositoryStore else { return .empty() }
-                return .just("\(store.repositories.count) / \(store.repositoryTotalCount)")
-            }
+        
+        repositoryStore.selectedRepository
+            .filter { $0 != nil }
+            .map { _ in }
+            .bind(to: _showRepository)
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(repositoryStore.repositories,
+                                 repositoryStore.repositoryTotalCount)
+            { "\($0.count) / \($1)" }
             .bind(to: _counterText)
             .disposed(by: disposeBag)
         
@@ -88,8 +74,8 @@ final class UserRepositoryViewModel {
             .subscribe(onNext: { [weak self] in
                 guard
                     let me = self,
-                    let user = me.user,
-                    let pageInfo = me.repositoryStore.lastPageInfo,
+                    let user = me.userStore.selectedUserValue,
+                    let pageInfo = me.repositoryStore.lastPageInfoValue,
                     pageInfo.hasNextPage,
                     let after = pageInfo.endCursor
                 else { return }
@@ -100,19 +86,12 @@ final class UserRepositoryViewModel {
         selectRepositoryRowAt
             .subscribe(onNext: { [weak self] in
                 guard let me = self else { return }
-                let repository = me.repositoryStore.repositories[$0.row]
+                let repository = me.repositoryStore.repositoriesValue[$0.row]
                 me.repositoryAction.invoke(.selectedRepository(repository))
             })
             .disposed(by: disposeBag)
-        
-        isRepositoryFetchingChanged
-            .subscribe(onNext: { [weak self] in
-                guard let me = self else { return }
-                me._isRepositoryFetching.onNext(me.repositoryStore.isRepositoryFetching)
-            })
-            .disposed(by: disposeBag)
-        
-        if let userId = user?.id {
+
+        if let userId = userStore.selectedUserValue?.id {
             repositoryAction.fetchRepositories(withUserId: userId, after: nil)
         }
     }

@@ -14,7 +14,13 @@ import RxCocoa
 final class RepositoryViewController: SFSafariViewController {
     private let favoriteButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
     private let disposeBag = DisposeBag()
-    private(set) lazy var viewModel: RepositoryViewModel = .init(favoriteButtonItemTap: self.favoriteButtonItem.rx.tap)
+    private(set) lazy var viewModel: RepositoryViewModel = {
+        let viewDidDisappear = self.rx
+            .methodInvoked(#selector(RepositoryViewController.viewDidDisappear(_:)))
+            .map { _ in }
+        return .init(viewDidDisappear: viewDidDisappear,
+                     favoriteButtonItemTap: self.favoriteButtonItem.rx.tap)
+    }()
     
     init?(entersReaderIfAvailable: Bool = true) {
         guard let url = RepositoryViewModel.selectedURL() else { return nil }

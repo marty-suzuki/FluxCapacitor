@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3702814E1F4B3CEB005D1A67 /* ApiSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702814A1F4B3CEB005D1A67 /* ApiSessionMock.swift */; };
+		3702814F1F4B3CEB005D1A67 /* PageInfoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702814B1F4B3CEB005D1A67 /* PageInfoMock.swift */; };
+		370281501F4B3CEB005D1A67 /* ResponseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702814C1F4B3CEB005D1A67 /* ResponseMock.swift */; };
+		370281511F4B3CEB005D1A67 /* UserMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702814D1F4B3CEB005D1A67 /* UserMock.swift */; };
+		370281551F4B428F005D1A67 /* RepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370281541F4B428F005D1A67 /* RepositoryMock.swift */; };
+		3702815C1F4B4A2C005D1A67 /* RepositoryFluxFlowTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702815A1F4B4A2C005D1A67 /* RepositoryFluxFlowTestCase.swift */; };
+		3702815D1F4B4A2C005D1A67 /* UserFluxFlowTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3702815B1F4B4A2C005D1A67 /* UserFluxFlowTestCase.swift */; };
 		37471E821F49C2F500E61C54 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37471E811F49C2F500E61C54 /* SearchViewModel.swift */; };
 		37471E841F49CE0900E61C54 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37471E831F49CE0900E61C54 /* FavoriteViewModel.swift */; };
 		37471E861F49E50B00E61C54 /* UserRepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37471E851F49E50B00E61C54 /* UserRepositoryViewModel.swift */; };
 		37471E881F49EE4D00E61C54 /* RepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37471E871F49EE4D00E61C54 /* RepositoryViewModel.swift */; };
+		37471E8B1F4B1BEC00E61C54 /* ApiSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37471E8A1F4B1BEC00E61C54 /* ApiSessionType.swift */; };
 		37B8984D1F35069300C10785 /* GithubKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B8984C1F35069300C10785 /* GithubKit.framework */; };
 		37B8984F1F35091600C10785 /* SwiftIconFont.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B8984E1F35091600C10785 /* SwiftIconFont.framework */; };
 		37C8BA811F2FAA32003AFBD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA7B1F2FAA32003AFBD7 /* Assets.xcassets */; };
@@ -30,6 +38,7 @@
 		37C8BAAF1F31036E003AFBD7 /* RepositoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAAE1F31036E003AFBD7 /* RepositoryStore.swift */; };
 		37C8BAB41F31FCFF003AFBD7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C8BAB31F31FCFF003AFBD7 /* LoadingView.swift */; };
 		37C8BAB61F31FD10003AFBD7 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BAB51F31FD10003AFBD7 /* LoadingView.xib */; };
+		575BE282A3B3F4BBB33C6921 /* Pods_FluxCapacitorSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E097965A35A5C6537ADD8B /* Pods_FluxCapacitorSampleTests.framework */; };
 		5D255F67E5F7130D863F6C5F /* Pods_FluxCapacitorSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */; };
 		9DDE2F1C1F316D6D005CC4E2 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDE2F1B1F316D6D005CC4E2 /* SafariServices.framework */; };
 		9DDE2F1F1F316DAF005CC4E2 /* UserRepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDE2F1E1F316DAF005CC4E2 /* UserRepositoryViewController.swift */; };
@@ -44,11 +53,31 @@
 		EDB9D4A61F3192FC00FC6B61 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB9D4A51F3192FC00FC6B61 /* RepositoryViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3701024E1F4B329D004EFCC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37C8BA461F2C9DB8003AFBD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37C8BA4D1F2C9DB8003AFBD7;
+			remoteInfo = FluxCapacitorSample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		370102491F4B329D004EFCC7 /* FluxCapacitorSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FluxCapacitorSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3701024D1F4B329D004EFCC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3702814A1F4B3CEB005D1A67 /* ApiSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiSessionMock.swift; sourceTree = "<group>"; };
+		3702814B1F4B3CEB005D1A67 /* PageInfoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInfoMock.swift; sourceTree = "<group>"; };
+		3702814C1F4B3CEB005D1A67 /* ResponseMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseMock.swift; sourceTree = "<group>"; };
+		3702814D1F4B3CEB005D1A67 /* UserMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMock.swift; sourceTree = "<group>"; };
+		370281541F4B428F005D1A67 /* RepositoryMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryMock.swift; sourceTree = "<group>"; };
+		3702815A1F4B4A2C005D1A67 /* RepositoryFluxFlowTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryFluxFlowTestCase.swift; sourceTree = "<group>"; };
+		3702815B1F4B4A2C005D1A67 /* UserFluxFlowTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFluxFlowTestCase.swift; sourceTree = "<group>"; };
 		37471E811F49C2F500E61C54 /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		37471E831F49CE0900E61C54 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		37471E851F49E50B00E61C54 /* UserRepositoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryViewModel.swift; sourceTree = "<group>"; };
 		37471E871F49EE4D00E61C54 /* RepositoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewModel.swift; sourceTree = "<group>"; };
+		37471E8A1F4B1BEC00E61C54 /* ApiSessionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiSessionType.swift; sourceTree = "<group>"; };
 		37B8984C1F35069300C10785 /* GithubKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GithubKit.framework; path = Carthage/Build/iOS/GithubKit.framework; sourceTree = "<group>"; };
 		37B8984E1F35091600C10785 /* SwiftIconFont.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftIconFont.framework; path = Carthage/Build/iOS/SwiftIconFont.framework; sourceTree = "<group>"; };
 		37C8BA4E1F2C9DB8003AFBD7 /* FluxCapacitorSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FluxCapacitorSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +101,7 @@
 		37C8BAB31F31FCFF003AFBD7 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		37C8BAB51F31FD10003AFBD7 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluxCapacitorSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		699A2D86BE27E04D125E7603 /* Pods-FluxCapacitorSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSampleTests/Pods-FluxCapacitorSampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		8BA935772B827618E28B121C /* Pods-FluxCapacitorSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.release.xcconfig"; sourceTree = "<group>"; };
 		9DDE2F1B1F316D6D005CC4E2 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		9DDE2F1E1F316DAF005CC4E2 /* UserRepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryViewController.swift; sourceTree = "<group>"; };
@@ -83,11 +113,21 @@
 		9DEE5D291F31E48600225822 /* UIKeyboardWillHide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKeyboardWillHide.swift; sourceTree = "<group>"; };
 		9DEE5D2B1F31E49800225822 /* UIKeyboardInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKeyboardInfo.swift; sourceTree = "<group>"; };
 		9DEE5D2D1F31E4B000225822 /* UIKeyboardWillShow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKeyboardWillShow.swift; sourceTree = "<group>"; };
+		ADE3A3E0EA341095E6538D21 /* Pods-FluxCapacitorSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSampleTests/Pods-FluxCapacitorSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B2E097965A35A5C6537ADD8B /* Pods_FluxCapacitorSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluxCapacitorSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluxCapacitorSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample.debug.xcconfig"; sourceTree = "<group>"; };
 		EDB9D4A51F3192FC00FC6B61 /* RepositoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		370102461F4B329D004EFCC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				575BE282A3B3F4BBB33C6921 /* Pods_FluxCapacitorSampleTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37C8BA4B1F2C9DB8003AFBD7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -106,10 +146,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3701024A1F4B329D004EFCC7 /* FluxCapacitorSampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				370281581F4B4A2C005D1A67 /* TestCase */,
+				370281491F4B3CEB005D1A67 /* Mock */,
+				3701024D1F4B329D004EFCC7 /* Info.plist */,
+			);
+			path = FluxCapacitorSampleTests;
+			sourceTree = "<group>";
+		};
+		370281491F4B3CEB005D1A67 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				3702814A1F4B3CEB005D1A67 /* ApiSessionMock.swift */,
+				3702814B1F4B3CEB005D1A67 /* PageInfoMock.swift */,
+				3702814C1F4B3CEB005D1A67 /* ResponseMock.swift */,
+				3702814D1F4B3CEB005D1A67 /* UserMock.swift */,
+				370281541F4B428F005D1A67 /* RepositoryMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		370281581F4B4A2C005D1A67 /* TestCase */ = {
+			isa = PBXGroup;
+			children = (
+				370281591F4B4A2C005D1A67 /* Flux */,
+			);
+			path = TestCase;
+			sourceTree = "<group>";
+		};
+		370281591F4B4A2C005D1A67 /* Flux */ = {
+			isa = PBXGroup;
+			children = (
+				3702815A1F4B4A2C005D1A67 /* RepositoryFluxFlowTestCase.swift */,
+				3702815B1F4B4A2C005D1A67 /* UserFluxFlowTestCase.swift */,
+			);
+			path = Flux;
+			sourceTree = "<group>";
+		};
+		37471E891F4B1BD700E61C54 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				37471E8A1F4B1BEC00E61C54 /* ApiSessionType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		37C8BA451F2C9DB8003AFBD7 = {
 			isa = PBXGroup;
 			children = (
 				37C8BA501F2C9DB8003AFBD7 /* FluxCapacitorSample */,
+				3701024A1F4B329D004EFCC7 /* FluxCapacitorSampleTests */,
 				37C8BA4F1F2C9DB8003AFBD7 /* Products */,
 				C4E070B8352E3432CA1635D7 /* Pods */,
 				D8A968412CB16AE3704A2777 /* Frameworks */,
@@ -120,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA4E1F2C9DB8003AFBD7 /* FluxCapacitorSample.app */,
+				370102491F4B329D004EFCC7 /* FluxCapacitorSampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				37C8BA861F2FAA72003AFBD7 /* AppDelegate.swift */,
+				37471E891F4B1BD700E61C54 /* Protocol */,
 				9DEE5D281F31E47900225822 /* NoticeObserver */,
 				37C8BA981F30E69C003AFBD7 /* Flux */,
 			);
@@ -259,6 +349,8 @@
 			children = (
 				E177E8BAA0CE1E46CA2CA189 /* Pods-FluxCapacitorSample.debug.xcconfig */,
 				8BA935772B827618E28B121C /* Pods-FluxCapacitorSample.release.xcconfig */,
+				ADE3A3E0EA341095E6538D21 /* Pods-FluxCapacitorSampleTests.debug.xcconfig */,
+				699A2D86BE27E04D125E7603 /* Pods-FluxCapacitorSampleTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -275,6 +367,7 @@
 				37C8BA9F1F30F1AE003AFBD7 /* RxSwift.framework */,
 				37C8BA951F30D8E7003AFBD7 /* GithubApiSession.framework */,
 				4DEFEA26DF21FBD51C879FAA /* Pods_FluxCapacitorSample.framework */,
+				B2E097965A35A5C6537ADD8B /* Pods_FluxCapacitorSampleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -291,6 +384,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		370102481F4B329D004EFCC7 /* FluxCapacitorSampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 370102521F4B329D004EFCC7 /* Build configuration list for PBXNativeTarget "FluxCapacitorSampleTests" */;
+			buildPhases = (
+				8AE0F2383A2F8FDA4BF415C7 /* [CP] Check Pods Manifest.lock */,
+				370102451F4B329D004EFCC7 /* Sources */,
+				370102461F4B329D004EFCC7 /* Frameworks */,
+				370102471F4B329D004EFCC7 /* Resources */,
+				0983EC50868BE26CD67C9F7D /* [CP] Embed Pods Frameworks */,
+				E8BBD52376BA89EDEE8B5AF8 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3701024F1F4B329D004EFCC7 /* PBXTargetDependency */,
+			);
+			name = FluxCapacitorSampleTests;
+			productName = FluxCapacitorSampleTests;
+			productReference = 370102491F4B329D004EFCC7 /* FluxCapacitorSampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		37C8BA4D1F2C9DB8003AFBD7 /* FluxCapacitorSample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37C8BA601F2C9DB8003AFBD7 /* Build configuration list for PBXNativeTarget "FluxCapacitorSample" */;
@@ -322,6 +436,12 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "marty-suzuki";
 				TargetAttributes = {
+					370102481F4B329D004EFCC7 = {
+						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Manual;
+						TestTargetID = 37C8BA4D1F2C9DB8003AFBD7;
+					};
 					37C8BA4D1F2C9DB8003AFBD7 = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Manual;
@@ -342,11 +462,19 @@
 			projectRoot = "";
 			targets = (
 				37C8BA4D1F2C9DB8003AFBD7 /* FluxCapacitorSample */,
+				370102481F4B329D004EFCC7 /* FluxCapacitorSampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		370102471F4B329D004EFCC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37C8BA4C1F2C9DB8003AFBD7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,6 +490,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0983EC50868BE26CD67C9F7D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FluxCapacitorSampleTests/Pods-FluxCapacitorSampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		26B65551277D777264CEBB21 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -396,6 +539,21 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
+		8AE0F2383A2F8FDA4BF415C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		A52807F1234D213AE5BAC2B3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -426,9 +584,38 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FluxCapacitorSample/Pods-FluxCapacitorSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E8BBD52376BA89EDEE8B5AF8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FluxCapacitorSampleTests/Pods-FluxCapacitorSampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		370102451F4B329D004EFCC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3702814F1F4B3CEB005D1A67 /* PageInfoMock.swift in Sources */,
+				3702815D1F4B4A2C005D1A67 /* UserFluxFlowTestCase.swift in Sources */,
+				370281501F4B3CEB005D1A67 /* ResponseMock.swift in Sources */,
+				3702815C1F4B4A2C005D1A67 /* RepositoryFluxFlowTestCase.swift in Sources */,
+				370281551F4B428F005D1A67 /* RepositoryMock.swift in Sources */,
+				3702814E1F4B3CEB005D1A67 /* ApiSessionMock.swift in Sources */,
+				370281511F4B3CEB005D1A67 /* UserMock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37C8BA4A1F2C9DB8003AFBD7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -438,6 +625,7 @@
 				37C8BA8E1F2FAAFD003AFBD7 /* SearchViewController.swift in Sources */,
 				37C8BA8C1F2FAAEA003AFBD7 /* FavoriteViewController.swift in Sources */,
 				37471E821F49C2F500E61C54 /* SearchViewModel.swift in Sources */,
+				37471E8B1F4B1BEC00E61C54 /* ApiSessionType.swift in Sources */,
 				37C8BAAD1F310235003AFBD7 /* RepositoryAction.swift in Sources */,
 				9DDE2F231F31719A005CC4E2 /* SearchViewDataSource.swift in Sources */,
 				37C8BA881F2FAA72003AFBD7 /* AppDelegate.swift in Sources */,
@@ -460,6 +648,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3701024F1F4B329D004EFCC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37C8BA4D1F2C9DB8003AFBD7 /* FluxCapacitorSample */;
+			targetProxy = 3701024E1F4B329D004EFCC7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		37C8BA7C1F2FAA32003AFBD7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -481,6 +677,51 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		370102501F4B329D004EFCC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADE3A3E0EA341095E6538D21 /* Pods-FluxCapacitorSampleTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FluxCapacitor\"",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = FluxCapacitorSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.FluxCapacitorSampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FluxCapacitorSample.app/FluxCapacitorSample";
+			};
+			name = Debug;
+		};
+		370102511F4B329D004EFCC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 699A2D86BE27E04D125E7603 /* Pods-FluxCapacitorSampleTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FluxCapacitor\"",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = FluxCapacitorSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.FluxCapacitorSampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FluxCapacitorSample.app/FluxCapacitorSample";
+			};
+			name = Release;
+		};
 		37C8BA5E1F2C9DB8003AFBD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -619,6 +860,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		370102521F4B329D004EFCC7 /* Build configuration list for PBXNativeTarget "FluxCapacitorSampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				370102501F4B329D004EFCC7 /* Debug */,
+				370102511F4B329D004EFCC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		37C8BA491F2C9DB8003AFBD7 /* Build configuration list for PBXProject "FluxCapacitorSample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

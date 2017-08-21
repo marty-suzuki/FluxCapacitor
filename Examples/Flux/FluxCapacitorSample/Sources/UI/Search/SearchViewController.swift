@@ -111,7 +111,7 @@ final class SearchViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        store.selectedUesr
+        store.selectedUser
             .filter { $0 != nil }
             .map { _ in  }
             .bind(to: showUserRepository)

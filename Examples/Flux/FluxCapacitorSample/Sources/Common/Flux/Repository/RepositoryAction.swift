@@ -13,9 +13,9 @@ import GithubKit
 final class RepositoryAction: Actionable {
     typealias DispatchValueType = Dispatcher.Repository
     
-    private let session: ApiSession
+    private let session: ApiSessionType
     
-    init(session: ApiSession = .shared) {
+    init(session: ApiSessionType = ApiSession.shared) {
         self.session = session
     }
     

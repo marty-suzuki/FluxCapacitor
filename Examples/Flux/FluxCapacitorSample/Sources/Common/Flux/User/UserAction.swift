@@ -14,10 +14,10 @@ import RxSwift
 final class UserAction: Actionable {
     typealias DispatchValueType = Dispatcher.User
     
-    private let session: ApiSession
+    private let session: ApiSessionType
     private var disposeBag = DisposeBag()
     
-    init(session: ApiSession = .shared) {
+    init(session: ApiSessionType = ApiSession.shared) {
         self.session = session
     }
     
@@ -27,7 +27,7 @@ final class UserAction: Actionable {
         disposeBag = DisposeBag()
         invoke(.isUserFetching(true))
         let request = SearchUserRequest(query: query, after: after)
-        session.rx.send(request)
+        session.send(request)
             .subscribe(onNext: { [weak self] in
                 self?.invoke(.addUsers($0.nodes))
                 self?.invoke(.lastPageInfo($0.pageInfo))

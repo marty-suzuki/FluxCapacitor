@@ -32,6 +32,8 @@ Application structure is like below.
 - [RepositoryViewController](./FluxCapacitorSample/Sources/UI/Repository) You can display webpage of repository, and add favorites on memory.
   - [RepositoryViewModel](./FluxCapacitorSample/Sources/UI/Repository/RepositoryViewModel.swift)
 
+[This](./FluxCapacitorSampleTests) is test code.
+
 [GithubKitForSample](https://github.com/marty-suzuki/GithubKitForSample) is used in this sample project.
 
 ## Author
