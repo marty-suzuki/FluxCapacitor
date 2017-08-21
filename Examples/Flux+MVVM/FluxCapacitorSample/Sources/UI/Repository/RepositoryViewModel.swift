@@ -15,7 +15,9 @@ final class RepositoryViewModel {
     private let action: RepositoryAction
     private let store: RepositoryStore
     private let disposeBag = DisposeBag()
-    private let repository: Repository?
+    private var repository: Repository? {
+        return store.selectedRepositoryValue
+    }
 
     let buttonTitle: Observable<String>
     private let _buttonTitle = BehaviorSubject<String>(value: "")
@@ -26,7 +28,6 @@ final class RepositoryViewModel {
          favoriteButtonItemTap: ControlEvent<Void>) {
         self.action = action
         self.store = store
-        self.repository = store.selectedRepositoryValue
         self.buttonTitle = _buttonTitle
         
         favoriteButtonItemTap

@@ -11,7 +11,6 @@ import XCTest
 @testable import FluxCapacitorSample
 import RxSwift
 import GithubKit
-import FluxCapacitor
 
 class RepositoryFluxFlowTestCase: XCTestCase {
     
