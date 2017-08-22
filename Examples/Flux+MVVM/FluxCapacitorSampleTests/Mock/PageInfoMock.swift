@@ -12,10 +12,20 @@ import Foundation
 import GithubKit
 
 extension PageInfo {
-    static func mock() -> PageInfo {
-        return try! PageInfo(json: [
-            "hasNextPage" : true,
-            "hasPreviousPage" : false
-            ])
+    static func mock(hasNextPage: Bool = true,
+                     hasPreviousPage: Bool = false,
+                     startCursor: String? = nil,
+                     endCursor: String? = nil) -> PageInfo {
+        var json: [AnyHashable : Any] = [
+            "hasNextPage" : hasNextPage,
+            "hasPreviousPage" : hasPreviousPage
+        ]
+        if let startCursor = startCursor {
+            json["startCursor"] = startCursor
+        }
+        if let endCursor = endCursor {
+            json["endCursor"] = endCursor
+        }
+        return try! PageInfo(json: json)
     }
 }
