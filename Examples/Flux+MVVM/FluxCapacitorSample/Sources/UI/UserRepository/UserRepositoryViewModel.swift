@@ -21,7 +21,6 @@ final class UserRepositoryViewModel {
     private let _showRepository = PublishSubject<Void>()
     let reloadData: Observable<Void>
     private let _reloadData = PublishSubject<Void>()
-    private let repositoryTotalCount = PublishSubject<Void>()
     let counterText: Observable<String>
     private let _counterText = PublishSubject<String>()
     
