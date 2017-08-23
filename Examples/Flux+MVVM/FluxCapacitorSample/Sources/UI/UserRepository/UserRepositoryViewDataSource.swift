@@ -55,12 +55,12 @@ final class UserRepositoryViewDataSource: NSObject {
 
 extension UserRepositoryViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.repositories.count
+        return viewModel.repositoriesValue.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(RepositoryViewCell.self, for: indexPath)
-        cell.configure(with: viewModel.repositories[indexPath.row])
+        cell.configure(with: viewModel.repositoriesValue[indexPath.row])
         return cell
     }
     
@@ -86,7 +86,7 @@ extension UserRepositoryViewDataSource: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return RepositoryViewCell.calculateHeight(with: viewModel.repositories[indexPath.row], and: tableView)
+        return RepositoryViewCell.calculateHeight(with: viewModel.repositoriesValue[indexPath.row], and: tableView)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

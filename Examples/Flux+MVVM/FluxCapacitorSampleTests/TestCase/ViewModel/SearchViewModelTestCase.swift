@@ -167,7 +167,7 @@ class SearchViewModelTestCase: XCTestCase {
             .filter { !$0 }
             .skip(1)
             .subscribe(onNext: { [weak self] _ in
-                guard let lastUser = self?.viewModel.users.last else {
+                guard let lastUser = self?.viewModel.usersValue.last else {
                     XCTFail()
                     return
                 }

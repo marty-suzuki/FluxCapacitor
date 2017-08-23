@@ -15,9 +15,6 @@ final class RepositoryViewModel {
     private let action: RepositoryAction
     private let store: RepositoryStore
     private let disposeBag = DisposeBag()
-    private var repository: Repository? {
-        return store.selectedRepositoryValue
-    }
 
     let buttonTitle: Observable<String>
     private let _buttonTitle = BehaviorSubject<String>(value: "")
@@ -30,9 +27,14 @@ final class RepositoryViewModel {
         self.store = store
         self.buttonTitle = _buttonTitle
         
+        let selectedRepository = store.selectedRepository
+            .filter { $0 != nil }
+            .map { $0! }
+        
         favoriteButtonItemTap
-            .subscribe(onNext: { [weak self] in
-                guard let me = self, let repository = me.repository else { return }
+            .withLatestFrom(selectedRepository)
+            .subscribe(onNext: { [weak self] repository in
+                guard let me = self else { return }
                 if me.store.favoritesValue.contains(where: { $0.url == repository.url }) {
                     me.action.invoke(.removeFavorite(repository))
                 } else {
@@ -48,10 +50,10 @@ final class RepositoryViewModel {
             .disposed(by: disposeBag)
         
         store.favorites
-            .flatMap { [weak self] _ -> Observable<String> in
-                guard let me = self else { return .empty() }
-                let contains = me.store.favoritesValue.contains(where: { $0.url == me.repository?.url })
-                return .just(contains ? "Remove" : "Add")
+            .withLatestFrom(selectedRepository) { $0 }
+            .map { favorites, repository in
+                let contains = favorites.contains(where: { $0.url == repository.url })
+                return contains ? "Remove" : "Add"
             }
             .bind(to: _buttonTitle)
             .disposed(by: disposeBag)

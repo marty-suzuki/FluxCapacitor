@@ -20,7 +20,7 @@ final class FavoriteViewModel {
     let showRepository: Observable<Void>
     private let _showRepository = PublishSubject<Void>()
     
-    var favorites: [Repository] {
+    var favoritesValue: [Repository] {
         return store.favoritesValue
     }
     
@@ -35,22 +35,19 @@ final class FavoriteViewModel {
         self.reloadData = _reloadData
         self.showRepository = _showRepository
         
+        let selectedRepository = store.selectedRepository
+            .filter { $0 != nil }
+            .map { _ in }
         Observable.merge(viewDidAppear.map { _ in true },
                          viewDidDisappear.map { _ in false })
-            .flatMapLatest { [weak self] shouldSubscribe -> Observable<Void> in
-                guard shouldSubscribe, let me = self else { return .empty() }
-                return me.store.selectedRepository
-                    .filter { $0 != nil }
-                    .map { _ in }
-            }
+            .flatMapLatest { $0 ? selectedRepository : .empty() }
             .bind(to: _showRepository)
             .disposed(by: disposeBag)
         
         selectRepositoryRowAt
+            .withLatestFrom(store.favorites) { $1[$0.row] }
             .subscribe(onNext: { [weak self] in
-                guard let me = self else { return }
-                let repository = me.store.favoritesValue[$0.row]
-                me.action.invoke(.selectedRepository(repository))
+                self?.action.invoke(.selectedRepository($0))
             })
             .disposed(by: disposeBag)
         

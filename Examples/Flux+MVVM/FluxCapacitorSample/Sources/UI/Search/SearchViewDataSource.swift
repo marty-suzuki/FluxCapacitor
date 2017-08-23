@@ -51,12 +51,12 @@ final class SearchViewDataSource: NSObject {
 
 extension SearchViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.users.count
+        return viewModel.usersValue.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(UserViewCell.self, for: indexPath)
-        cell.configure(with: viewModel.users[indexPath.row])
+        cell.configure(with: viewModel.usersValue[indexPath.row])
         return cell
     }
     
@@ -82,7 +82,7 @@ extension SearchViewDataSource: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UserViewCell.calculateHeight(with: viewModel.users[indexPath.row], and: tableView)
+        return UserViewCell.calculateHeight(with: viewModel.usersValue[indexPath.row], and: tableView)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

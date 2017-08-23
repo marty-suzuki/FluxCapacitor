@@ -35,7 +35,7 @@ final class SearchViewModel {
     let reloadData: Observable<Void>
     private let _reloadData = PublishSubject<Void>()
     
-    var users: [User] {
+    var usersValue: [User] {
         return store.usersValue
     }
     
@@ -90,24 +90,22 @@ final class SearchViewModel {
             .disposed(by: disposeBag)
         
         selectUserRowAt
+            .withLatestFrom(store.users) { $1[$0.row] }
             .subscribe(onNext: { [weak self] in
-                guard let me = self else { return }
-                let user = me.store.usersValue[$0.row]
-                me.action.invoke(.selectedUser(user))
+                self?.action.invoke(.selectedUser($0))
             })
             .disposed(by: disposeBag)
         
+        let lastSearchQuery = store.lastSearchQuery
+            .filter { !$0.isEmpty }
+        let lastPageInfo = store.lastPageInfo
+            .filter { $0 != nil }
+            .map { $0! }
         fetchMoreUsers
-            .subscribe(onNext: { [weak self] in
-                guard let me = self else { return }
-                let query = me.store.lastSearchQueryValue
-                guard
-                    !query.isEmpty,
-                    let pageInfo = me.store.lastPageInfoValue,
-                    pageInfo.hasNextPage,
-                    let after = pageInfo.endCursor
-                else { return }
-                me.action.fetchUsers(withQuery: query, after: after)
+            .withLatestFrom(Observable.combineLatest(lastSearchQuery, lastPageInfo))
+            .subscribe(onNext: { [weak self] query, pageInfo in
+                guard pageInfo.hasNextPage, let after = pageInfo.endCursor else { return }
+                self?.action.fetchUsers(withQuery: query, after: after)
             })
             .disposed(by: disposeBag)
         

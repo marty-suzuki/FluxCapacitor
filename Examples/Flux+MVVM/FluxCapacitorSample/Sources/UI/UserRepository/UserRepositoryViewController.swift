@@ -36,7 +36,7 @@ final class UserRepositoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "\(viewModel.username)'s Repositories"
+        title = "\(viewModel.usernameValue)'s Repositories"
         edgesForExtendedLayout = []
 
         configureDataSource()

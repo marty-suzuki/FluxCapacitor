@@ -27,6 +27,7 @@ class RepositoryViewModelTestCase: XCTestCase {
         
         self.action = RepositoryAction()
         self.store = RepositoryStore.instantiate()
+        action.invoke(.selectedRepository(Repository.mock()))
         self.viewModel = RepositoryViewModel(action: action,
                                              store: store,
                                              viewDidDisappear: viewDidDisappear,

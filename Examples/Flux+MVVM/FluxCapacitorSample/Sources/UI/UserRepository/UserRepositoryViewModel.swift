@@ -29,10 +29,10 @@ final class UserRepositoryViewModel {
     var isRepositoryFetchingValue: Bool {
         return repositoryStore.isRepositoryFetchingValue
     }
-    var username: String {
+    var usernameValue: String {
         return userStore.selectedUserValue?.login ?? ""
     }
-    var repositories: [Repository] {
+    var repositoriesValue: [Repository] {
         return repositoryStore.repositoriesValue
     }
     
@@ -70,24 +70,24 @@ final class UserRepositoryViewModel {
             .bind(to: _counterText)
             .disposed(by: disposeBag)
         
+        let selectedUser = userStore.selectedUser
+            .filter { $0 != nil }
+            .map { $0! }
+        let lastPageInfo = repositoryStore.lastPageInfo
+            .filter { $0 != nil }
+            .map { $0! }
         fetchMoreRepositories
-            .subscribe(onNext: { [weak self] in
-                guard
-                    let me = self,
-                    let user = me.userStore.selectedUserValue,
-                    let pageInfo = me.repositoryStore.lastPageInfoValue,
-                    pageInfo.hasNextPage,
-                    let after = pageInfo.endCursor
-                else { return }
-                me.repositoryAction.fetchRepositories(withUserId: user.id, after: after)
+            .withLatestFrom(Observable.combineLatest(selectedUser, lastPageInfo))
+            .subscribe(onNext: { [weak self] user, pageInfo in
+                guard pageInfo.hasNextPage, let after = pageInfo.endCursor else { return }
+                self?.repositoryAction.fetchRepositories(withUserId: user.id, after: after)
             })
             .disposed(by: disposeBag)
         
         selectRepositoryRowAt
+            .withLatestFrom(repositoryStore.repositories) { $1[$0.row] }
             .subscribe(onNext: { [weak self] in
-                guard let me = self else { return }
-                let repository = me.repositoryStore.repositoriesValue[$0.row]
-                me.repositoryAction.invoke(.selectedRepository(repository))
+                self?.repositoryAction.invoke(.selectedRepository($0))
             })
             .disposed(by: disposeBag)
 
