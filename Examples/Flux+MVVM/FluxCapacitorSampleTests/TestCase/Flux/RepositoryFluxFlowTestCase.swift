@@ -35,7 +35,7 @@ class RepositoryFluxFlowTestCase: XCTestCase {
     }
     
     func testSelectedRepository() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testSelectedRepository expectation")
         
         let repository = Repository.mock()
         
@@ -64,8 +64,9 @@ class RepositoryFluxFlowTestCase: XCTestCase {
     }
     
     func testAddFavorite() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testAddFavorite expectation")
         
+        action.invoke(.removeAllFavorites)
         let repository = Repository.mock()
         
         let disposable = store.favorites
@@ -94,7 +95,7 @@ class RepositoryFluxFlowTestCase: XCTestCase {
     }
     
     func testFetchUser() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testFetchUser expectation")
         
         let repository = Repository.mock()
         let pageInfo = PageInfo.mock()

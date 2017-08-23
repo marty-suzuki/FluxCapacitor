@@ -42,7 +42,7 @@ class SearchViewModelTestCase: XCTestCase {
     }
  
     func testReloadData() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testReloadData expectation")
         
         let disposable = viewModel.reloadData
             .subscribe(onNext: {
@@ -55,7 +55,7 @@ class SearchViewModelTestCase: XCTestCase {
         
         disposable.dispose()
         
-        let expectation2 = self.expectation(description: "wait for observe")
+        let expectation2 = self.expectation(description: "testReloadData expectation2")
         
         let disposable2 = viewModel.reloadData
             .subscribe(onNext: {
@@ -70,7 +70,7 @@ class SearchViewModelTestCase: XCTestCase {
     }
     
     func testIsUserFetching() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testIsUserFetching expectation")
         
         let disposable = viewModel.isUserFetching
             .skip(1)
@@ -85,7 +85,7 @@ class SearchViewModelTestCase: XCTestCase {
         
         disposable.dispose()
         
-        let expectation2 = self.expectation(description: "wait for observe")
+        let expectation2 = self.expectation(description: "testIsUserFetching expectation2")
         
         let disposable2 = viewModel.isUserFetching
             .skip(1)
@@ -102,7 +102,7 @@ class SearchViewModelTestCase: XCTestCase {
     }
     
     func testCounterText() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testCounterText expectation")
         
         let response = Response<User>(nodes: [User.mock()],
                                       pageInfo: PageInfo.mock(),
@@ -124,19 +124,19 @@ class SearchViewModelTestCase: XCTestCase {
     }
     
     func testShowUserRepository() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testShowUserRepository expectation")
         
         let user = User.mock()
         action.invoke(.selectedUser(nil))
         action.invoke(.removeAllUsers)
         action.invoke(.addUsers([user]))
         
+        let selectedUser = store.selectedUser
+            .filter { $0 != nil }
+            .map { $0! }
         let disposable = viewModel.showUserRepository
-            .subscribe(onNext: { [weak self] in
-                guard let selectedUser = self?.store.selectedUserValue else {
-                    XCTFail()
-                    return
-                }
+            .flatMap { selectedUser }
+            .subscribe(onNext: { selectedUser in
                 
                 XCTAssertEqual(selectedUser.id, user.id)
                 XCTAssertEqual(selectedUser.url, user.url)
@@ -152,7 +152,7 @@ class SearchViewModelTestCase: XCTestCase {
     }
     
     func testFetchMoreUsers() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testFetchMoreUsers expectation")
         
         let pageInfo = PageInfo.mock(hasNextPage: true, endCursor: "abcd")
         action.invoke(.lastPageInfo(pageInfo))
@@ -186,7 +186,7 @@ class SearchViewModelTestCase: XCTestCase {
     }
     
     func testSearchText() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testSearchText expectation")
         
         action.invoke(.lastSearchQuery("back to the future"))
         
@@ -218,7 +218,7 @@ class SearchViewModelTestCase: XCTestCase {
         
         searchText.onNext("great scott")
         
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
         
         disposable.dispose()
     }

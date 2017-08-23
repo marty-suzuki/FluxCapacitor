@@ -23,6 +23,7 @@
 		37B8984D1F35069300C10785 /* GithubKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B8984C1F35069300C10785 /* GithubKit.framework */; };
 		37B8984F1F35091600C10785 /* SwiftIconFont.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B8984E1F35091600C10785 /* SwiftIconFont.framework */; };
 		37BD45801F4C709C00B58ACA /* SearchViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD457F1F4C709C00B58ACA /* SearchViewModelTestCase.swift */; };
+		37BD45821F4DC1B000B58ACA /* FavoriteViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD45811F4DC1B000B58ACA /* FavoriteViewModelTestCase.swift */; };
 		37C8BA811F2FAA32003AFBD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA7B1F2FAA32003AFBD7 /* Assets.xcassets */; };
 		37C8BA821F2FAA32003AFBD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA7C1F2FAA32003AFBD7 /* LaunchScreen.storyboard */; };
 		37C8BA831F2FAA32003AFBD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37C8BA7E1F2FAA32003AFBD7 /* Main.storyboard */; };
@@ -84,6 +85,7 @@
 		37B8984C1F35069300C10785 /* GithubKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GithubKit.framework; path = Carthage/Build/iOS/GithubKit.framework; sourceTree = "<group>"; };
 		37B8984E1F35091600C10785 /* SwiftIconFont.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftIconFont.framework; path = Carthage/Build/iOS/SwiftIconFont.framework; sourceTree = "<group>"; };
 		37BD457F1F4C709C00B58ACA /* SearchViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModelTestCase.swift; sourceTree = "<group>"; };
+		37BD45811F4DC1B000B58ACA /* FavoriteViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewModelTestCase.swift; sourceTree = "<group>"; };
 		37C8BA4E1F2C9DB8003AFBD7 /* FluxCapacitorSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FluxCapacitorSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C8BA7B1F2FAA32003AFBD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37C8BA7D1F2FAA32003AFBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				370281641F4B5456005D1A67 /* RepositoryViewModelTestCase.swift */,
 				37BD457F1F4C709C00B58ACA /* SearchViewModelTestCase.swift */,
+				37BD45811F4DC1B000B58ACA /* FavoriteViewModelTestCase.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 			files = (
 				3702814F1F4B3CEB005D1A67 /* PageInfoMock.swift in Sources */,
 				3702815D1F4B4A2C005D1A67 /* UserFluxFlowTestCase.swift in Sources */,
+				37BD45821F4DC1B000B58ACA /* FavoriteViewModelTestCase.swift in Sources */,
 				370281501F4B3CEB005D1A67 /* ResponseMock.swift in Sources */,
 				3702815C1F4B4A2C005D1A67 /* RepositoryFluxFlowTestCase.swift in Sources */,
 				37BD45801F4C709C00B58ACA /* SearchViewModelTestCase.swift in Sources */,

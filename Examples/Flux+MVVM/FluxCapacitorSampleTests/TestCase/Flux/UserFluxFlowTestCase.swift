@@ -34,7 +34,7 @@ class UserFluxFlowTestCase: XCTestCase {
     }
     
     func testLastSearchQuery() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testLastSearchQuery expectation")
         
         XCTAssertEqual(store.lastSearchQueryValue, "")
         
@@ -54,7 +54,7 @@ class UserFluxFlowTestCase: XCTestCase {
     }
     
     func testSelectedUser() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testSelectedUser expectation")
         
         let user = User.mock()
         
@@ -85,7 +85,7 @@ class UserFluxFlowTestCase: XCTestCase {
     }
     
     func testFetchUser() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testFetchUser expectation")
         
         let user = User.mock()
         let pageInfo = PageInfo.mock()

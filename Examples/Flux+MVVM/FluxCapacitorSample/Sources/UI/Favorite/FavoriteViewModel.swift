@@ -40,6 +40,7 @@ final class FavoriteViewModel {
             .flatMapLatest { [weak self] shouldSubscribe -> Observable<Void> in
                 guard shouldSubscribe, let me = self else { return .empty() }
                 return me.store.selectedRepository
+                    .filter { $0 != nil }
                     .map { _ in }
             }
             .bind(to: _showRepository)

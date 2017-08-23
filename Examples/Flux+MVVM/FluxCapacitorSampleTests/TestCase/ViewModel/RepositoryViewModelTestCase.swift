@@ -34,7 +34,7 @@ class RepositoryViewModelTestCase: XCTestCase {
     }
     
     func testButtonTitleTurnsAddToRemove() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testButtonTitleTurnsAddToRemove expectation")
         
         action.invoke(.removeAllFavorites)
         
@@ -48,7 +48,7 @@ class RepositoryViewModelTestCase: XCTestCase {
         
         disposable.dispose()
         
-        let expectation2 = self.expectation(description: "wait for observe")
+        let expectation2 = self.expectation(description: "testButtonTitleTurnsAddToRemove expectation2")
         
         let disposable2 = viewModel.buttonTitle
             .skip(1)
@@ -67,7 +67,7 @@ class RepositoryViewModelTestCase: XCTestCase {
     }
     
     func testButtonTitleTurnsRemoveToAdd() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testButtonTitleTurnsRemoveToAdd expectation")
         
         action.invoke(.removeAllFavorites)
         
@@ -86,7 +86,7 @@ class RepositoryViewModelTestCase: XCTestCase {
         
         disposable.dispose()
         
-        let expectation2 = self.expectation(description: "wait for observe")
+        let expectation2 = self.expectation(description: "testButtonTitleTurnsRemoveToAdd expectation2")
         
         let disposable2 = viewModel.buttonTitle
             .skip(1)
@@ -103,7 +103,7 @@ class RepositoryViewModelTestCase: XCTestCase {
     }
     
     func testViewDidDisappear() {
-        let expectation = self.expectation(description: "wait for observe")
+        let expectation = self.expectation(description: "testViewDidDisappear expectation")
         
         let repository = Repository.mock()
         action.invoke(.selectedRepository(repository))
@@ -118,7 +118,7 @@ class RepositoryViewModelTestCase: XCTestCase {
         
         disposable.dispose()
         
-        let expectation2 = self.expectation(description: "wait for observe")
+        let expectation2 = self.expectation(description: "testViewDidDisappear expectation2")
         
         let disposable2 = store.selectedRepository
             .skip(1)
