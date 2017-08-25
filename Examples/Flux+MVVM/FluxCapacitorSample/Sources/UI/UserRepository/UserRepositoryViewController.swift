@@ -63,11 +63,14 @@ final class UserRepositoryViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.reloadData
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                self?.tableView.reloadData()
-            })
+            .bind(to: reloadData)
             .disposed(by: disposeBag)
+    }
+    
+    private var reloadData: AnyObserver<Void> {
+        return UIBindingObserver(UIElement: self) { me, _ in
+            me.tableView.reloadData()
+        }.asObserver()
     }
 
     private var showRepository: AnyObserver<Void> {

@@ -84,31 +84,24 @@ final class SearchViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.reloadData
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
-                self?.tableView.reloadData()
-            })
+            .bind(to: reloadData)
             .disposed(by: disposeBag)
     }
 
     private func observeUI() {
         Observable.merge(searchBar.rx.cancelButtonClicked.asObservable(),
                          searchBar.rx.searchButtonClicked.asObservable())
-            .subscribe(onNext: { [weak self] in
-                self?.searchBar.resignFirstResponder()
-            })
+            .bind(to: resignFirstResponder)
             .disposed(by: disposeBag)
 
         searchBar.rx.textDidBeginEditing
-            .subscribe(onNext: { [weak self] in
-                self?.searchBar.showsCancelButton = true
-            })
+            .map { true }
+            .bind(to: showsCancelButton)
             .disposed(by: disposeBag)
 
         searchBar.rx.textDidEndEditing
-            .subscribe(onNext: { [weak self] in
-                self?.searchBar.showsCancelButton = false
-            })
+            .map { false }
+            .bind(to: showsCancelButton)
             .disposed(by: disposeBag)
     }
     
@@ -136,6 +129,24 @@ final class SearchViewController: UIViewController {
                            animations: {
                 me.view.layoutIfNeeded()
             }, completion: nil)
+        }.asObserver()
+    }
+    
+    private var reloadData: AnyObserver<Void> {
+        return UIBindingObserver(UIElement: self) { me, _ in
+            me.tableView.reloadData()
+        }.asObserver()
+    }
+    
+    private var resignFirstResponder: AnyObserver<Void> {
+        return UIBindingObserver(UIElement: self) { me, _ in
+            me.searchBar.resignFirstResponder()
+        }.asObserver()
+    }
+    
+    private var showsCancelButton: AnyObserver<Bool> {
+        return UIBindingObserver(UIElement: self) { me, showsCancelButton in
+            me.searchBar.showsScopeBar = showsCancelButton
         }.asObserver()
     }
 

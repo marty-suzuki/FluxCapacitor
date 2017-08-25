@@ -52,15 +52,18 @@ final class FavoriteViewController: UIViewController {
     
     private func observeViewModel() {
         viewModel.reloadData
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                self?.tableView.reloadData()
-            })
+            .bind(to: reloadData)
             .disposed(by: disposeBag)
         
         viewModel.showRepository
             .bind(to: showRepository)
             .disposed(by: disposeBag)
+    }
+    
+    private var reloadData: AnyObserver<Void> {
+        return UIBindingObserver(UIElement: self) { me, _ in
+            me.tableView.reloadData()
+        }.asObserver()
     }
     
     private var showRepository: AnyObserver<Void> {
