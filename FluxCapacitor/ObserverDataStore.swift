@@ -10,7 +10,7 @@ import Foundation
 
 final class ObserverDataStore {
     struct Observer {
-        weak private(set) var object: AnyObject?
+        private(set) var object: AnyObject?
         let handler: Any
     }
     

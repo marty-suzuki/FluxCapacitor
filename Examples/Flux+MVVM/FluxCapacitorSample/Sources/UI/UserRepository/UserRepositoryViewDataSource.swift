@@ -17,7 +17,7 @@ final class UserRepositoryViewDataSource: NSObject {
     fileprivate var isReachedBottom: Bool = false {
         didSet {
             if isReachedBottom && isReachedBottom != oldValue {
-                _fetchMoreRepositories.onNext()
+                _fetchMoreRepositories.onNext(())
             }
         }
     }

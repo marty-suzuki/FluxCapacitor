@@ -68,13 +68,13 @@ final class UserRepositoryViewController: UIViewController {
     }
     
     private var reloadData: AnyObserver<Void> {
-        return UIBindingObserver(UIElement: self) { me, _ in
+        return Binder(self) { me, _ in
             me.tableView.reloadData()
         }.asObserver()
     }
 
     private var showRepository: AnyObserver<Void> {
-        return UIBindingObserver(UIElement: self) { me, _ in
+        return Binder(self) { me, _ in
             guard let webview = RepositoryViewController() else { return }
             me.navigationController?.pushViewController(webview, animated: true)
         }.asObserver()

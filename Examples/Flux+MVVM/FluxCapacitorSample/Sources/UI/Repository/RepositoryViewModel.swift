@@ -30,12 +30,13 @@ final class RepositoryViewModel {
         let selectedRepository = store.selectedRepository
             .filter { $0 != nil }
             .map { $0! }
-        
+        let containsAndRepository = Observable<(Bool, Repository)>.combineLatest(selectedRepository, store.favorites)
+            { repo, favs in (favs.contains { $0.url == repo.url }, repo) }
         favoriteButtonItemTap
-            .withLatestFrom(selectedRepository)
-            .subscribe(onNext: { [weak self] repository in
+            .withLatestFrom(containsAndRepository)
+            .subscribe(onNext: { [weak self] contains, repository in
                 guard let me = self else { return }
-                if me.store.favoritesValue.contains(where: { $0.url == repository.url }) {
+                if contains {
                     me.action.invoke(.removeFavorite(repository))
                 } else {
                     me.action.invoke(.addFavorite(repository))
@@ -50,7 +51,7 @@ final class RepositoryViewModel {
             .disposed(by: disposeBag)
         
         store.favorites
-            .withLatestFrom(selectedRepository) { $0 }
+            .withLatestFrom(selectedRepository) { ($0, $1) }
             .map { favorites, repository in
                 let contains = favorites.contains(where: { $0.url == repository.url })
                 return contains ? "Remove" : "Add"

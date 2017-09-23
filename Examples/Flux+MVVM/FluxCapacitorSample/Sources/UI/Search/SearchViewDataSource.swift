@@ -17,7 +17,7 @@ final class SearchViewDataSource: NSObject {
     fileprivate var isReachedBottom: Bool = false {
         didSet {
             if isReachedBottom && isReachedBottom != oldValue {
-                _fetchMoreUsers.onNext()
+                _fetchMoreUsers.onNext(())
             }
         }
     }
