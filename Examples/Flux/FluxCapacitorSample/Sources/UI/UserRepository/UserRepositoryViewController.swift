@@ -38,6 +38,7 @@ final class UserRepositoryViewController: UIViewController {
     deinit {
         userAction.invoke(.selectedUser(nil))
         repositoryAction.invoke(.removeAllRepositories)
+        repositoryAction.invoke(.lastPageInfo(nil))
     }
 
     required init?(coder aDecoder: NSCoder) {
