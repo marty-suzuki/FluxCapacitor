@@ -12,6 +12,9 @@ import GithubKit
 
 extension Dispatcher {
     enum User: DispatchValue {
+        typealias RelatedStoreType = UserStore
+        typealias RelatedActionType = UserAction
+        
         case isUserFetching(Bool)
         case addUsers([GithubKit.User])
         case userTotalCount(Int)

@@ -18,6 +18,10 @@ final class FavoriteViewController: UIViewController {
     private let dustBuster = DustBuster()
     private var selectedRepositoryDustBuster = DustBuster()
     
+    deinit {
+        store.unregister()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
