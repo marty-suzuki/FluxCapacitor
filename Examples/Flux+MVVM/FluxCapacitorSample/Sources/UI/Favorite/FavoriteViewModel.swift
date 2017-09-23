@@ -56,4 +56,8 @@ final class FavoriteViewModel {
             .bind(to: _reloadData)
             .disposed(by: disposeBag)
     }
+    
+    deinit {
+        store.unregister()
+    }
 }

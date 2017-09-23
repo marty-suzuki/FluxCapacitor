@@ -12,6 +12,9 @@ import GithubKit
 
 extension Dispatcher {
     enum Repository: DispatchValue {
+        typealias RelatedStoreType = RepositoryStore
+        typealias RelatedActionType = RepositoryAction
+        
         case isRepositoryFetching(Bool)
         case addRepositories([GithubKit.Repository])
         case removeAllRepositories

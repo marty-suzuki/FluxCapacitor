@@ -17,7 +17,8 @@ FluxCapacitor makes implementing [Flux](https://facebook.github.io/flux/) design
 
 ## Requirements
 
-- Swift 3.1 or later
+- Xcode 9 or later
+- Swift 4 or later
 - iOS 9.0 or later
 
 ## Installation
@@ -87,6 +88,9 @@ First of all, implementing `DispatchValue`. It connects Action and Store, but it
 ```swift
 extension Dispatcher {
     enum Repository: DispatchValue {
+        typealias RelatedStoreType = RepositoryStore
+        typealias RelatedActionType = RepositoryAction
+
         case isRepositoryFetching(Bool)
         case addRepositories([GithubApiSession.Repository])
         case removeAllRepositories
@@ -118,6 +122,9 @@ final class RepositoryStore: Storable {
         }
     }
 ```
+
+If you want to use any store, please use `XXXStore.instantiate()`. That static method returns reference or new instance.
+If you want to unregister any store, please use `xxxStore.unregister()`.
 
 ### Action
 

@@ -118,25 +118,25 @@ final class SearchViewController: UIViewController {
     }
     
     private var reloadData: AnyObserver<Void> {
-        return UIBindingObserver(UIElement: self) { me, _ in
+        return Binder(self) { me, _ in
             me.tableView.reloadData()
         }.asObserver()
     }
     
     private var resignFirstResponder: AnyObserver<Void> {
-        return UIBindingObserver(UIElement: self) { me, _ in
+        return Binder(self) { me, _ in
             me.searchBar.resignFirstResponder()
         }.asObserver()
     }
     
     private var showsCancelButton: AnyObserver<Bool> {
-        return UIBindingObserver(UIElement: self) { me, showsCancelButton in
+        return Binder(self) { me, showsCancelButton in
             me.searchBar.showsScopeBar = showsCancelButton
         }.asObserver()
     }
 
     private var showUserRepository: AnyObserver<Void> {
-        return UIBindingObserver(UIElement: self) { me, _ in
+        return Binder(self) { me, _ in
             guard let vc = UserRepositoryViewController() else { return }
             me.navigationController?.pushViewController(vc, animated: true)
         }.asObserver()

@@ -49,7 +49,7 @@ final class LoadingView: UIView, Nibable {
 
 extension Reactive where Base == LoadingView {
     var isLoading: AnyObserver<Bool> {
-        return UIBindingObserver(UIElement: base) { me, isLoading in
+        return Binder(base) { me, isLoading in
             me.isLoading = isLoading
         }.asObserver()
     }

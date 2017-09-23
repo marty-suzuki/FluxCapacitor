@@ -14,25 +14,17 @@ final class SubscriberDataStore {
         let handler: Any
     }
     
-    private var mutex: pthread_mutex_t = pthread_mutex_t()
+    private let mutex = PThreadMutex()
     private var _subscribers: [String : [Subscriber]] = [:]
-    
-    init() {
-        pthread_mutex_init(&mutex, nil)
-    }
-    
-    deinit {
-        pthread_mutex_destroy(&mutex)
-    }
-    
+
     func insert<T: Storable>(_ store: T, handler: @escaping (T.DispatchValueType) -> ()) -> Subscriber {
-        lock()
+        mutex.lock()
         let uuid = UUID().uuidString
         let subscriber = Subscriber(token: uuid, handler: handler)
         let oneOfList = _subscribers[T.DispatchValueType.dispatchKey] ?? []
         let newList = [oneOfList, [subscriber]].flatMap { $0 }
         _subscribers[T.DispatchValueType.dispatchKey] = newList
-        unlock()
+        mutex.unlock()
         return subscriber
     }
     
@@ -41,8 +33,7 @@ final class SubscriberDataStore {
     }
     
     func removeSubscriber(ofKey key: String, andToken token: String) {
-        defer { unlock() }
-        lock()
+        defer { mutex.unlock() }; mutex.lock()
         guard
             let oneOfList = _subscribers[key],
             let index = oneOfList.index(where: { $0.token == token })
@@ -53,16 +44,8 @@ final class SubscriberDataStore {
     }
     
     func removeAll() {
-        lock()
+        defer { mutex.unlock() }; mutex.lock()
         _subscribers.removeAll()
-        unlock()
-    }
-    
-    private func lock() {
-        pthread_mutex_lock(&mutex)
-    }
-    
-    private func unlock() {
-        pthread_mutex_unlock(&mutex)
     }
 }
+

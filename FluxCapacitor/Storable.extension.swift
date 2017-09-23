@@ -8,24 +8,19 @@
 
 import Foundation
 
-public protocol Storable: class {
-    associatedtype DispatchValueType: DispatchValue
-    init(dispatcher: Dispatcher)
-}
-
 extension Storable {
     static var dispatcher: Dispatcher { return .shared }
-    
+
     public static func instantiate() -> Self {
         return dispatcher.observerDataStore.object(for: Self.self) ?? .init(dispatcher: dispatcher)
     }
-    
+
     public var dispatcher: Dispatcher { return .shared }
-    
+
     public func unregister() {
         dispatcher.unregister(self)
     }
-    
+
     public func register(handler: @escaping (DispatchValueType) -> Void) {
         dispatcher.register(self) { [weak self] value in
             handler(value)
@@ -37,7 +32,7 @@ extension Storable {
             }
         }
     }
-    
+
     public func subscribe(changed handler: @escaping (DispatchValueType) -> ()) -> Dust {
         let key = DispatchValueType.dispatchKey
         let token = dispatcher.subscriberDataStore.insert(self, handler: handler).token

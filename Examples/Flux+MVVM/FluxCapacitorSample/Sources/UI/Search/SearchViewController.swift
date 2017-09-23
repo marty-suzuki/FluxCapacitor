@@ -106,7 +106,7 @@ final class SearchViewController: UIViewController {
     }
     
     private var keyboardWillShow: AnyObserver<UIKeyboardInfo> {
-        return UIBindingObserver(UIElement: self) { me, keyboardInfo in
+        return Binder(self) { me, keyboardInfo in
             me.view.layoutIfNeeded()
             let extra = me.tabBarController?.tabBar.bounds.height ?? 0
             me.tableViewBottomConstraint.constant = keyboardInfo.frame.size.height - extra
@@ -120,7 +120,7 @@ final class SearchViewController: UIViewController {
     }
     
     private var keyboardWillHide: AnyObserver<UIKeyboardInfo> {
-        return UIBindingObserver(UIElement: self) { me, keyboardInfo in
+        return Binder(self) { me, keyboardInfo in
             me.view.layoutIfNeeded()
             me.tableViewBottomConstraint.constant = 0
             UIView.animate(withDuration: keyboardInfo.animationDuration,
@@ -133,25 +133,25 @@ final class SearchViewController: UIViewController {
     }
     
     private var reloadData: AnyObserver<Void> {
-        return UIBindingObserver(UIElement: self) { me, _ in
+        return Binder(self) { me, _ in
             me.tableView.reloadData()
         }.asObserver()
     }
     
     private var resignFirstResponder: AnyObserver<Void> {
-        return UIBindingObserver(UIElement: self) { me, _ in
+        return Binder(self) { me, _ in
             me.searchBar.resignFirstResponder()
         }.asObserver()
     }
     
     private var showsCancelButton: AnyObserver<Bool> {
-        return UIBindingObserver(UIElement: self) { me, showsCancelButton in
+        return Binder(self) { me, showsCancelButton in
             me.searchBar.showsScopeBar = showsCancelButton
         }.asObserver()
     }
 
     private var showUserRepository: AnyObserver<Void> {
-        return UIBindingObserver(UIElement: self) { me, _ in
+        return Binder(self) { me, _ in
             let vc = UserRepositoryViewController()
             me.navigationController?.pushViewController(vc, animated: true)
         }.asObserver()

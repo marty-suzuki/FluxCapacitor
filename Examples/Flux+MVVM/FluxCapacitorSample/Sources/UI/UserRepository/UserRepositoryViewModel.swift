@@ -98,5 +98,6 @@ final class UserRepositoryViewModel {
     deinit {
         userAction.invoke(.selectedUser(nil))
         repositoryAction.invoke(.removeAllRepositories)
+        repositoryAction.invoke(.lastPageInfo(nil))
     }
 }

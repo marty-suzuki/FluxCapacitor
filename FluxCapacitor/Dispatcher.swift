@@ -8,36 +8,30 @@
 
 import Foundation
 
-public protocol DispatchValue {}
-
-extension DispatchValue {
-    static var dispatchKey: String {
-        return String(describing: self)
-    }
-}
-
+// MARK: - Dispatcher
 public final class Dispatcher {
     static let shared = Dispatcher()
-    
+
     let observerDataStore = ObserverDataStore()
     let subscriberDataStore = SubscriberDataStore()
-    
+
     private init() {}
+
+    public func unregisterAll() {
+        observerDataStore.removeAll()
+    }
     
     func register<T: Storable>(_ object: T, handler: @escaping (T.DispatchValueType) -> ()) {
         observerDataStore.insert(object, handler: handler)
     }
-    
+
     func unregister<T: Storable>(_ object: T) {
         observerDataStore[T.DispatchValueType.dispatchKey] = nil
     }
-    
-    public func dispatch<T: DispatchValue>(_ dispatchValue: T) {
-        guard let hadnler = observerDataStore[T.dispatchKey]?.handler as? (T) -> () else { return }
-        hadnler(dispatchValue)
-    }
-    
-    public func unregisterAll() {
-        observerDataStore.removeAll()
+
+    func dispatch<T: DispatchValue>(_ dispatchValue: T) {
+        let handler = observerDataStore.handler(for: T.RelatedStoreType.self)
+        guard let value = dispatchValue as? T.RelatedStoreType.DispatchValueType else { return }
+        handler(value)
     }
 }
