@@ -8,10 +8,6 @@
 
 import Foundation
 
-public protocol Actionable {
-    associatedtype DispatchValueType: DispatchValue
-}
-
 extension Actionable {
     public var dispatcher: Dispatcher { return .shared }
     

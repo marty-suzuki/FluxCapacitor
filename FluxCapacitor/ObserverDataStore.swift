@@ -14,27 +14,19 @@ final class ObserverDataStore {
         let handler: Any
     }
     
-    private var mutex: pthread_mutex_t = pthread_mutex_t()
+    private let mutex = PThreadMutex()
     private var observers: [String : Observer] = [:]
-    
-    init() {
-        pthread_mutex_init(&mutex, nil)
-    }
-    
-    deinit {
-        pthread_mutex_destroy(&mutex)
-    }
     
     subscript(_ key: String) -> Observer? {
         set {
-            lock()
+            mutex.lock()
             observers[key] = newValue
-            unlock()
+            mutex.unlock()
         }
         get {
-            lock()
+            mutex.lock()
             let observer = observers[key]
-            unlock()
+            mutex.unlock()
             return observer
         }
     }
@@ -43,24 +35,23 @@ final class ObserverDataStore {
         return self[T.DispatchValueType.dispatchKey]?.object as? T
     }
     
+    func handler<T: Storable>(for type: T.Type) -> (T.DispatchValueType) -> () {
+        guard let hadnler = self[T.DispatchValueType.dispatchKey]?.handler as? (T.DispatchValueType) -> () else {
+            _ = T.instantiate()
+            return handler(for: T.self)
+        }
+        return hadnler
+    }
+    
     func insert<T: Storable>(_ object: T, handler: @escaping (T.DispatchValueType) -> ()) {
-        defer { unlock() }
-        lock()
+        defer { mutex.unlock() }; mutex.lock()
         guard observers[T.DispatchValueType.dispatchKey] == nil else { return }
         observers[T.DispatchValueType.dispatchKey] = Observer(object: object, handler: handler)
     }
     
     func removeAll() {
-        lock()
+        defer { mutex.unlock() }; mutex.lock()
         observers.removeAll()
-        unlock()
-    }
-    
-    private func lock() {
-        pthread_mutex_lock(&mutex)
-    }
-    
-    private func unlock() {
-        pthread_mutex_unlock(&mutex)
     }
 }
+

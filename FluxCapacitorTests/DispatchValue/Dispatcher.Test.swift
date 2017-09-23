@@ -11,6 +11,9 @@ import FluxCapacitor
 
 extension Dispatcher {
     enum Test: DispatchValue {
+        typealias RelatedStoreType = TestStore
+        typealias RelatedActionType = TestAction
+        
         case removeNumber(Int)
         case addNumber(Int)
         case removeAllNumbers
