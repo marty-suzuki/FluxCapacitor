@@ -10,28 +10,29 @@ import Foundation
 
 // MARK: - Dispatcher
 public final class Dispatcher {
-    static let shared = Dispatcher()
+    public static let shared = Dispatcher()
 
-    let observerDataStore = ObserverDataStore()
-    let subscriberDataStore = SubscriberDataStore()
+    let objectStore = ObjectStore()
 
     private init() {}
 
     public func unregisterAll() {
-        observerDataStore.removeAll()
+        objectStore.removeAll()
     }
     
-    func register<T: Storable>(_ object: T, handler: @escaping (T.DispatchValueType) -> ()) {
-        observerDataStore.insert(object, handler: handler)
+    func register<T: Storable>(_ object: T) {
+        objectStore.insert(object)
     }
 
     func unregister<T: Storable>(_ object: T) {
-        observerDataStore[T.DispatchValueType.dispatchKey] = nil
+        objectStore.remove(forType: T.self)
     }
 
-    func dispatch<T: DispatchValue>(_ dispatchValue: T) {
-        let handler = observerDataStore.handler(for: T.RelatedStoreType.self)
-        guard let value = dispatchValue as? T.RelatedStoreType.DispatchValueType else { return }
-        handler(value)
+    func dispatch<T: DispatchState>(_ dispatchState: T) {
+        typealias U = T.RelatedStoreType.DispatchStateType
+        guard let state = dispatchState as? U else { return }
+
+        let store = T.RelatedStoreType.instantiate()
+        store.reduce(with: state)
     }
 }

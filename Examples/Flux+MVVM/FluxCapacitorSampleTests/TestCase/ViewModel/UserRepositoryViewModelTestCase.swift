@@ -71,7 +71,7 @@ class UserRepositoryViewModelTestCase: XCTestCase {
         let respository = Repository.mock()
         repositoryAction.invoke(.addRepositories([respository]))
         
-        let selectedRepository = repositoryStore.selectedRepository
+        let selectedRepository = repositoryStore.selectedRepository.asObservable()
             .filter { $0 != nil }
             .map { $0! }
         let disposable = viewModel.showRepository
@@ -102,11 +102,11 @@ class UserRepositoryViewModelTestCase: XCTestCase {
                                             totalCount: 55)
         mock.result = .success(response)
         
-        let disposable = viewModel.isRepositoryFetching
+        let disposable = viewModel.isRepositoryFetching.asObservable()
             .filter { !$0 }
             .skip(1)
             .subscribe(onNext: { [weak self] _ in
-                guard let lastRepository = self?.viewModel.repositoriesValue.last else {
+                guard let lastRepository = self?.viewModel.repositories.value.last else {
                     XCTFail()
                     return
                 }
@@ -116,7 +116,7 @@ class UserRepositoryViewModelTestCase: XCTestCase {
                 expectation.fulfill()
             })
         
-        fetchMoreRepositories.onNext()
+        fetchMoreRepositories.onNext(())
         
         waitForExpectations(timeout: 1, handler: nil)
         
@@ -154,7 +154,7 @@ class UserRepositoryViewModelTestCase: XCTestCase {
     func testIsRepositoryFetching() {
         let expectation = self.expectation(description: "isRepositoryFetching expectation")
         
-        let disposable = viewModel.isRepositoryFetching
+        let disposable = viewModel.isRepositoryFetching.asObservable()
             .skip(1)
             .subscribe(onNext: { value in
                 XCTAssertFalse(value)
@@ -169,7 +169,7 @@ class UserRepositoryViewModelTestCase: XCTestCase {
         
         let expectation2 = self.expectation(description: "isRepositoryFetching expectation2")
         
-        let disposable2 = viewModel.isRepositoryFetching
+        let disposable2 = viewModel.isRepositoryFetching.asObservable()
             .skip(1)
             .subscribe(onNext: { value in
                 XCTAssertTrue(value)

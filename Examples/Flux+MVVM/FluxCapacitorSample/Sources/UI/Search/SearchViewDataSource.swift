@@ -11,7 +11,7 @@ import RxSwift
 import GithubKit
 
 final class SearchViewDataSource: NSObject {
-    fileprivate let loadingView = LoadingView.instantiate()
+    fileprivate let loadingView = LoadingView.makeFromNib()
     private let disposeBag = DisposeBag()
     
     fileprivate var isReachedBottom: Bool = false {
@@ -44,7 +44,7 @@ final class SearchViewDataSource: NSObject {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.registerCell(UserViewCell.self)
+        tableView.register(UserViewCell.self)
         tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: UITableViewHeaderFooterView.className)
     }
 }
@@ -55,7 +55,7 @@ extension SearchViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(UserViewCell.self, for: indexPath)
+        let cell = tableView.dequeue(UserViewCell.self, for: indexPath)
         cell.configure(with: viewModel.usersValue[indexPath.row])
         return cell
     }

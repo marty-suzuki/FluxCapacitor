@@ -57,7 +57,7 @@ final class SearchViewController: UIViewController {
                 self?.view.layoutIfNeeded()
             }, completion: nil)
         }
-        .addObserverTo(pool)
+        .disposed(by: pool)
 
         UIKeyboardWillHide.observe { [weak self] in
             self?.view.layoutIfNeeded()
@@ -66,7 +66,7 @@ final class SearchViewController: UIViewController {
                 self?.view.layoutIfNeeded()
             }, completion: nil)
         }
-        .addObserverTo(pool)
+        .disposed(by: pool)
     }
 
     private func observeUI() {

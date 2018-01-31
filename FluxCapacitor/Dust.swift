@@ -38,10 +38,9 @@ public final class DustBuster {
     public init() {}
     
     deinit {
-        mutex.lock()
+        defer { mutex.unlock() };  mutex.lock()
         dusts.forEach { $0.clean() }
         dusts.removeAll(keepingCapacity: false)
-        mutex.unlock()
     }
     
     func insert(_ dust: Dust) {

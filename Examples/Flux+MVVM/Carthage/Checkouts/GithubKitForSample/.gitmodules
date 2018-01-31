@@ -1,0 +1,9 @@
+[submodule "Carthage/Checkouts/Nuke"]
+	path = Carthage/Checkouts/Nuke
+	url = https://github.com/kean/Nuke.git
+[submodule "Carthage/Checkouts/RxSwift"]
+	path = Carthage/Checkouts/RxSwift
+	url = https://github.com/ReactiveX/RxSwift.git
+[submodule "Carthage/Checkouts/SwiftIconFont"]
+	path = Carthage/Checkouts/SwiftIconFont
+	url = https://github.com/0x73/SwiftIconFont.git

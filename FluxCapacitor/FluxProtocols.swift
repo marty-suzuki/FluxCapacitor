@@ -8,21 +8,20 @@
 
 import Foundation
 
-// MARK: - DispatchValue
-public protocol DispatchValue {
+// MARK: - DispatchState
+public protocol DispatchState {
     associatedtype RelatedStoreType: Storable
     associatedtype RelatedActionType: Actionable
 }
 
 // MARK: - Actionable
 public protocol Actionable {
-    associatedtype DispatchValueType: DispatchValue
-    var dispatcher: Dispatcher { get }
+    associatedtype DispatchStateType: DispatchState
 }
 
 // MARK: - Storable
 public protocol Storable: class {
-    associatedtype DispatchValueType: DispatchValue
-    var dispatcher: Dispatcher { get }
-    init(dispatcher: Dispatcher)
+    associatedtype DispatchStateType: DispatchState
+    init()
+    func reduce(with state: DispatchStateType)
 }

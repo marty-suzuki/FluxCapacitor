@@ -27,7 +27,7 @@ class UserFluxFlowTestCase: XCTestCase {
     }
     
     override func tearDown() {
-        store.unregister()
+        store.clear()
         
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -36,7 +36,7 @@ class UserFluxFlowTestCase: XCTestCase {
     func testLastSearchQuery() {
         let expectation = self.expectation(description: "wait for observe")
         
-        XCTAssertEqual(store.lastSearchQueryValue, "")
+        XCTAssertEqual(store.value.lastSearchQuery, "")
         
         let disposable = store.lastSearchQuery
             .skip(1)

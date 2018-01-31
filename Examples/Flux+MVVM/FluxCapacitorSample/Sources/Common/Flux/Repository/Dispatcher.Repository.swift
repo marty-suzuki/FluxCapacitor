@@ -11,17 +11,18 @@ import FluxCapacitor
 import GithubKit
 
 extension Dispatcher {
-    enum Repository: DispatchValue {
+    enum Repository: DispatchState {
         typealias RelatedStoreType = RepositoryStore
         typealias RelatedActionType = RepositoryAction
-        
+
         case isRepositoryFetching(Bool)
         case addRepositories([GithubKit.Repository])
         case removeAllRepositories
         case selectedRepository(GithubKit.Repository?)
         case lastPageInfo(PageInfo?)
+        case lastTask(URLSessionTask?)
         case repositoryTotalCount(Int)
-        
+
         case addFavorite(GithubKit.Repository)
         case removeFavorite(GithubKit.Repository)
         case removeAllFavorites

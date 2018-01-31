@@ -20,6 +20,7 @@
 		37471E861F49E50B00E61C54 /* UserRepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37471E851F49E50B00E61C54 /* UserRepositoryViewModel.swift */; };
 		37471E881F49EE4D00E61C54 /* RepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37471E871F49EE4D00E61C54 /* RepositoryViewModel.swift */; };
 		37471E8B1F4B1BEC00E61C54 /* ApiSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37471E8A1F4B1BEC00E61C54 /* ApiSessionType.swift */; };
+		37B831AB202610A700F3DCC8 /* NSObjectProtocol.className.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831AA202610A700F3DCC8 /* NSObjectProtocol.className.swift */; };
 		37B8984D1F35069300C10785 /* GithubKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B8984C1F35069300C10785 /* GithubKit.framework */; };
 		37B8984F1F35091600C10785 /* SwiftIconFont.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B8984E1F35091600C10785 /* SwiftIconFont.framework */; };
 		37BD45801F4C709C00B58ACA /* SearchViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BD457F1F4C709C00B58ACA /* SearchViewModelTestCase.swift */; };
@@ -83,6 +84,7 @@
 		37471E851F49E50B00E61C54 /* UserRepositoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryViewModel.swift; sourceTree = "<group>"; };
 		37471E871F49EE4D00E61C54 /* RepositoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryViewModel.swift; sourceTree = "<group>"; };
 		37471E8A1F4B1BEC00E61C54 /* ApiSessionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiSessionType.swift; sourceTree = "<group>"; };
+		37B831AA202610A700F3DCC8 /* NSObjectProtocol.className.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectProtocol.className.swift; sourceTree = "<group>"; };
 		37B8984C1F35069300C10785 /* GithubKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GithubKit.framework; path = Carthage/Build/iOS/GithubKit.framework; sourceTree = "<group>"; };
 		37B8984E1F35091600C10785 /* SwiftIconFont.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftIconFont.framework; path = Carthage/Build/iOS/SwiftIconFont.framework; sourceTree = "<group>"; };
 		37BD457F1F4C709C00B58ACA /* SearchViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModelTestCase.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				37471E8A1F4B1BEC00E61C54 /* ApiSessionType.swift */,
+				37B831AA202610A700F3DCC8 /* NSObjectProtocol.className.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				37C8BAA81F30F674003AFBD7 /* UserAction.swift in Sources */,
 				9DDE2F1F1F316DAF005CC4E2 /* UserRepositoryViewController.swift in Sources */,
 				37471E881F49EE4D00E61C54 /* RepositoryViewModel.swift in Sources */,
+				37B831AB202610A700F3DCC8 /* NSObjectProtocol.className.swift in Sources */,
 				37C8BA9C1F30F174003AFBD7 /* Dispatcher.Repository.swift in Sources */,
 				9DEE5D2C1F31E49800225822 /* UIKeyboardInfo.swift in Sources */,
 				EDB9D4A61F3192FC00FC6B61 /* RepositoryViewController.swift in Sources */,

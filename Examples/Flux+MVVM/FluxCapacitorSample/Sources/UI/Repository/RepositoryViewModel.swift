@@ -27,10 +27,10 @@ final class RepositoryViewModel {
         self.store = store
         self.buttonTitle = _buttonTitle
         
-        let selectedRepository = store.selectedRepository
+        let selectedRepository = store.selectedRepository.asObservable()
             .filter { $0 != nil }
             .map { $0! }
-        let containsAndRepository = Observable<(Bool, Repository)>.combineLatest(selectedRepository, store.favorites)
+        let containsAndRepository = Observable<(Bool, Repository)>.combineLatest(selectedRepository, store.favorites.asObservable())
             { repo, favs in (favs.contains { $0.url == repo.url }, repo) }
         favoriteButtonItemTap
             .withLatestFrom(containsAndRepository)
@@ -50,7 +50,7 @@ final class RepositoryViewModel {
             })
             .disposed(by: disposeBag)
         
-        store.favorites
+        store.favorites.asObservable()
             .withLatestFrom(selectedRepository) { ($0, $1) }
             .map { favorites, repository in
                 let contains = favorites.contains(where: { $0.url == repository.url })
@@ -61,6 +61,6 @@ final class RepositoryViewModel {
     }
     
     static func selectedURL(from store: RepositoryStore = .instantiate()) -> URL? {
-        return store.selectedRepositoryValue?.url
+        return store.selectedRepository.value?.url
     }
 }

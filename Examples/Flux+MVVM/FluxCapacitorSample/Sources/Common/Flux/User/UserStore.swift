@@ -10,71 +10,92 @@ import Foundation
 import FluxCapacitor
 import GithubKit
 import RxSwift
+import RxCocoa
 
 final class UserStore: Storable {
-    typealias DispatchValueType = Dispatcher.User
-    
+
+    typealias DispatchStateType = Dispatcher.User
+
     let isUserFetching: Observable<Bool>
-    var isUserFetchingValue: Bool {
-        return _isUserFetching.value
-    }
-    private let _isUserFetching = Variable<Bool>(false)
-    
+    fileprivate let _isUserFetching = BehaviorRelay<Bool>(value: false)
+
     let users: Observable<[User]>
-    var usersValue: [User] {
-        return _users.value
-    }
-    private let _users = Variable<[User]>([])
+    fileprivate let _users = BehaviorRelay<[User]>(value: [])
 
     let selectedUser: Observable<User?>
-    var selectedUserValue: User? {
-        return _selectedUser.value
-    }
-    private let _selectedUser = Variable<User?>(nil)
+    fileprivate let _selectedUser = BehaviorRelay<User?>(value: nil)
 
     let lastPageInfo: Observable<PageInfo?>
-    var lastPageInfoValue: PageInfo? {
-        return _lastPageInfo.value
-    }
-    private let _lastPageInfo = Variable<PageInfo?>(nil)
+    fileprivate let _lastPageInfo = BehaviorRelay<PageInfo?>(value: nil)
 
     let lastSearchQuery: Observable<String>
-    var lastSearchQueryValue: String {
-        return _lastSearchQuery.value
-    }
-    private let _lastSearchQuery = Variable<String>("")
-    
+    fileprivate let _lastSearchQuery = BehaviorRelay<String>(value: "")
+
     let userTotalCount: Observable<Int>
-    var userTotalCountValue: Int {
-        return _userTotalCount.value
-    }
-    private let _userTotalCount = Variable<Int>(0)
-    
-    init(dispatcher: Dispatcher) {
+    fileprivate let _userTotalCount = BehaviorRelay<Int>(value: 0)
+
+    init() {
         self.isUserFetching = _isUserFetching.asObservable()
         self.users = _users.asObservable()
         self.selectedUser = _selectedUser.asObservable()
         self.lastPageInfo = _lastPageInfo.asObservable()
         self.lastSearchQuery = _lastSearchQuery.asObservable()
         self.userTotalCount = _userTotalCount.asObservable()
+    }
 
-        register { [weak self] in
-            switch $0 {
-            case .isUserFetching(let value):
-                self?._isUserFetching.value = value
-            case .addUsers(let value):
-                self?._users.value.append(contentsOf: value)
-            case .removeAllUsers:
-                self?._users.value.removeAll()
-            case .selectedUser(let value):
-                self?._selectedUser.value = value
-            case .lastPageInfo(let value):
-                self?._lastPageInfo.value = value
-            case .lastSearchQuery(let value):
-                self?._lastSearchQuery.value = value
-            case .userTotalCount(let value):
-                self?._userTotalCount.value = value
-            }
+    func reduce(with state: Dispatcher.User) {
+        switch state {
+        case .isUserFetching(let value):
+            _isUserFetching.accept(value)
+        case .addUsers(let value):
+            let users = _users.value
+            _users.accept(users + value)
+        case .removeAllUsers:
+            _users.accept([])
+        case .selectedUser(let value):
+            _selectedUser.accept(value)
+        case .lastPageInfo(let value):
+            _lastPageInfo.accept(value)
+        case .lastSearchQuery(let value):
+            _lastSearchQuery.accept(value)
+        case .userTotalCount(let value):
+            _userTotalCount.accept(value)
         }
+    }
+}
+
+extension UserStore {
+    struct Value {
+        fileprivate let base: UserStore
+    }
+
+    var value: Value {
+        return Value(base: self)
+    }
+}
+
+extension UserStore.Value {
+    var isUserFetching: Bool {
+        return base._isUserFetching.value
+    }
+
+    var users: [User] {
+        return base._users.value
+    }
+
+    var selectedUser: User? {
+        return base._selectedUser.value
+    }
+
+    var lastPageInfo: PageInfo? {
+        return base._lastPageInfo.value
+    }
+
+    var lastSearchQuery: String {
+        return base._lastSearchQuery.value
+    }
+
+    var userTotalCount: Int {
+        return base._userTotalCount.value
     }
 }

@@ -60,7 +60,7 @@ class RepositoryViewModelTestCase: XCTestCase {
         
         let repository = Repository.mock()
         action.invoke(.selectedRepository(repository))
-        favoriteButtonItemTap.onNext()
+        favoriteButtonItemTap.onNext(())
         
         waitForExpectations(timeout: 1, handler: nil)
         
@@ -96,7 +96,7 @@ class RepositoryViewModelTestCase: XCTestCase {
                 expectation2.fulfill()
             })
         
-        favoriteButtonItemTap.onNext()
+        favoriteButtonItemTap.onNext(())
         
         waitForExpectations(timeout: 1, handler: nil)
         
@@ -109,7 +109,7 @@ class RepositoryViewModelTestCase: XCTestCase {
         let repository = Repository.mock()
         action.invoke(.selectedRepository(repository))
         
-        let disposable = store.selectedRepository
+        let disposable = store.selectedRepository.asObservable()
             .subscribe(onNext: { selectedRepository in
                 XCTAssertEqual(repository.url, selectedRepository?.url)
                 expectation.fulfill()
@@ -121,14 +121,14 @@ class RepositoryViewModelTestCase: XCTestCase {
         
         let expectation2 = self.expectation(description: "testViewDidDisappear expectation2")
         
-        let disposable2 = store.selectedRepository
+        let disposable2 = store.selectedRepository.asObservable()
             .skip(1)
             .subscribe(onNext: { selectedRepository in
                 XCTAssertNil(selectedRepository)
                 expectation2.fulfill()
             })
         
-        viewDidDisappear.onNext()
+        viewDidDisappear.onNext(())
         
         waitForExpectations(timeout: 1, handler: nil)
         

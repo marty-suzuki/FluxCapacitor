@@ -12,15 +12,16 @@ import GithubKit
 import RxSwift
 
 final class UserAction: Actionable {
-    typealias DispatchValueType = Dispatcher.User
-    
+
+    typealias DispatchStateType = Dispatcher.User
+
     private let session: ApiSessionType
     private var disposeBag = DisposeBag()
-    
+
     init(session: ApiSessionType = ApiSession.shared) {
         self.session = session
     }
-    
+
     func fetchUsers(withQuery query: String, after: String?) {
         invoke(.lastSearchQuery(query))
         if query.isEmpty { return }
@@ -32,8 +33,8 @@ final class UserAction: Actionable {
                 self?.invoke(.addUsers($0.nodes))
                 self?.invoke(.lastPageInfo($0.pageInfo))
                 self?.invoke(.userTotalCount($0.totalCount))
-            }, onDisposed: { [weak self] in
-                self?.invoke(.isUserFetching(false))
+                }, onDisposed: { [weak self] in
+                    self?.invoke(.isUserFetching(false))
             })
             .disposed(by: disposeBag)
     }

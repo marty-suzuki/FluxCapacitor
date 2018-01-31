@@ -12,7 +12,7 @@ import GithubKit
 
 final class RepositoryViewController: SFSafariViewController {
     private(set) lazy var favoriteButtonItem: UIBarButtonItem = {
-        let title = self.store.favorites.contains(where: { $0.url == self.repository.url }) ? "Remove" : "Add"
+        let title = self.store.favorites.value.contains(where: { $0.url == self.repository.url }) ? "Remove" : "Add"
         return UIBarButtonItem(title: title,
                                style: .plain,
                                target: self,
@@ -26,7 +26,7 @@ final class RepositoryViewController: SFSafariViewController {
     init?(action: RepositoryAction = .init(),
           store: RepositoryStore = .instantiate(),
           entersReaderIfAvailable: Bool = true) {
-        guard let repository = store.selectedRepository else { return nil }
+        guard let repository = store.selectedRepository.value else { return nil }
         self.repository = repository
         self.action = action
         self.store = store
@@ -46,7 +46,7 @@ final class RepositoryViewController: SFSafariViewController {
     }
 
     @objc private func favoriteButtonTap(_ sender: UIBarButtonItem) {
-        if store.favorites.contains(where: { $0.url == repository.url }) {
+        if store.favorites.value.contains(where: { $0.url == repository.url }) {
             action.invoke(.removeFavorite(repository))
             favoriteButtonItem.title = "Add"
         } else {

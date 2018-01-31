@@ -20,7 +20,7 @@ final class SearchViewModel {
     
     let isUserFetching: Observable<Bool>
     var isUserFetchingValue: Bool {
-        return store.isUserFetchingValue
+        return store.value.isUserFetching
     }
     
     let keyboardWillShow: Observable<UIKeyboardInfo>
@@ -36,7 +36,7 @@ final class SearchViewModel {
     private let _reloadData = PublishSubject<Void>()
     
     var usersValue: [User] {
-        return store.usersValue
+        return store.value.users
     }
     
     init(action: UserAction = .init(),
@@ -62,12 +62,12 @@ final class SearchViewModel {
                 UIKeyboardWillShow.observe { [weak self] in
                     self?._keyboardWillShow.onNext($0)
                 }
-                .addObserverTo(me.pool)
+                .disposed(by: me.pool)
                 
                 UIKeyboardWillHide.observe { [weak self] in
                     self?._keyboardWillHide.onNext($0)
                 }
-                .addObserverTo(me.pool)
+                .disposed(by: me.pool)
             })
             .disposed(by: disposeBag)
         

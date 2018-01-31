@@ -16,12 +16,21 @@ extension Repository {
                      stargazerCount: Int = 100,
                      forkCount: Int = 10,
                      url: String = "https://github.com/marty-suzuki/FluxCapacitor") -> Repository {
-        return try! Repository(json: [
+
+        let json: [String: Any] = [
             "name" : name,
             "stargazers" : ["totalCount" : stargazerCount],
             "forks" : ["totalCount" : forkCount],
             "url" : url,
-            "updatedAt" : "2015-02-07T18:51:47Z"
-        ])
+            "updatedAt" : "2015-02-07T18:51:47Z",
+            "languages": ["nodes": []]
+        ]
+
+        do {
+            let data = try JSONSerialization.data(withJSONObject: json, options: [])
+            return try JSONDecoder().decode(Repository.self, from: data)
+        } catch let e {
+            fatalError("\(e)")
+        }
     }
 }
