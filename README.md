@@ -13,12 +13,12 @@ FluxCapacitor makes implementing [Flux](https://facebook.github.io/flux/) design
 
 - Storable protocol
 - Actionable protocol
-- DispatchValue protocol
+- DispatchState protocol
 
 ## Requirements
 
-- Xcode 9 or later
-- Swift 4 or later
+- Xcode 9.2 or later
+- Swift 4.0.3 or later
 - iOS 9.0 or later
 
 ## Installation
@@ -60,34 +60,28 @@ final class UserRepositoryViewController: UIViewController {
         dataSource.configure(with: tableView)
         observeStore()
 
-        if let user = userStore.selectedUser {
+        if let user = userStore.selectedUser.value {
             repositoryAction.fetchRepositories(withUserId: user.id, after: nil)
         }
     }
 
     private func observeStore() {
-        repositoryStore.subscribe { [weak self] changes in
-            DispatchQueue.main.async {
-                switch changes {
-                case .addRepositories,
-                     .removeAllRepositories,
-                     .isRepositoryFetching:
-                    self?.tableView.reloadData()
-                }
-            }
-        }
-        .cleaned(by: dustBuster)
+        repositoryStore.repositories
+            .observe(on: .main, changes: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
+            .cleaned(by: dustBuster)
     }
 }
 ```
 
 ### Dispatcher
 
-First of all, implementing `DispatchValue`. It connects Action and Store, but it plays a role that don't depend each other.
+First of all, implementing `DispatchState`. It connects Action and Store, but it plays a role that don't depend each other.
 
 ```swift
 extension Dispatcher {
-    enum Repository: DispatchValue {
+    enum Repository: DispatchState {
         typealias RelatedStoreType = RepositoryStore
         typealias RelatedActionType = RepositoryAction
 
@@ -100,39 +94,45 @@ extension Dispatcher {
 
 ### Store
 
-Implementing `Store` with `Storable` protocol. If you call register method, that closure returns dispatched value related DispatchValueType.　Please update store's value with Associated Values.
+Implementing `Store` with `Storable` protocol. If you call register method, that closure returns dispatched value related DispatchStateType.　Please update store's value with Associated Values.
 
 ```swift
 final class RepositoryStore: Storable {
-    typealias DispatchValueType = Dispatcher.Repository
+    typealias DispatchStateType = Dispatcher.Repository
 
-    private(set) var isRepositoryFetching = false
-    private(set) var repositories: [Repository] = []
+    let isRepositoryFetching: Constant<Bool>
+    private let _isRepositoryFetching = Variable<Bool>(false)
 
-    init(dispatcher: Dispatcher) {
-        register { [weak self] in
-            switch $0 {
-            case .isRepositoryFetching(let value):
-                self?.isRepositoryFetching = value
-            case .addRepositories(let value):
-                self?.repositories.append(contentsOf: value)
-            case .removeAllRepositories:
-                self?.repositories.removeAll()
-            }
+    let repositories: Constant<[Repository]>
+    private let _repositories = Variable<[Repository]>([])
+
+    required init() {
+        self.isRepositoryFetching = Constant(_isRepositoryFetching)
+        self.repositories = Constant(_repositories)
+    }
+
+    func reduce(with state: Dispatcher.Repository) {
+        switch state {
+        case .isRepositoryFetching(let value):
+            _isRepositoryFetching.value = value
+        case .addRepositories(let value):
+            _repositories.value.append(contentsOf: value)
+        case .removeAllRepositories:
+            _repositories.value.removeAll()
         }
     }
 ```
 
 If you want to use any store, please use `XXXStore.instantiate()`. That static method returns reference or new instance.
-If you want to unregister any store, please use `xxxStore.unregister()`.
+If you want to unregister any store, please use `xxxStore.clear()`.
 
 ### Action
 
-Implementing `Action` with `Actionable` protocol. If you call invoke method, it can dispatch value related DispatchValueType.
+Implementing `Action` with `Actionable` protocol. If you call invoke method, it can dispatch value related DispatchStateType.
 
 ```swift
 final class RepositoryAction: Actionable {
-    typealias DispatchValueType = Dispatcher.Repository
+    typealias DispatchStateType = Dispatcher.Repository
 
     private let session: ApiSession
 
@@ -159,21 +159,17 @@ final class RepositoryAction: Actionable {
 ### Observe changes
 
 You can initialize a store with `instantiate()`. If reference of store is left, that method returns remained one. If reference is not left, that method returns new instance.
-You can observe changes by store's subscribe method. When called subscribe, it returns `Dust`. So, clean up with `DustBuster`.
+You can observe changes by Constant or Variable. When called observe, it returns `Dust`. So, clean up with `DustBuster`.
 
 ```swift
 let dustBuster = DustBuster()
 
 func observeStore() {
-    RepositoryStore.instantiate().subscribe {
-        switch $0 {
-        case .addRepositories,
-             .removeAllRepositories,
-             .isRepositoryFetching:
-            break
+    RepositoryStore.instantiate().repositories
+        .observe(on: .main) { value in
+            // do something
         }
-    }
-    .cleaned(by: dustBuster)
+        .cleaned(by: dustBuster)
 }
 ```
 
@@ -189,10 +185,12 @@ You can use FluxCapacitor with RxSwift like [this link](./Examples/Flux/FluxCapa
 To run the example project, clone the repo, and run `pod install` and `carthage update` from the Example directory first. In addition, you must set Github Personal access token.
 
 ```swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
-    ApiSession.shared.token = "/** Github Personal access token **/"
-    return true
+// ApiSessionType.swift
+extension ApiSession: ApiSessionType {
+    static let shared: ApiSession = {
+        let token = "" // Your Personal Access Token
+        return ApiSession(injectToken: { InjectableToken(token: token) })
+    }()
 }
 ```
 
