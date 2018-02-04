@@ -42,7 +42,7 @@ github "marty-suzuki/FluxCapacitor"
 
 ## Usage
 
-This is ViewController sample that uses Flux design pattern. If ViewController calls fetchRepositories method of RepositoryAction, it is reloaded automatically with subscribe method of RepositoryStore after fetched repositories from Github. Introducing how to implement Flux design pattern with **FluxCapacitor**.
+This is ViewController sample that uses Flux design pattern. If ViewController calls fetchRepositories method of RepositoryAction, it is reloaded automatically by observed changes of Constant in RepositoryStore after fetched repositories from Github. Introducing how to implement Flux design pattern with **FluxCapacitor**.
 
 ```swift
 final class UserRepositoryViewController: UIViewController {
@@ -77,7 +77,7 @@ final class UserRepositoryViewController: UIViewController {
 
 ### Dispatcher
 
-First of all, implementing `DispatchState`. It connects Action and Store, but it plays a role that don't depend each other.
+First of all, implementing `DispatchState`. It connects Action and Store, but it plays a role that don't depend directly each other.
 
 ```swift
 extension Dispatcher {
@@ -94,7 +94,7 @@ extension Dispatcher {
 
 ### Store
 
-Implementing `Store` with `Storable` protocol. If you call register method, that closure returns dispatched value related DispatchStateType.　Please update store's value with Associated Values.
+Implementing `Store` with `Storable` protocol. `func reduce(with:_)` is called when Dispatcher dispatches DispatchStateType.　Please update store's value with Associated Values.
 
 ```swift
 final class RepositoryStore: Storable {
@@ -123,8 +123,8 @@ final class RepositoryStore: Storable {
     }
 ```
 
-If you want to use any store, please use `XXXStore.instantiate()`. That static method returns reference or new instance.
-If you want to unregister any store, please use `xxxStore.clear()`.
+If you want to use any store, please use `XXXStore.instantiate()`. That static method returns its reference or new instance.
+If you want to unregister any store from Dispatcher, please call `xxxStore.clear()`.
 
 ### Action
 
@@ -156,7 +156,7 @@ final class RepositoryAction: Actionable {
 }
 ```
 
-### Observe changes
+### Observe changes with `Constant<Element>` / `Variable<Element>`
 
 You can initialize a store with `instantiate()`. If reference of store is left, that method returns remained one. If reference is not left, that method returns new instance.
 You can observe changes by Constant or Variable. When called observe, it returns `Dust`. So, clean up with `DustBuster`.
@@ -165,7 +165,11 @@ You can observe changes by Constant or Variable. When called observe, it returns
 let dustBuster = DustBuster()
 
 func observeStore() {
-    RepositoryStore.instantiate().repositories
+    // Get store instance
+    let store = RepositoryStore.instantiate()
+
+    // Observer changes of repositories that is `Constant<[Github.Repository]>`.
+    store.repositories
         .observe(on: .main) { value in
             // do something
         }
@@ -176,9 +180,67 @@ func observeStore() {
 > ![dustbuster](./Images/dustbuster.png)
 	Robert Zemeckis (1989) Back to the future Part II, Universal Pictures
 
+#### `Constant<Element>` and `Variable<Element>`
+
+`Variable<Element>` has getter and setter of Element.
+
+```swift
+let intVal = Variable<Int>(0)
+intVal.value = 1
+print(intVal.value) // 1
+```
+
+`Constant<Element>` has only getter of Element. So, you can initialize Constant with Variable.
+Variable shares its value with Constant.
+
+```swift
+let variable = Variable<Int>(0)
+let constant = Constant(variable)
+variable.value = 1
+print(variable.value) // 1
+print(constant.value) // 1
+```
+
+In addition, Constant that initialize with some Variable, it can use same observation.
+
+```swift
+let variable = Variable<Int>(0)
+let constant = Constant(variable)
+
+_ = variable.observe { value in
+    print(value) // 10
+}
+
+_ = constant.observe { value in
+    print(value) // 10
+}
+
+variable.value = 10
+```
+
 ### with RxSwift
 
 You can use FluxCapacitor with RxSwift like [this link](./Examples/Flux/FluxCapacitorSample/Sources/Common/Flux/User/UserStore.swift).
+
+Or implement `func asObservable()` like this.
+
+```swift
+// Constant
+extension Value where State == Immutable {
+    func asObservable() -> Observable<Element> {
+        return Observable.create { [weak self] observer in
+            guard let me = self else { return Disposables.create() }
+
+            // onNext initial value
+            observer.onNext(me.value)
+
+            // observe changes and onNext that value
+            let dust = me.observe { observer.onNext($0) }
+            return Disposables.create { dust.clean() }
+        }
+    }
+}
+```
 
 ## Example
 
