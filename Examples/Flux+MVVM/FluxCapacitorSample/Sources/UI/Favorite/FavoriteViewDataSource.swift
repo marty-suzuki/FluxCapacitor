@@ -27,18 +27,18 @@ final class FavoriteViewDataSource: NSObject {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.registerCell(RepositoryViewCell.self)
+        tableView.register(RepositoryViewCell.self)
     }
 }
 
 extension FavoriteViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.favoritesValue.count
+        return viewModel.favorites.value.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(RepositoryViewCell.self, for: indexPath)
-        cell.configure(with: viewModel.favoritesValue[indexPath.row])
+        let cell = tableView.dequeue(RepositoryViewCell.self, for: indexPath)
+        cell.configure(with: viewModel.favorites.value[indexPath.row])
         return cell
     }
 }
@@ -51,6 +51,6 @@ extension FavoriteViewDataSource: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return RepositoryViewCell.calculateHeight(with: viewModel.favoritesValue[indexPath.row], and: tableView)
+        return RepositoryViewCell.calculateHeight(with: viewModel.favorites.value[indexPath.row], and: tableView)
     }
 }

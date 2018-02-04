@@ -1,0 +1,30 @@
+[submodule "Examples/Flux/Carthage/Checkouts/GithubKitForSample"]
+	path = Examples/Flux/Carthage/Checkouts/GithubKitForSample
+	url = https://github.com/marty-suzuki/GithubKitForSample.git
+[submodule "Examples/Flux/Carthage/Checkouts/NoticeObserveKit"]
+	path = Examples/Flux/Carthage/Checkouts/NoticeObserveKit
+	url = https://github.com/marty-suzuki/NoticeObserveKit.git
+[submodule "Examples/Flux/Carthage/Checkouts/RxSwift"]
+	path = Examples/Flux/Carthage/Checkouts/RxSwift
+	url = https://github.com/ReactiveX/RxSwift.git
+[submodule "Examples/Flux/Carthage/Checkouts/Nuke"]
+	path = Examples/Flux/Carthage/Checkouts/Nuke
+	url = https://github.com/kean/Nuke.git
+[submodule "Examples/Flux/Carthage/Checkouts/SwiftIconFont"]
+	path = Examples/Flux/Carthage/Checkouts/SwiftIconFont
+	url = https://github.com/0x73/SwiftIconFont.git
+[submodule "Examples/Flux+MVVM/Carthage/Checkouts/NoticeObserveKit"]
+	path = Examples/Flux+MVVM/Carthage/Checkouts/NoticeObserveKit
+	url = https://github.com/marty-suzuki/NoticeObserveKit.git
+[submodule "Examples/Flux+MVVM/Carthage/Checkouts/GithubKitForSample"]
+	path = Examples/Flux+MVVM/Carthage/Checkouts/GithubKitForSample
+	url = https://github.com/marty-suzuki/GithubKitForSample.git
+[submodule "Examples/Flux+MVVM/Carthage/Checkouts/SwiftIconFont"]
+	path = Examples/Flux+MVVM/Carthage/Checkouts/SwiftIconFont
+	url = https://github.com/0x73/SwiftIconFont.git
+[submodule "Examples/Flux+MVVM/Carthage/Checkouts/Nuke"]
+	path = Examples/Flux+MVVM/Carthage/Checkouts/Nuke
+	url = https://github.com/kean/Nuke.git
+[submodule "Examples/Flux+MVVM/Carthage/Checkouts/RxSwift"]
+	path = Examples/Flux+MVVM/Carthage/Checkouts/RxSwift
+	url = https://github.com/ReactiveX/RxSwift.git

@@ -1,4 +1,2 @@
 github "marty-suzuki/GithubKitForSample"
-github "ReactiveX/RxSwift" "4.0.0-beta.0"
-github "kean/Nuke" ~> 5.0
-github "marty-suzuki/NoticeObserveKit"
+github "marty-suzuki/NoticeObserveKit" "0.4.0"

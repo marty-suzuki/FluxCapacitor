@@ -12,78 +12,85 @@ import GithubKit
 import RxSwift
 
 final class RepositoryStore: Storable {
-    typealias DispatchValueType = Dispatcher.Repository
-    
-    let isRepositoryFetching: Observable<Bool>
-    var isRepositoryFetchingValue: Bool {
-        return _isRepositoryFetching.value
-    }
-    private let _isRepositoryFetching = Variable<Bool>(false)
-    
-    let favorites: Observable<[Repository]>
-    var favoritesValue: [Repository] {
-        return _favorites.value
-    }
-    private let _favorites = Variable<[Repository]>([])
-    
-    let repositories: Observable<[Repository]>
-    var repositoriesValue: [Repository] {
-        return _repositories.value
-    }
-    private let _repositories = Variable<[Repository]>([])
-    
-    let selectedRepository: Observable<Repository?>
-    var selectedRepositoryValue: Repository? {
-        return _selectedRepository.value
-    }
-    private let _selectedRepository = Variable<Repository?>(nil)
-    
-    let lastPageInfo: Observable<PageInfo?>
-    var lastPageInfoValue: PageInfo? {
-        return _lastPageInfo.value
-    }
-    private let _lastPageInfo = Variable<PageInfo?>(nil)
-    
-    let repositoryTotalCount: Observable<Int>
-    var repositoryTotalCountValue: Int {
-        return _repositoryTotalCount.value
-    }
-    private let _repositoryTotalCount = Variable<Int>(0)
 
-    init(dispatcher: Dispatcher) {
-        self.isRepositoryFetching = _isRepositoryFetching.asObservable()
-        self.favorites = _favorites.asObservable()
-        self.repositories = _repositories.asObservable()
-        self.selectedRepository = _selectedRepository.asObservable()
-        self.lastPageInfo = _lastPageInfo.asObservable()
-        self.repositoryTotalCount = _repositoryTotalCount.asObservable()
-        
-        register { [weak self] in
-            switch $0 {
-            case .isRepositoryFetching(let value):
-                self?._isRepositoryFetching.value = value
-            case .addRepositories(let value):
-                self?._repositories.value.append(contentsOf: value)
-            case .removeAllRepositories:
-                self?._repositories.value.removeAll()
-            case .selectedRepository(let value):
-                self?._selectedRepository.value = value
-            case .lastPageInfo(let value):
-                self?._lastPageInfo.value = value
-            case .repositoryTotalCount(let value):
-                self?._repositoryTotalCount.value = value
+    typealias DispatchStateType = Dispatcher.Repository
 
-            case .addFavorite(let value):
-                if self?._favorites.value.index(where: { $0.url == value.url }) == nil {
-                    self?._favorites.value.append(value)
-                }
-            case .removeFavorite(let value):
-                if let index = self?._favorites.value.index(where: { $0.url == value.url }) {
-                    self?._favorites.value.remove(at: index)
-                }
-            case .removeAllFavorites:
-                self?._favorites.value.removeAll()
+    let isRepositoryFetching: Constant<Bool>
+    private let _isRepositoryFetching = FluxCapacitor.Variable<Bool>(false)
+
+    let favorites: Constant<[Repository]>
+    private let _favorites = FluxCapacitor.Variable<[Repository]>([])
+
+    let repositories: Constant<[Repository]>
+    private let _repositories = FluxCapacitor.Variable<[Repository]>([])
+
+    let selectedRepository: Constant<Repository?>
+    private let _selectedRepository = FluxCapacitor.Variable<Repository?>(nil)
+
+    let lastPageInfo: Constant<PageInfo?>
+    private let _lastPageInfo = FluxCapacitor.Variable<PageInfo?>(nil)
+
+    let lastTask: Constant<URLSessionTask?>
+    private let _lastTask = FluxCapacitor.Variable<URLSessionTask?>(nil)
+
+    let repositoryTotalCount: Constant<Int>
+    private let _repositoryTotalCount = FluxCapacitor.Variable<Int>(0)
+
+    init() {
+        self.isRepositoryFetching = Constant(_isRepositoryFetching)
+        self.favorites = Constant(_favorites)
+        self.repositories = Constant(_repositories)
+        self.selectedRepository = Constant(_selectedRepository)
+        self.lastPageInfo = Constant(_lastPageInfo)
+        self.lastTask = Constant(_lastTask)
+        self.repositoryTotalCount = Constant(_repositoryTotalCount)
+    }
+
+    func reduce(with state: Dispatcher.Repository) {
+        switch state {
+        case .isRepositoryFetching(let value):
+            _isRepositoryFetching.value = value
+
+        case .addRepositories(let value):
+            _repositories.value.append(contentsOf: value)
+
+        case .removeAllRepositories:
+            _repositories.value.removeAll()
+
+        case .selectedRepository(let value):
+            _selectedRepository.value = value
+
+        case .lastPageInfo(let value):
+            _lastPageInfo.value = value
+
+        case .lastTask(let value):
+            _lastTask.value?.cancel()
+            _lastTask.value = value
+
+        case .repositoryTotalCount(let value):
+            _repositoryTotalCount.value = value
+
+        case .addFavorite(let value):
+            if _favorites.value.index(where: { $0.url == value.url }) == nil {
+                _favorites.value.append(value)
             }
+        case .removeFavorite(let value):
+            if let index = _favorites.value.index(where: { $0.url == value.url }) {
+                _favorites.value.remove(at: index)
+            }
+        case .removeAllFavorites:
+            _favorites.value.removeAll()
+        }
+    }
+}
+
+extension PrimitiveValue where Trait == ImmutableTrait {
+    func asObservable() -> Observable<Element> {
+        return Observable.create { [weak self] observer in
+            guard let me = self else { return Disposables.create() }
+            observer.onNext(me.value)
+            let dust = me.observe { observer.onNext($0) }
+            return Disposables.create { dust.clean() }
         }
     }
 }

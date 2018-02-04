@@ -13,12 +13,12 @@ FluxCapacitor makes implementing [Flux](https://facebook.github.io/flux/) design
 
 - Storable protocol
 - Actionable protocol
-- DispatchValue protocol
+- DispatchState protocol
 
 ## Requirements
 
-- Xcode 9 or later
-- Swift 4 or later
+- Xcode 9.2 or later
+- Swift 4.0.3 or later
 - iOS 9.0 or later
 
 ## Installation
@@ -42,7 +42,7 @@ github "marty-suzuki/FluxCapacitor"
 
 ## Usage
 
-This is ViewController sample that uses Flux design pattern. If ViewController calls fetchRepositories method of RepositoryAction, it is reloaded automatically with subscribe method of RepositoryStore after fetched repositories from Github. Introducing how to implement Flux design pattern with **FluxCapacitor**.
+This is ViewController sample that uses Flux design pattern. If ViewController calls fetchRepositories method of RepositoryAction, it is reloaded automatically by observed changes of Constant in RepositoryStore after fetched repositories from Github. Introducing how to implement Flux design pattern with **FluxCapacitor**.
 
 ```swift
 final class UserRepositoryViewController: UIViewController {
@@ -60,34 +60,28 @@ final class UserRepositoryViewController: UIViewController {
         dataSource.configure(with: tableView)
         observeStore()
 
-        if let user = userStore.selectedUser {
+        if let user = userStore.selectedUser.value {
             repositoryAction.fetchRepositories(withUserId: user.id, after: nil)
         }
     }
 
     private func observeStore() {
-        repositoryStore.subscribe { [weak self] changes in
-            DispatchQueue.main.async {
-                switch changes {
-                case .addRepositories,
-                     .removeAllRepositories,
-                     .isRepositoryFetching:
-                    self?.tableView.reloadData()
-                }
-            }
-        }
-        .cleaned(by: dustBuster)
+        repositoryStore.repositories
+            .observe(on: .main, changes: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
+            .cleaned(by: dustBuster)
     }
 }
 ```
 
 ### Dispatcher
 
-First of all, implementing `DispatchValue`. It connects Action and Store, but it plays a role that don't depend each other.
+First of all, implementing `DispatchState`. It connects Action and Store, but it plays a role that don't depend directly each other.
 
 ```swift
 extension Dispatcher {
-    enum Repository: DispatchValue {
+    enum Repository: DispatchState {
         typealias RelatedStoreType = RepositoryStore
         typealias RelatedActionType = RepositoryAction
 
@@ -100,39 +94,46 @@ extension Dispatcher {
 
 ### Store
 
-Implementing `Store` with `Storable` protocol. If you call register method, that closure returns dispatched value related DispatchValueType.　Please update store's value with Associated Values.
+Implementing `Store` with `Storable` protocol. `func reduce(with:_)` is called when Dispatcher dispatches DispatchStateType.　Please update store's value with Associated Values.
 
 ```swift
 final class RepositoryStore: Storable {
-    typealias DispatchValueType = Dispatcher.Repository
+    typealias DispatchStateType = Dispatcher.Repository
 
-    private(set) var isRepositoryFetching = false
-    private(set) var repositories: [Repository] = []
+    let isRepositoryFetching: Constant<Bool>
+    private let _isRepositoryFetching = Variable<Bool>(false)
 
-    init(dispatcher: Dispatcher) {
-        register { [weak self] in
-            switch $0 {
-            case .isRepositoryFetching(let value):
-                self?.isRepositoryFetching = value
-            case .addRepositories(let value):
-                self?.repositories.append(contentsOf: value)
-            case .removeAllRepositories:
-                self?.repositories.removeAll()
-            }
+    let repositories: Constant<[Repository]>
+    private let _repositories = Variable<[Repository]>([])
+
+    required init() {
+        self.isRepositoryFetching = Constant(_isRepositoryFetching)
+        self.repositories = Constant(_repositories)
+    }
+
+    func reduce(with state: Dispatcher.Repository) {
+        switch state {
+        case .isRepositoryFetching(let value):
+            _isRepositoryFetching.value = value
+        case .addRepositories(let value):
+            _repositories.value.append(contentsOf: value)
+        case .removeAllRepositories:
+            _repositories.value.removeAll()
         }
     }
+}
 ```
 
-If you want to use any store, please use `XXXStore.instantiate()`. That static method returns reference or new instance.
-If you want to unregister any store, please use `xxxStore.unregister()`.
+If you want to use any store, please use `XXXStore.instantiate()`. That static method returns its reference or new instance.
+If you want to unregister any store from Dispatcher, please call `xxxStore.clear()`.
 
 ### Action
 
-Implementing `Action` with `Actionable` protocol. If you call invoke method, it can dispatch value related DispatchValueType.
+Implementing `Action` with `Actionable` protocol. If you call invoke method, it can dispatch value related DispatchStateType.
 
 ```swift
 final class RepositoryAction: Actionable {
-    typealias DispatchValueType = Dispatcher.Repository
+    typealias DispatchStateType = Dispatcher.Repository
 
     private let session: ApiSession
 
@@ -156,43 +157,103 @@ final class RepositoryAction: Actionable {
 }
 ```
 
-### Observe changes
+### Observe changes with `Constant<Element>` / `Variable<Element>`
 
 You can initialize a store with `instantiate()`. If reference of store is left, that method returns remained one. If reference is not left, that method returns new instance.
-You can observe changes by store's subscribe method. When called subscribe, it returns `Dust`. So, clean up with `DustBuster`.
+You can observe changes by Constant or Variable. When called observe, it returns `Dust`. So, clean up with `DustBuster`.
 
 ```swift
 let dustBuster = DustBuster()
 
 func observeStore() {
-    RepositoryStore.instantiate().subscribe {
-        switch $0 {
-        case .addRepositories,
-             .removeAllRepositories,
-             .isRepositoryFetching:
-            break
+    // Get store instance
+    let store = RepositoryStore.instantiate()
+
+    // Observer changes of repositories that is `Constant<[Github.Repository]>`.
+    store.repositories
+        .observe(on: .main) { value in
+            // do something
         }
-    }
-    .cleaned(by: dustBuster)
+        .cleaned(by: dustBuster)
 }
 ```
 
 > ![dustbuster](./Images/dustbuster.png)
 	Robert Zemeckis (1989) Back to the future Part II, Universal Pictures
 
+#### `Constant<Element>` and `Variable<Element>`
+
+`Variable<Element>` has getter and setter of Element.
+
+```swift
+let intVal = Variable<Int>(0)
+intVal.value = 1
+print(intVal.value) // 1
+```
+
+`Constant<Element>` has only getter of Element. So, you can initialize Constant with Variable.
+Variable shares its value with Constant.
+
+```swift
+let variable = Variable<Int>(0)
+let constant = Constant(variable)
+variable.value = 1
+print(variable.value) // 1
+print(constant.value) // 1
+```
+
+In addition, Constant that initialize with some Variable, it can use same observation.
+
+```swift
+let variable = Variable<Int>(0)
+let constant = Constant(variable)
+
+_ = variable.observe { value in
+    print(value) // 10
+}
+
+_ = constant.observe { value in
+    print(value) // 10
+}
+
+variable.value = 10
+```
+
 ### with RxSwift
 
-You can use FluxCapacitor with RxSwift like [this link](./Examples/Flux/FluxCapacitorSample/Sources/Common/Flux/User/UserStore.swift).
+You can use FluxCapacitor with RxSwift like [this link](./Examples/Flux%2BMVVM/FluxCapacitorSample/Sources/Common/Flux/User/UserStore.swift).
+
+Or implement `func asObservable()` like this.
+
+```swift
+// Constant
+extension PrimitiveValue where Trait == ImmutableTrait {
+    func asObservable() -> Observable<Element> {
+        return Observable.create { [weak self] observer in
+            guard let me = self else { return Disposables.create() }
+
+            // onNext initial value
+            observer.onNext(me.value)
+
+            // observe changes and onNext that value
+            let dust = me.observe { observer.onNext($0) }
+            return Disposables.create { dust.clean() }
+        }
+    }
+}
+```
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` and `carthage update` from the Example directory first. In addition, you must set Github Personal access token.
 
 ```swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
-    ApiSession.shared.token = "/** Github Personal access token **/"
-    return true
+// ApiSessionType.swift
+extension ApiSession: ApiSessionType {
+    static let shared: ApiSession = {
+        let token = "" // Your Personal Access Token
+        return ApiSession(injectToken: { InjectableToken(token: token) })
+    }()
 }
 ```
 
@@ -210,6 +271,10 @@ Application structure is like below.
 ### Additional
 
 Flux + MVVM Sample is [here](./Examples/Flux+MVVM).
+
+## Migration Guide
+
+[FluxCapacitor 0.10.0 Migration Guide](./Documentations/MigrationGuide_0_10_0.md)
 
 ## Author
 

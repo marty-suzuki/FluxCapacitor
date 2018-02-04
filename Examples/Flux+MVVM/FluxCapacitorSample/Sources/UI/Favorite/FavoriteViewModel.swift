@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import FluxCapacitor
 import GithubKit
 
 final class FavoriteViewModel {
@@ -20,9 +21,7 @@ final class FavoriteViewModel {
     let showRepository: Observable<Void>
     private let _showRepository = PublishSubject<Void>()
     
-    var favoritesValue: [Repository] {
-        return store.favoritesValue
-    }
+    let favorites: Constant<[Repository]>
     
     init(action: RepositoryAction = .init(),
          store: RepositoryStore = .instantiate(),
@@ -31,11 +30,12 @@ final class FavoriteViewModel {
          selectRepositoryRowAt: Observable<IndexPath>) {
         self.store = store
         self.action = action
-        
+        self.favorites = store.favorites
+
         self.reloadData = _reloadData
         self.showRepository = _showRepository
         
-        let selectedRepository = store.selectedRepository
+        let selectedRepository = store.selectedRepository.asObservable()
             .filter { $0 != nil }
             .map { _ in }
         Observable.merge(viewDidAppear.map { _ in true },
@@ -45,19 +45,19 @@ final class FavoriteViewModel {
             .disposed(by: disposeBag)
         
         selectRepositoryRowAt
-            .withLatestFrom(store.favorites) { $1[$0.row] }
+            .withLatestFrom(store.favorites.asObservable()) { $1[$0.row] }
             .subscribe(onNext: { [weak self] in
                 self?.action.invoke(.selectedRepository($0))
             })
             .disposed(by: disposeBag)
         
-        store.favorites
+        store.favorites.asObservable()
             .map { _ in }
             .bind(to: _reloadData)
             .disposed(by: disposeBag)
     }
     
     deinit {
-        store.unregister()
+        store.clear()
     }
 }

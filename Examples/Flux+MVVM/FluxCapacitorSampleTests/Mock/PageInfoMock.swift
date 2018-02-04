@@ -26,6 +26,12 @@ extension PageInfo {
         if let endCursor = endCursor {
             json["endCursor"] = endCursor
         }
-        return try! PageInfo(json: json)
+
+        do {
+            let data = try JSONSerialization.data(withJSONObject: json, options: [])
+            return try JSONDecoder().decode(PageInfo.self, from: data)
+        } catch let e {
+            fatalError(e.localizedDescription)
+        }
     }
 }

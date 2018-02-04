@@ -59,7 +59,7 @@ class FavoriteViewModelTestCase: XCTestCase {
         action.invoke(.removeAllFavorites)
         action.invoke(.addFavorite(repository))
         
-        let selectedRepository = store.selectedRepository
+        let selectedRepository = store.selectedRepository.asObservable()
             .filter { $0 != nil }
             .map { $0! }
         let disposable = viewModel.showRepository
@@ -71,7 +71,7 @@ class FavoriteViewModelTestCase: XCTestCase {
                 expectation.fulfill()
             })
         
-        viewDidAppear.onNext()
+        viewDidAppear.onNext(())
         selectRepositoryRowAt.onNext(IndexPath(row: 0, section: 0))
         
         waitForExpectations(timeout: 1, handler: nil)

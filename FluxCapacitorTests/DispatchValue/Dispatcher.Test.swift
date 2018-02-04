@@ -10,7 +10,7 @@ import Foundation
 import FluxCapacitor
 
 extension Dispatcher {
-    enum Test: DispatchValue {
+    enum Test: DispatchState {
         typealias RelatedStoreType = TestStore
         typealias RelatedActionType = TestAction
         

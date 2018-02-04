@@ -29,7 +29,7 @@ class RepositoryFluxFlowTestCase: XCTestCase {
     }
     
     override func tearDown() {
-        store.unregister()
+        store.clear()
         
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -40,23 +40,21 @@ class RepositoryFluxFlowTestCase: XCTestCase {
         
         let repository = Repository.mock()
         
-        let dust = store.subscribe { [weak self] in
-            guard
-                case .selectedRepository = $0,
-                let selectedRepository = self?.store.selectedRepository
-            else {
-                XCTFail()
-                return
+        let dust = store.selectedRepository
+            .observe {
+                guard let selectedRepository = $0 else {
+                    XCTFail()
+                    return
+                }
+
+                XCTAssertEqual(repository.name, selectedRepository.name)
+                XCTAssertEqual(repository.stargazerCount, selectedRepository.stargazerCount)
+                XCTAssertEqual(repository.forkCount, selectedRepository.forkCount)
+                XCTAssertEqual(repository.url, selectedRepository.url)
+                XCTAssertEqual(repository.updatedAt, selectedRepository.updatedAt)
+
+                expectation.fulfill()
             }
-            
-            XCTAssertEqual(repository.name, selectedRepository.name)
-            XCTAssertEqual(repository.stargazerCount, selectedRepository.stargazerCount)
-            XCTAssertEqual(repository.forkCount, selectedRepository.forkCount)
-            XCTAssertEqual(repository.url, selectedRepository.url)
-            XCTAssertEqual(repository.updatedAt, selectedRepository.updatedAt)
-            
-            expectation.fulfill()
-        }
         
         action.invoke(.selectedRepository(repository))
         
@@ -70,23 +68,21 @@ class RepositoryFluxFlowTestCase: XCTestCase {
         
         let repository = Repository.mock()
         
-        let dust = store.subscribe { [weak self] in
-            guard
-                case .addFavorite = $0,
-                let favorite = self?.store.favorites.first
-            else {
-                XCTFail()
-                return
+        let dust = store.favorites
+            .observe {
+                guard let favorite = $0.first else {
+                    XCTFail()
+                    return
+                }
+
+                XCTAssertEqual(repository.name, favorite.name)
+                XCTAssertEqual(repository.stargazerCount, favorite.stargazerCount)
+                XCTAssertEqual(repository.forkCount, favorite.forkCount)
+                XCTAssertEqual(repository.url, favorite.url)
+                XCTAssertEqual(repository.updatedAt, favorite.updatedAt)
+
+                expectation.fulfill()
             }
-            
-            XCTAssertEqual(repository.name, favorite.name)
-            XCTAssertEqual(repository.stargazerCount, favorite.stargazerCount)
-            XCTAssertEqual(repository.forkCount, favorite.forkCount)
-            XCTAssertEqual(repository.url, favorite.url)
-            XCTAssertEqual(repository.updatedAt, favorite.updatedAt)
-            
-            expectation.fulfill()
-        }
         
         action.invoke(.addFavorite(repository))
         
@@ -111,50 +107,52 @@ class RepositoryFluxFlowTestCase: XCTestCase {
         group.notify(queue: .global()) {
             expectation.fulfill()
         }
-        
-        let dust = store.subscribe { [weak self] in
-            switch $0 {
-            case .addRepositories:
-                guard let firstRepository = self?.store.repositories.first else {
+
+        var dustBuster: DustBuster = DustBuster()
+
+        store.repositories
+            .observe {
+                guard let firstRepository = $0.first else {
                     XCTFail()
                     return
                 }
-                
+
                 XCTAssertEqual(repository.name, firstRepository.name)
                 XCTAssertEqual(repository.stargazerCount, firstRepository.stargazerCount)
                 XCTAssertEqual(repository.forkCount, firstRepository.forkCount)
                 XCTAssertEqual(repository.url, firstRepository.url)
                 XCTAssertEqual(repository.updatedAt, firstRepository.updatedAt)
-                
+
                 group.leave()
-            case .lastPageInfo:
-                guard let lastPageInfo = self?.store.lastPageInfo else {
+            }
+            .cleaned(by: dustBuster)
+
+        store.lastPageInfo
+            .observe {
+                guard let lastPageInfo = $0 else {
                     XCTFail()
                     return
                 }
-                
+
                 XCTAssertEqual(lastPageInfo.hasNextPage, pageInfo.hasNextPage)
                 XCTAssertEqual(lastPageInfo.hasPreviousPage, pageInfo.hasPreviousPage)
-                
+
                 group.leave()
-            case .repositoryTotalCount:
-                guard let repositoryTotalCount = self?.store.repositoryTotalCount else {
-                    XCTFail()
-                    return
-                }
-                
-                XCTAssertEqual(repositoryTotalCount, totalCount)
-                
-                group.leave()
-            default:
-                break
             }
-        }
+            .cleaned(by: dustBuster)
+
+        store.repositoryTotalCount
+            .observe {
+                XCTAssertEqual($0, totalCount)
+
+                group.leave()
+            }
+            .cleaned(by: dustBuster)
 
         action.fetchRepositories(withUserId: "abcd", after: nil)
         
         waitForExpectations(timeout: 1, handler: nil)
         
-        dust.clean()
+        dustBuster = DustBuster()
     }
 }

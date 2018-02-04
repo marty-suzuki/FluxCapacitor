@@ -7,31 +7,36 @@
 //
 
 import Foundation
-
-@testable import FluxCapacitorSample
 import RxSwift
 import GithubKit
+
+@testable import FluxCapacitorSample
 
 class ApiSessionMock: ApiSessionType {
     enum Error: Swift.Error {
         case requestFailed
     }
-    
+
+    class SessionTaskMock: URLSessionTask {
+        override func resume() {}
+        override func cancel() {}
+    }
+
     var result: ApiSession.Result<Any>?
-    
-    func send<T: Request>(_ request: T, completion: @escaping (ApiSession.Result<Response<T.ResponseType>>) -> ()) -> URLSessionTask {
+
+    func send<T: Request>(_ request: T, completion: @escaping (ApiSession.Result<T.ResponseType>) -> ()) -> URLSessionTask {
         switch result {
-        case .success(let value as Response<T.ResponseType>)?:
+        case .success(let value as T.ResponseType)?:
             completion(.success(value))
         default:
             completion(.failure(Error.requestFailed))
         }
-        return URLSessionTask()
+        return SessionTaskMock()
     }
-    
-    func send<T: Request>(_ request: T) -> Observable<Response<T.ResponseType>> {
+
+    func send<T: Request>(_ request: T) -> Observable<T.ResponseType> {
         switch result {
-        case .success(let value as Response<T.ResponseType>)?:
+        case .success(let value as T.ResponseType)?:
             return .just(value)
         default:
             return .error(Error.requestFailed)

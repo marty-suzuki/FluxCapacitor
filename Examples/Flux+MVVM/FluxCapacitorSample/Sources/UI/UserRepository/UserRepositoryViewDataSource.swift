@@ -8,11 +8,13 @@
 
 import UIKit
 import GithubKit
+import FluxCapacitor
+import Foundation
 import RxSwift
 
 final class UserRepositoryViewDataSource: NSObject {
-    fileprivate let loadingView = LoadingView.instantiate()
-    private let disposeBag = DisposeBag()
+    fileprivate let loadingView = LoadingView.makeFromNib()
+    private let dustBuster = DustBuster()
     
     fileprivate var isReachedBottom: Bool = false {
         didSet {
@@ -37,30 +39,29 @@ final class UserRepositoryViewDataSource: NSObject {
         super.init()
         
         viewModel.isRepositoryFetching
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
+            .observe(on: .main) { [weak self] in
                 self?.loadingView.isLoading = $0
-            })
-            .disposed(by: disposeBag)
+            }
+            .cleaned(by: dustBuster)
     }
 
     func configure(with tableView: UITableView) {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.registerCell(RepositoryViewCell.self)
+        tableView.register(RepositoryViewCell.self)
         tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: UITableViewHeaderFooterView.className)
     }
 }
 
 extension UserRepositoryViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.repositoriesValue.count
+        return viewModel.repositories.value.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(RepositoryViewCell.self, for: indexPath)
-        cell.configure(with: viewModel.repositoriesValue[indexPath.row])
+        let cell = tableView.dequeue(RepositoryViewCell.self, for: indexPath)
+        cell.configure(with: viewModel.repositories.value[indexPath.row])
         return cell
     }
     
@@ -86,7 +87,7 @@ extension UserRepositoryViewDataSource: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return RepositoryViewCell.calculateHeight(with: viewModel.repositoriesValue[indexPath.row], and: tableView)
+        return RepositoryViewCell.calculateHeight(with: viewModel.repositories.value[indexPath.row], and: tableView)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -94,7 +95,7 @@ extension UserRepositoryViewDataSource: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return viewModel.isRepositoryFetchingValue ? LoadingView.defaultHeight : .leastNormalMagnitude
+        return viewModel.isRepositoryFetching.value ? LoadingView.defaultHeight : .leastNormalMagnitude
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

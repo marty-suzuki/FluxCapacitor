@@ -23,29 +23,29 @@ class ActionTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
         
-        store.numbers.removeAll()
+        store.numbers.value.removeAll()
     }
     
     func testAddNumber() {
         action.invoke(.addNumber(1))
-        XCTAssertEqual(store.numbers.first, 1)
+        XCTAssertEqual(store.numbers.value.first, 1)
     }
     
     func testRemoveNumber() {
         action.invoke(.addNumber(2))
-        XCTAssertEqual(store.numbers.first, 2)
+        XCTAssertEqual(store.numbers.value.first, 2)
         
         action.invoke(.removeNumber(2))
-        XCTAssertEqual(store.numbers.first, nil)
+        XCTAssertEqual(store.numbers.value.first, nil)
     }
     
     func testRemoveAll() {
         action.invoke(.addNumber(1))
         action.invoke(.addNumber(2))
         action.invoke(.addNumber(3))
-        XCTAssertEqual(store.numbers.count, 3)
+        XCTAssertEqual(store.numbers.value.count, 3)
         
         action.invoke(.removeAllNumbers)
-        XCTAssert(store.numbers.isEmpty)
+        XCTAssert(store.numbers.value.isEmpty)
     }
 }

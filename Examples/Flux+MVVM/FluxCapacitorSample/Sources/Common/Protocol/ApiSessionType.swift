@@ -11,12 +11,17 @@ import GithubKit
 import RxSwift
 
 protocol ApiSessionType {
-    func send<T: Request>(_ request: T, completion: @escaping (ApiSession.Result<Response<T.ResponseType>>) -> ()) -> URLSessionTask
-    func send<T: Request>(_ request: T) -> Observable<Response<T.ResponseType>>
+    func send<T: Request>(_ request: T, completion: @escaping (ApiSession.Result<T.ResponseType>) -> ()) -> URLSessionTask
+    func send<T: Request>(_ request: T) -> Observable<T.ResponseType>
 }
 
 extension ApiSession: ApiSessionType {
-    func send<T: Request>(_ request: T) -> Observable<Response<T.ResponseType>> {
+    static let shared: ApiSession = {
+        let token = "" // Your Personal Access Token
+        return ApiSession(injectToken: { InjectableToken(token: token) })
+    }()
+
+    func send<T: Request>(_ request: T) -> Observable<T.ResponseType> {
         return rx.send(request)
     }
 }

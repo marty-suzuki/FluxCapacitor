@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FluxCapacitor'
-  s.version          = '0.4.1'
+  s.version          = '0.10.0'
   s.summary          = 'This is what makes the Flux design pattern possible.'
 
 # This description is used to generate tags and improve search results.
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'FluxCapacitor/*.{swift}'
+  s.source_files = 'FluxCapacitor/**/*.{swift}'
 
   # s.resource_bundles = {
   #   'FluxCapacitor' => ['FluxCapacitor/Assets/*.png']

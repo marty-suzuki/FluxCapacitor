@@ -9,6 +9,7 @@
 import Foundation
 import GithubKit
 import RxSwift
+import FluxCapacitor
 
 final class UserRepositoryViewModel {
     private let userAction: UserAction
@@ -16,6 +17,7 @@ final class UserRepositoryViewModel {
     private let repositoryAction: RepositoryAction
     private let repositoryStore: RepositoryStore
     private let disposeBag = DisposeBag()
+    private let dustBuster = DustBuster()
     
     let showRepository: Observable<Void>
     private let _showRepository = PublishSubject<Void>()
@@ -24,15 +26,11 @@ final class UserRepositoryViewModel {
     let counterText: Observable<String>
     private let _counterText = PublishSubject<String>()
     
-    let isRepositoryFetching: Observable<Bool>
-    var isRepositoryFetchingValue: Bool {
-        return repositoryStore.isRepositoryFetchingValue
-    }
+    let isRepositoryFetching: Constant<Bool>
+    let repositories: Constant<[Repository]>
+
     var usernameValue: String {
-        return userStore.selectedUserValue?.login ?? ""
-    }
-    var repositoriesValue: [Repository] {
-        return repositoryStore.repositoriesValue
+        return userStore.value.selectedUser?.login ?? ""
     }
     
     init(userAction: UserAction = .init(),
@@ -49,22 +47,24 @@ final class UserRepositoryViewModel {
         self.showRepository = _showRepository
         self.reloadData = _reloadData
         self.counterText = _counterText
+
         self.isRepositoryFetching = repositoryStore.isRepositoryFetching
-        
-        Observable.merge(repositoryStore.repositories.map { _ in },
-                         repositoryStore.isRepositoryFetching.map { _ in })
+        self.repositories = repositoryStore.repositories
+
+        Observable.merge(repositoryStore.repositories.asObservable().map { _ in },
+                         repositoryStore.isRepositoryFetching.asObservable().map { _ in })
             .bind(to: _reloadData)
             .disposed(by: disposeBag)
-        
-        
+
         repositoryStore.selectedRepository
-            .filter { $0 != nil }
-            .map { _ in }
-            .bind(to: _showRepository)
-            .disposed(by: disposeBag)
+            .observe { [weak self] in
+                if $0 == nil { return }
+                self?._showRepository.onNext(())
+            }
+            .cleaned(by: dustBuster)
         
-        Observable.combineLatest(repositoryStore.repositories,
-                                 repositoryStore.repositoryTotalCount)
+        Observable.combineLatest(repositoryStore.repositories.asObservable(),
+                                 repositoryStore.repositoryTotalCount.asObservable())
             { "\($0.count) / \($1)" }
             .bind(to: _counterText)
             .disposed(by: disposeBag)
@@ -72,7 +72,13 @@ final class UserRepositoryViewModel {
         let selectedUser = userStore.selectedUser
             .filter { $0 != nil }
             .map { $0! }
-        let lastPageInfo = repositoryStore.lastPageInfo
+        let lastPageInfo = Observable<PageInfo?>.create { [weak self] observer in
+                let dust = self?.repositoryStore.lastPageInfo
+                    .observe { pageInfo in
+                        observer.onNext(pageInfo)
+                    }
+                return Disposables.create { dust?.clean() }
+            }
             .filter { $0 != nil }
             .map { $0! }
         fetchMoreRepositories
@@ -84,13 +90,13 @@ final class UserRepositoryViewModel {
             .disposed(by: disposeBag)
         
         selectRepositoryRowAt
-            .withLatestFrom(repositoryStore.repositories) { $1[$0.row] }
+            .withLatestFrom(repositoryStore.repositories.asObservable()) { $1[$0.row] }
             .subscribe(onNext: { [weak self] in
                 self?.repositoryAction.invoke(.selectedRepository($0))
             })
             .disposed(by: disposeBag)
 
-        if let userId = userStore.selectedUserValue?.id {
+        if let userId = userStore.value.selectedUser?.id {
             repositoryAction.fetchRepositories(withUserId: userId, after: nil)
         }
     }

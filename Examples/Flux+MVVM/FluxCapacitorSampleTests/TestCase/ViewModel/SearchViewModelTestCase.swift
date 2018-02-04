@@ -178,7 +178,7 @@ class SearchViewModelTestCase: XCTestCase {
                 expectation.fulfill()
             })
         
-        fetchMoreUsers.onNext()
+        fetchMoreUsers.onNext(())
         
         waitForExpectations(timeout: 1, handler: nil)
         

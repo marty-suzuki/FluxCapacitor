@@ -25,7 +25,7 @@ final class UserRepositoryViewController: UIViewController {
           userStore: UserStore = .instantiate(),
           repositoryAction: RepositoryAction = .init(),
           repositoryStore: RepositoryStore = .instantiate()) {
-        guard let user = userStore.selectedUserValue else { return nil }
+        guard let user = userStore.selectedUser.value else { return nil }
         self.user = user
         self.userAction = userAction
         self.repositoryAction = repositoryAction
@@ -58,27 +58,27 @@ final class UserRepositoryViewController: UIViewController {
     }
 
     private func observeStore() {
-        repositoryStore.subscribe { [weak self] changes in
-            DispatchQueue.main.async {
-                switch changes {
-                case .selectedRepository:
-                    self?.showRepository()
-                case .addRepositories,
-                     .removeAllRepositories,
-                     .isRepositoryFetching:
-                    self?.tableView.reloadData()
-                case .repositoryTotalCount:
-                    self?.setTotalCount()
-                default:
-                    break
-                }
-            }
-        }
-        .cleaned(by: dustBuster)
+        repositoryStore.selectedRepository
+            .observe(on: .main, changes: { [weak self] _ in
+                self?.showRepository()
+            })
+            .cleaned(by: dustBuster)
+
+        repositoryStore.repositories
+            .observe(on: .main, changes: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
+            .cleaned(by: dustBuster)
+
+        repositoryStore.repositoryTotalCount
+            .observe(on: .main, changes: { [weak self] _ in
+                self?.setTotalCount()
+            })
+            .cleaned(by: dustBuster)
     }
     
     private func setTotalCount() {
-        counterLabel.text = "\(repositoryStore.repositories.count) / \(repositoryStore.repositoryTotalCount)"
+        counterLabel.text = "\(repositoryStore.repositories.value.count) / \(repositoryStore.repositoryTotalCount.value)"
     }
 
     private func showRepository() {

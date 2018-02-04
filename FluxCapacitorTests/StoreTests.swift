@@ -23,17 +23,17 @@ class StoreTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
         
-        store.numbers.removeAll()
+        store.numbers.value.removeAll()
     }
     
     func testRemoveAll() {
         dispatcher.dispatch(Dispatcher.Test.removeAllNumbers)
-        XCTAssert(store.numbers.isEmpty)
+        XCTAssert(store.numbers.value.isEmpty)
     }
     
     func testAddNumberIs1() {
         dispatcher.dispatch(Dispatcher.Test.addNumber(1))
-        XCTAssertEqual(store.numbers.first, 1)
+        XCTAssertEqual(store.numbers.value.first, 1)
     }
     
     func testAddAndRemoveFinally2() {
@@ -42,7 +42,7 @@ class StoreTests: XCTestCase {
         dispatcher.dispatch(Dispatcher.Test.addNumber(3))
 
         dispatcher.dispatch(Dispatcher.Test.removeNumber(1))
-        XCTAssertEqual(store.numbers.first, 2)
+        XCTAssertEqual(store.numbers.value.first, 2)
     }
     
     func testStoreIsSameReference() {
@@ -54,16 +54,9 @@ class StoreTests: XCTestCase {
         let expectation = self.expectation(description: "wait for observe")
         
         let dustBuster = DustBuster()
-        store.subscribe {
-            switch $0 {
-            case .addNumber, .removeAllNumbers:
-                XCTFail()
-            case.removeNumber:
-                break
-            }
-            expectation.fulfill()
-        }
-        .cleaned(by: dustBuster)
+        store.numbers
+            .observe { _ in expectation.fulfill() }
+            .cleaned(by: dustBuster)
         
         dispatcher.dispatch(Dispatcher.Test.removeNumber(1))
         
@@ -72,9 +65,7 @@ class StoreTests: XCTestCase {
     
     func testCleanedAndNotReceiveChanges() {
         var dustBuster: DustBuster? = DustBuster()
-        let dust = store.subscribe { _ in
-            XCTFail()
-        }
+        let dust = store.numbers.observe { _ in XCTFail() }
         dust.cleaned(by: dustBuster!)
         dustBuster = nil
         
@@ -85,10 +76,10 @@ class StoreTests: XCTestCase {
     
     func testUnregister() {
         dispatcher.dispatch(Dispatcher.Test.addNumber(3))
-        store.unregister()
+        store.clear()
         
         dispatcher.dispatch(Dispatcher.Test.removeAllNumbers)
         
-        XCTAssertEqual(store.numbers.count, 1)
+        XCTAssertEqual(store.numbers.value.count, 1)
     }
 }

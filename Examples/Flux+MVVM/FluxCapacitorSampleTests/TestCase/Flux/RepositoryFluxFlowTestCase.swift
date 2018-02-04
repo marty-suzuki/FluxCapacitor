@@ -28,7 +28,7 @@ class RepositoryFluxFlowTestCase: XCTestCase {
     }
     
     override func tearDown() {
-        store.unregister()
+        store.clear()
         
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -39,7 +39,7 @@ class RepositoryFluxFlowTestCase: XCTestCase {
         
         let repository = Repository.mock()
         
-        let disposable = store.selectedRepository
+        let disposable = store.selectedRepository.asObservable()
             .skip(1)
             .subscribe(onNext: {
                 guard let selectedRepository = $0 else {
@@ -69,7 +69,7 @@ class RepositoryFluxFlowTestCase: XCTestCase {
         action.invoke(.removeAllFavorites)
         let repository = Repository.mock()
         
-        let disposable = store.favorites
+        let disposable = store.favorites.asObservable()
             .skip(1)
             .map { $0.first }
             .subscribe(onNext: {
@@ -103,9 +103,9 @@ class RepositoryFluxFlowTestCase: XCTestCase {
         session.result = .success(Response<Repository>(nodes: [repository], pageInfo: pageInfo, totalCount: totalCount))
         
         let disposable =
-            Observable.combineLatest(store.repositories.skip(1),
-                                     store.lastPageInfo.skip(1),
-                                     store.repositoryTotalCount.skip(1))
+            Observable.combineLatest(store.repositories.asObservable().skip(1),
+                                     store.lastPageInfo.asObservable().skip(1),
+                                     store.repositoryTotalCount.asObservable().skip(1))
                 .subscribe(onNext: { repositories, lastPageInfo, repositoryTotalCount in
                     guard let firstRepository = repositories.first, let lastPageInfo = lastPageInfo else {
                         XCTFail()

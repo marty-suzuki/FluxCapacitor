@@ -19,7 +19,8 @@ extension User {
                      repositoryCount: Int = 10,
                      login: String = "marty-suzuki",
                      url: String = "https://github.com/marty-suzuki") -> User {
-        return try! User(json: [
+
+        let json: [AnyHashable: Any] = [
             "id" : id,
             "avatarUrl" : avatarUrl,
             "followers" : ["totalCount" : followerCount],
@@ -27,6 +28,13 @@ extension User {
             "repositories" : ["totalCount" : repositoryCount],
             "login" : login,
             "url" : url,
-        ])
+            ]
+
+        do {
+            let data = try JSONSerialization.data(withJSONObject: json, options: [])
+            return try JSONDecoder().decode(User.self, from: data)
+        } catch let e {
+            fatalError(e.localizedDescription)
+        }
     }
 }

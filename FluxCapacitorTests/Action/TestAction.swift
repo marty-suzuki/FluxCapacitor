@@ -10,5 +10,5 @@ import Foundation
 import FluxCapacitor
 
 class TestAction: Actionable {
-    typealias DispatchValueType = Dispatcher.Test
+    typealias DispatchStateType = Dispatcher.Test
 }

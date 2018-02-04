@@ -11,7 +11,7 @@ import FluxCapacitor
 import GithubKit
 
 final class RepositoryAction: Actionable {
-    typealias DispatchValueType = Dispatcher.Repository
+    typealias DispatchStateType = Dispatcher.Repository
     
     private let session: ApiSessionType
     

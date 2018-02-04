@@ -19,7 +19,7 @@ final class FavoriteViewController: UIViewController {
     private var selectedRepositoryDustBuster = DustBuster()
     
     deinit {
-        store.unregister()
+        store.clear()
     }
     
     override func viewDidLoad() {
@@ -42,33 +42,19 @@ final class FavoriteViewController: UIViewController {
     }
     
     private func observeBookmarkChanges() {
-        store.subscribe { [weak self] value in
-            DispatchQueue.main.async {
-                switch value {
-                case .addFavorite,
-                     .removeFavorite,
-                     .removeAllFavorites:
-                    self?.tableView.reloadData()
-                default:
-                    break
-                }
-            }
-        }
-        .cleaned(by: dustBuster)
+        store.favorites
+            .observe(on: .main, changes: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
+            .cleaned(by: dustBuster)
     }
 
     private func observeSelectedRepositoryChanges() {
-        store.subscribe { [weak self] value in
-            DispatchQueue.main.async {
-                switch value {
-                case .selectedRepository:
-                    self?.showRepository()
-                default:
-                    break
-                }
-            }
-        }
-        .cleaned(by: selectedRepositoryDustBuster)
+        store.selectedRepository
+            .observe(on: .main, changes: { [weak self] _ in
+                self?.showRepository()
+            })
+            .cleaned(by: selectedRepositoryDustBuster)
     }
 
     private func showRepository() {

@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		373E605E2025F5D200C99A7C /* PrimitiveValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E605D2025F5D200C99A7C /* PrimitiveValue.swift */; };
+		3780119B20237CCB00ABE5B0 /* ExecuteQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3780119A20237CCB00ABE5B0 /* ExecuteQueue.swift */; };
+		37B831A2202607DC00F3DCC8 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A0202607DC00F3DCC8 /* ObjectStore.swift */; };
+		37B831A3202607DC00F3DCC8 /* PThreadMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A1202607DC00F3DCC8 /* PThreadMutex.swift */; };
+		37B831A52026080500F3DCC8 /* DispatchState.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A42026080500F3DCC8 /* DispatchState.extension.swift */; };
+		37B831A72026083200F3DCC8 /* ValueNotifyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A62026083200F3DCC8 /* ValueNotifyCenter.swift */; };
+		37B831A9202608E400F3DCC8 /* MutexValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A8202608E400F3DCC8 /* MutexValue.swift */; };
 		37BE2AFD1F38AF91003DC1F8 /* ActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE2AFC1F38AF91003DC1F8 /* ActionTests.swift */; };
 		37D2AD2D1F76B716009738A7 /* FluxProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2AD2C1F76B716009738A7 /* FluxProtocols.swift */; };
-		37D2AD2F1F76B752009738A7 /* DispatchValue.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2AD2E1F76B752009738A7 /* DispatchValue.extension.swift */; };
-		37D2AD311F76B9E7009738A7 /* PThreadMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2AD301F76B9E7009738A7 /* PThreadMutex.swift */; };
+		37E3E6412026C8220081D1A4 /* PrimitiveValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E3E6402026C8220081D1A4 /* PrimitiveValueTests.swift */; };
 		9D7F42171F3876B1007827A7 /* TestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F42161F3876B1007827A7 /* TestAction.swift */; };
 		9D7F421A1F3876DF007827A7 /* Dispatcher.Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F42191F3876DF007827A7 /* Dispatcher.Test.swift */; };
 		9D7F421C1F3876EB007827A7 /* TestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F421B1F3876EB007827A7 /* TestStore.swift */; };
@@ -20,9 +26,7 @@
 		9DA490B11F3873F1002E4D79 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA490A91F3873F1002E4D79 /* Dispatcher.swift */; };
 		9DA490B21F3873F1002E4D79 /* Dust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA490AA1F3873F1002E4D79 /* Dust.swift */; };
 		9DA490B31F3873F1002E4D79 /* FluxCapacitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DA490AB1F3873F1002E4D79 /* FluxCapacitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9DA490B51F3873F1002E4D79 /* ObserverDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA490AD1F3873F1002E4D79 /* ObserverDataStore.swift */; };
 		9DA490B61F3873F1002E4D79 /* Storable.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA490AE1F3873F1002E4D79 /* Storable.extension.swift */; };
-		9DA490B71F3873F1002E4D79 /* SubscriberDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA490AF1F3873F1002E4D79 /* SubscriberDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +40,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		373E605D2025F5D200C99A7C /* PrimitiveValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveValue.swift; sourceTree = "<group>"; };
+		3780119A20237CCB00ABE5B0 /* ExecuteQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteQueue.swift; sourceTree = "<group>"; };
+		37B831A0202607DC00F3DCC8 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
+		37B831A1202607DC00F3DCC8 /* PThreadMutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PThreadMutex.swift; sourceTree = "<group>"; };
+		37B831A42026080500F3DCC8 /* DispatchState.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchState.extension.swift; sourceTree = "<group>"; };
+		37B831A62026083200F3DCC8 /* ValueNotifyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueNotifyCenter.swift; sourceTree = "<group>"; };
+		37B831A8202608E400F3DCC8 /* MutexValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutexValue.swift; sourceTree = "<group>"; };
 		37BE2AFC1F38AF91003DC1F8 /* ActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTests.swift; sourceTree = "<group>"; };
 		37D2AD2C1F76B716009738A7 /* FluxProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluxProtocols.swift; sourceTree = "<group>"; };
-		37D2AD2E1F76B752009738A7 /* DispatchValue.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchValue.extension.swift; sourceTree = "<group>"; };
-		37D2AD301F76B9E7009738A7 /* PThreadMutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PThreadMutex.swift; sourceTree = "<group>"; };
+		37E3E6402026C8220081D1A4 /* PrimitiveValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveValueTests.swift; sourceTree = "<group>"; };
 		9D7F42161F3876B1007827A7 /* TestAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAction.swift; sourceTree = "<group>"; };
 		9D7F42191F3876DF007827A7 /* Dispatcher.Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatcher.Test.swift; sourceTree = "<group>"; };
 		9D7F421B1F3876EB007827A7 /* TestStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStore.swift; sourceTree = "<group>"; };
@@ -52,9 +62,7 @@
 		9DA490AA1F3873F1002E4D79 /* Dust.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dust.swift; sourceTree = "<group>"; };
 		9DA490AB1F3873F1002E4D79 /* FluxCapacitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FluxCapacitor.h; sourceTree = "<group>"; };
 		9DA490AC1F3873F1002E4D79 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9DA490AD1F3873F1002E4D79 /* ObserverDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverDataStore.swift; sourceTree = "<group>"; };
 		9DA490AE1F3873F1002E4D79 /* Storable.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storable.extension.swift; sourceTree = "<group>"; };
-		9DA490AF1F3873F1002E4D79 /* SubscriberDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37B8319F202607DC00F3DCC8 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				37B831A42026080500F3DCC8 /* DispatchState.extension.swift */,
+				37B831A0202607DC00F3DCC8 /* ObjectStore.swift */,
+				37B831A1202607DC00F3DCC8 /* PThreadMutex.swift */,
+				37B831A62026083200F3DCC8 /* ValueNotifyCenter.swift */,
+				37B831A8202608E400F3DCC8 /* MutexValue.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
 		9D7F42141F387698007827A7 /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +143,7 @@
 			children = (
 				37BE2AFC1F38AF91003DC1F8 /* ActionTests.swift */,
 				9DA4909B1F3873A9002E4D79 /* StoreTests.swift */,
+				37E3E6402026C8220081D1A4 /* PrimitiveValueTests.swift */,
 				9D7F42151F387698007827A7 /* Action */,
 				9D7F42181F3876C6007827A7 /* DispatchValue */,
 				9D7F42141F387698007827A7 /* Store */,
@@ -134,15 +155,14 @@
 		9DA490A71F3873F1002E4D79 /* FluxCapacitor */ = {
 			isa = PBXGroup;
 			children = (
+				37B8319F202607DC00F3DCC8 /* Internal */,
 				37D2AD2C1F76B716009738A7 /* FluxProtocols.swift */,
 				9DA490A81F3873F1002E4D79 /* Actionable.extension.swift */,
 				9DA490AE1F3873F1002E4D79 /* Storable.extension.swift */,
-				37D2AD2E1F76B752009738A7 /* DispatchValue.extension.swift */,
 				9DA490AA1F3873F1002E4D79 /* Dust.swift */,
 				9DA490A91F3873F1002E4D79 /* Dispatcher.swift */,
-				9DA490AD1F3873F1002E4D79 /* ObserverDataStore.swift */,
-				9DA490AF1F3873F1002E4D79 /* SubscriberDataStore.swift */,
-				37D2AD301F76B9E7009738A7 /* PThreadMutex.swift */,
+				3780119A20237CCB00ABE5B0 /* ExecuteQueue.swift */,
+				373E605D2025F5D200C99A7C /* PrimitiveValue.swift */,
 				9DA490AB1F3873F1002E4D79 /* FluxCapacitor.h */,
 				9DA490AC1F3873F1002E4D79 /* Info.plist */,
 			);
@@ -261,15 +281,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37D2AD2F1F76B752009738A7 /* DispatchValue.extension.swift in Sources */,
+				3780119B20237CCB00ABE5B0 /* ExecuteQueue.swift in Sources */,
+				373E605E2025F5D200C99A7C /* PrimitiveValue.swift in Sources */,
 				37D2AD2D1F76B716009738A7 /* FluxProtocols.swift in Sources */,
 				9DA490B11F3873F1002E4D79 /* Dispatcher.swift in Sources */,
 				9DA490B61F3873F1002E4D79 /* Storable.extension.swift in Sources */,
-				9DA490B51F3873F1002E4D79 /* ObserverDataStore.swift in Sources */,
+				37B831A9202608E400F3DCC8 /* MutexValue.swift in Sources */,
+				37B831A2202607DC00F3DCC8 /* ObjectStore.swift in Sources */,
+				37B831A72026083200F3DCC8 /* ValueNotifyCenter.swift in Sources */,
+				37B831A52026080500F3DCC8 /* DispatchState.extension.swift in Sources */,
+				37B831A3202607DC00F3DCC8 /* PThreadMutex.swift in Sources */,
 				9DA490B21F3873F1002E4D79 /* Dust.swift in Sources */,
 				9DA490B01F3873F1002E4D79 /* Actionable.extension.swift in Sources */,
-				9DA490B71F3873F1002E4D79 /* SubscriberDataStore.swift in Sources */,
-				37D2AD311F76B9E7009738A7 /* PThreadMutex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37BE2AFD1F38AF91003DC1F8 /* ActionTests.swift in Sources */,
+				37E3E6412026C8220081D1A4 /* PrimitiveValueTests.swift in Sources */,
 				9DA4909C1F3873A9002E4D79 /* StoreTests.swift in Sources */,
 				9D7F42171F3876B1007827A7 /* TestAction.swift in Sources */,
 				9D7F421A1F3876DF007827A7 /* Dispatcher.Test.swift in Sources */,
@@ -424,7 +448,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "marty-suzuki.FluxCapacitor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -444,7 +468,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "marty-suzuki.FluxCapacitor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -457,7 +481,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "marty-suzuki.FluxCapacitorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -470,7 +494,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "marty-suzuki.FluxCapacitorTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

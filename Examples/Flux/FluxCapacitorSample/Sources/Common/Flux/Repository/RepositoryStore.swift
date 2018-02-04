@@ -11,46 +11,74 @@ import FluxCapacitor
 import GithubKit
 
 final class RepositoryStore: Storable {
-    typealias DispatchValueType = Dispatcher.Repository
+
+    typealias DispatchStateType = Dispatcher.Repository
     
-    private(set) var isRepositoryFetching = false
-    private(set) var favorites: [Repository] = []
-    private(set) var repositories: [Repository] = []
-    private(set) var selectedRepository: Repository? = nil
-    private(set) var lastPageInfo: PageInfo? = nil
-    private(set) var lastTask: URLSessionTask? = nil
-    private(set) var repositoryTotalCount: Int = 0
+    let isRepositoryFetching: Constant<Bool>
+    private let _isRepositoryFetching = Variable<Bool>(false)
 
-    init(dispatcher: Dispatcher) {
-        register { [weak self] in
-            switch $0 {
-            case .isRepositoryFetching(let value):
-                self?.isRepositoryFetching = value
-            case .addRepositories(let value):
-                self?.repositories.append(contentsOf: value)
-            case .removeAllRepositories:
-                self?.repositories.removeAll()
-            case .selectedRepository(let value):
-                self?.selectedRepository = value
-            case .lastPageInfo(let value):
-                self?.lastPageInfo = value
-            case .lastTask(let value):
-                self?.lastTask?.cancel()
-                self?.lastTask = value
-            case .repositoryTotalCount(let value):
-                self?.repositoryTotalCount = value
+    let favorites: Constant<[Repository]>
+    private let _favorites = Variable<[Repository]>([])
 
-            case .addFavorite(let value):
-                if self?.favorites.index(where: { $0.url == value.url }) == nil {
-                    self?.favorites.append(value)
-                }
-            case .removeFavorite(let value):
-                if let index = self?.favorites.index(where: { $0.url == value.url }) {
-                    self?.favorites.remove(at: index)
-                }
-            case .removeAllFavorites:
-                self?.favorites.removeAll()
+    let repositories: Constant<[Repository]>
+    private let _repositories = Variable<[Repository]>([])
+
+    let selectedRepository: Constant<Repository?>
+    private let _selectedRepository = Variable<Repository?>(nil)
+
+    let lastPageInfo: Constant<PageInfo?>
+    private let _lastPageInfo = Variable<PageInfo?>(nil)
+
+    let lastTask: Constant<URLSessionTask?>
+    private let _lastTask = Variable<URLSessionTask?>(nil)
+
+    let repositoryTotalCount: Constant<Int>
+    private let _repositoryTotalCount = Variable<Int>(0)
+
+    init() {
+        self.isRepositoryFetching = Constant(_isRepositoryFetching)
+        self.favorites = Constant(_favorites)
+        self.repositories = Constant(_repositories)
+        self.selectedRepository = Constant(_selectedRepository)
+        self.lastPageInfo = Constant(_lastPageInfo)
+        self.lastTask = Constant(_lastTask)
+        self.repositoryTotalCount = Constant(_repositoryTotalCount)
+    }
+
+    func reduce(with state: Dispatcher.Repository) {
+        switch state {
+        case .isRepositoryFetching(let value):
+            _isRepositoryFetching.value = value
+
+        case .addRepositories(let value):
+            _repositories.value.append(contentsOf: value)
+
+        case .removeAllRepositories:
+            _repositories.value.removeAll()
+
+        case .selectedRepository(let value):
+            _selectedRepository.value = value
+
+        case .lastPageInfo(let value):
+            _lastPageInfo.value = value
+
+        case .lastTask(let value):
+            _lastTask.value?.cancel()
+            _lastTask.value = value
+
+        case .repositoryTotalCount(let value):
+            _repositoryTotalCount.value = value
+
+        case .addFavorite(let value):
+            if _favorites.value.index(where: { $0.url == value.url }) == nil {
+                _favorites.value.append(value)
             }
+        case .removeFavorite(let value):
+            if let index = _favorites.value.index(where: { $0.url == value.url }) {
+                _favorites.value.remove(at: index)
+            }
+        case .removeAllFavorites:
+            _favorites.value.removeAll()
         }
     }
 }
