@@ -220,13 +220,13 @@ variable.value = 10
 
 ### with RxSwift
 
-You can use FluxCapacitor with RxSwift like [this link](./Examples/Flux/FluxCapacitorSample/Sources/Common/Flux/User/UserStore.swift).
+You can use FluxCapacitor with RxSwift like [this link](./Examples/Flux%2BMVVM/FluxCapacitorSample/Sources/Common/Flux/User/UserStore.swift).
 
 Or implement `func asObservable()` like this.
 
 ```swift
 // Constant
-extension Value where State == Immutable {
+extension PrimitiveValue where Trait == ImmutableTrait {
     func asObservable() -> Observable<Element> {
         return Observable.create { [weak self] observer in
             guard let me = self else { return Disposables.create() }

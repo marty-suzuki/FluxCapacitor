@@ -1,6 +1,6 @@
 {
   "name": "FluxCapacitor",
-  "version": "0.4.1",
+  "version": "0.10.0",
   "summary": "This is what makes the Flux design pattern possible.",
   "homepage": "https://github.com/marty-suzuki/FluxCapacitor",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/marty-suzuki/FluxCapacitor.git",
-    "tag": "0.4.1"
+    "tag": "0.10.0"
   },
   "social_media_url": "https://twitter.com/marty_suzuki",
   "platforms": {

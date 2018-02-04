@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import NoticeObserveKit
+import FluxCapacitor
 import RxSwift
 import RxCocoa
-import NoticeObserveKit
 
 final class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -19,8 +20,9 @@ final class SearchViewController: UIViewController {
     private let searchBar: UISearchBar = UISearchBar(frame: .zero)
     private let action = UserAction()
     private let store = UserStore.instantiate()
-    private let disposeBag = DisposeBag()
     private let dataSource = SearchViewDataSource()
+    private let dustBuster = DustBuster()
+    private let disposeBag = DisposeBag()
     private var pool = NoticeObserverPool()
     
     override func viewDidLoad() {
@@ -99,28 +101,41 @@ final class SearchViewController: UIViewController {
     }
 
     private func observeStore() {
-        Observable.merge(store.users.map { _ in },
-                         store.isUserFetching.map { _ in })
-            .bind(to: reloadData)
-            .disposed(by: disposeBag)
+        store.users
+            .observe(on: .main) { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .cleaned(by: dustBuster)
+
+        store.isUserFetching
+            .observe(on: .main) { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .cleaned(by: dustBuster)
 
         store.selectedUser
-            .filter { $0 != nil }
-            .map { _ in  }
-            .bind(to: showUserRepository)
-            .disposed(by: disposeBag)
-        
-        Observable.combineLatest(store.users, store.userTotalCount)
-            .map { "\($0.count) / \($1)" }
-            .observeOn(MainScheduler.instance)
-            .bind(to: counterLabel.rx.text)
-            .disposed(by: disposeBag)
+            .observe(on: .main) { [weak self] in
+                guard let me = self, $0 != nil else { return }
+                guard let vc = UserRepositoryViewController() else { return }
+                me.navigationController?.pushViewController(vc, animated: true)
+            }
+            .cleaned(by: dustBuster)
+
+        store.users
+            .observe(on: .main) { [weak self] _ in
+                self?.updateCountLabel()
+            }
+            .cleaned(by: dustBuster)
+
+        store.userTotalCount
+            .observe(on: .main) { [weak self] _ in
+                self?.updateCountLabel()
+            }
+            .cleaned(by: dustBuster)
     }
-    
-    private var reloadData: AnyObserver<Void> {
-        return Binder(self) { me, _ in
-            me.tableView.reloadData()
-        }.asObserver()
+
+    private func updateCountLabel() {
+        counterLabel.text = "\(store.users.value.count) / \(store.userTotalCount.value)"
     }
     
     private var resignFirstResponder: AnyObserver<Void> {
@@ -132,13 +147,6 @@ final class SearchViewController: UIViewController {
     private var showsCancelButton: AnyObserver<Bool> {
         return Binder(self) { me, showsCancelButton in
             me.searchBar.showsScopeBar = showsCancelButton
-        }.asObserver()
-    }
-
-    private var showUserRepository: AnyObserver<Void> {
-        return Binder(self) { me, _ in
-            guard let vc = UserRepositoryViewController() else { return }
-            me.navigationController?.pushViewController(vc, animated: true)
         }.asObserver()
     }
 }

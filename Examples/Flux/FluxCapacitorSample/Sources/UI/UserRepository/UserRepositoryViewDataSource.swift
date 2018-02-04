@@ -22,7 +22,7 @@ final class UserRepositoryViewDataSource: NSObject {
         didSet {
             if isReachedBottom && isReachedBottom != oldValue {
                 guard
-                    let user = userStore.value.selectedUser,
+                    let user = userStore.selectedUser.value,
                     let pageInfo = repositoryStore.lastPageInfo.value,
                     pageInfo.hasNextPage,
                     let after = pageInfo.endCursor

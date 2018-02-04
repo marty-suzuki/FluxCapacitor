@@ -9,93 +9,54 @@
 import Foundation
 import FluxCapacitor
 import GithubKit
-import RxSwift
-import RxCocoa
 
 final class UserStore: Storable {
 
     typealias DispatchStateType = Dispatcher.User
     
-    let isUserFetching: Observable<Bool>
-    fileprivate let _isUserFetching = BehaviorRelay<Bool>(value: false)
+    let isUserFetching: Constant<Bool>
+    fileprivate let _isUserFetching = Variable<Bool>(false)
     
-    let users: Observable<[User]>
-    fileprivate let _users = BehaviorRelay<[User]>(value: [])
+    let users: Constant<[User]>
+    fileprivate let _users = Variable<[User]>([])
 
-    let selectedUser: Observable<User?>
-    fileprivate let _selectedUser = BehaviorRelay<User?>(value: nil)
+    let selectedUser: Constant<User?>
+    fileprivate let _selectedUser = Variable<User?>(nil)
 
-    let lastPageInfo: Observable<PageInfo?>
-    fileprivate let _lastPageInfo = BehaviorRelay<PageInfo?>(value: nil)
+    let lastPageInfo: Constant<PageInfo?>
+    fileprivate let _lastPageInfo = Variable<PageInfo?>(nil)
 
-    let lastSearchQuery: Observable<String>
-    fileprivate let _lastSearchQuery = BehaviorRelay<String>(value: "")
+    let lastSearchQuery: Constant<String>
+    fileprivate let _lastSearchQuery = Variable<String>("")
     
-    let userTotalCount: Observable<Int>
-    fileprivate let _userTotalCount = BehaviorRelay<Int>(value: 0)
+    let userTotalCount: Constant<Int>
+    fileprivate let _userTotalCount = Variable<Int>(0)
     
     init() {
-        self.isUserFetching = _isUserFetching.asObservable()
-        self.users = _users.asObservable()
-        self.selectedUser = _selectedUser.asObservable()
-        self.lastPageInfo = _lastPageInfo.asObservable()
-        self.lastSearchQuery = _lastSearchQuery.asObservable()
-        self.userTotalCount = _userTotalCount.asObservable()
+        self.isUserFetching = Constant(_isUserFetching)
+        self.users = Constant(_users)
+        self.selectedUser = Constant(_selectedUser)
+        self.lastPageInfo = Constant(_lastPageInfo)
+        self.lastSearchQuery = Constant(_lastSearchQuery)
+        self.userTotalCount = Constant(_userTotalCount)
     }
 
     func reduce(with state: Dispatcher.User) {
         switch state {
         case .isUserFetching(let value):
-            _isUserFetching.accept(value)
+            _isUserFetching.value = value
         case .addUsers(let value):
-            let users = _users.value
-            _users.accept(users + value)
+            _users.value.append(contentsOf: value)
         case .removeAllUsers:
-            _users.accept([])
+            _users.value.removeAll()
         case .selectedUser(let value):
-            _selectedUser.accept(value)
+            _selectedUser.value = value
         case .lastPageInfo(let value):
-            _lastPageInfo.accept(value)
+            _lastPageInfo.value = value
         case .lastSearchQuery(let value):
-            _lastSearchQuery.accept(value)
+            _lastSearchQuery.value = value
         case .userTotalCount(let value):
-            _userTotalCount.accept(value)
+            _userTotalCount.value = value
         }
-    }
-}
-
-extension UserStore {
-    struct Value {
-        fileprivate let base: UserStore
-    }
-
-    var value: Value {
-        return Value(base: self)
-    }
-}
-
-extension UserStore.Value {
-    var isUserFetching: Bool {
-        return base._isUserFetching.value
-    }
-
-    var users: [User] {
-        return base._users.value
-    }
-
-    var selectedUser: User? {
-        return base._selectedUser.value
-    }
-
-    var lastPageInfo: PageInfo? {
-        return base._lastPageInfo.value
-    }
-
-    var lastSearchQuery: String {
-        return base._lastSearchQuery.value
-    }
-
-    var userTotalCount: Int {
-        return base._userTotalCount.value
     }
 }

@@ -7,23 +7,23 @@
 //
 
 import UIKit
-import RxSwift
 import GithubKit
+import FluxCapacitor
 
 final class SearchViewDataSource: NSObject {
     fileprivate let action: UserAction
     fileprivate let store: UserStore
 
     fileprivate let loadingView = LoadingView.makeFromNib()
-    private let disposeBag = DisposeBag()
+    private let dustBuster = DustBuster()
     
     fileprivate var isReachedBottom: Bool = false {
         didSet {
             if isReachedBottom && isReachedBottom != oldValue {
-                let query = store.value.lastSearchQuery
+                let query = store.lastSearchQuery.value
                 guard
                     !query.isEmpty,
-                    let pageInfo = store.value.lastPageInfo,
+                    let pageInfo = store.lastPageInfo.value,
                     pageInfo.hasNextPage,
                     let after = pageInfo.endCursor
                 else { return }
@@ -39,8 +39,10 @@ final class SearchViewDataSource: NSObject {
         super.init()
         
         store.isUserFetching
-            .bind(to: loadingView.rx.isLoading)
-            .disposed(by: disposeBag)
+            .observe(on: .main) { [weak self] in
+                self?.loadingView.isLoading = $0
+            }
+            .cleaned(by: dustBuster)
     }
 
     func configure(with tableView: UITableView) {
@@ -54,12 +56,12 @@ final class SearchViewDataSource: NSObject {
 
 extension SearchViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return store.value.users.count
+        return store.users.value.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(UserViewCell.self, for: indexPath)
-        cell.configure(with: store.value.users[indexPath.row])
+        cell.configure(with: store.users.value[indexPath.row])
         return cell
     }
     
@@ -81,12 +83,12 @@ extension SearchViewDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
 
-        let user = store.value.users[indexPath.row]
+        let user = store.users.value[indexPath.row]
         action.invoke(.selectedUser(user))
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UserViewCell.calculateHeight(with: store.value.users[indexPath.row], and: tableView)
+        return UserViewCell.calculateHeight(with: store.users.value[indexPath.row], and: tableView)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -94,7 +96,7 @@ extension SearchViewDataSource: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return store.value.isUserFetching ? LoadingView.defaultHeight : .leastNormalMagnitude
+        return store.isUserFetching.value ? LoadingView.defaultHeight : .leastNormalMagnitude
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

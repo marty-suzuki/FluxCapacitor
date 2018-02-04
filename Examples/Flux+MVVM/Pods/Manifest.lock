@@ -1,5 +1,5 @@
 PODS:
-  - FluxCapacitor (0.4.1)
+  - FluxCapacitor (0.10.0)
 
 DEPENDENCIES:
   - FluxCapacitor (from `../../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../../
 
 SPEC CHECKSUMS:
-  FluxCapacitor: d269fd02573a94b5a185aac29e9c057d528ba402
+  FluxCapacitor: 94a3bdeefaf3a1b95c2b9218360a31b5e63ef247
 
 PODFILE CHECKSUM: 041093e6797f71b6b9fc3801ad38891b37f44ea1
 

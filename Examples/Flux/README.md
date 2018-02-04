@@ -4,7 +4,7 @@
 
 ## Requirements
 
-- Swift 3.1 or later
+- Swift 4.0.3 or later
 - iOS 9.0 or later
 
 ## Installation
@@ -12,10 +12,11 @@
 To run the example project, clone the repo, and run `pod install` and `carthage update` from the Example directory first. In addition, you must set Github Personal access token.
 
 ```swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
-    ApiSession.shared.token = "/** Github Personal access token **/"
-    return true
+extension ApiSession: ApiSessionType {
+    static let shared: ApiSession = {
+        let token = "" // Your Personal Access Token
+        return ApiSession(injectToken: { InjectableToken(token: token) })
+    }()
 }
 ```
 
