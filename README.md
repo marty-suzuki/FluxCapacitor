@@ -121,6 +121,7 @@ final class RepositoryStore: Storable {
             _repositories.value.removeAll()
         }
     }
+}
 ```
 
 If you want to use any store, please use `XXXStore.instantiate()`. That static method returns its reference or new instance.
@@ -270,6 +271,10 @@ Application structure is like below.
 ### Additional
 
 Flux + MVVM Sample is [here](./Examples/Flux+MVVM).
+
+## Migration Guide
+
+[FluxCapacitor 0.10.0 Migration Guide](./Documentations/MigrationGuide_0_10_0.md)
 
 ## Author
 
