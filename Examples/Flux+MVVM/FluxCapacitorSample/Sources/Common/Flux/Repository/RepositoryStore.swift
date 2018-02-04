@@ -87,10 +87,8 @@ final class RepositoryStore: Storable {
 extension PrimitiveValue where Trait == ImmutableTrait {
     func asObservable() -> Observable<Element> {
         return Observable.create { [weak self] observer in
-            guard let me = self else { return Disposables.create() }
-            observer.onNext(me.value)
-            let dust = me.observe { observer.onNext($0) }
-            return Disposables.create { dust.clean() }
+            let dust = self?.observe { observer.onNext($0) }
+            return Disposables.create { dust?.clean() }
         }
     }
 }

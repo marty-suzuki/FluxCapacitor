@@ -209,11 +209,11 @@ let variable = Variable<Int>(0)
 let constant = Constant(variable)
 
 _ = variable.observe { value in
-    print(value) // 10
+    print(value) // 0 -> 10
 }
 
 _ = constant.observe { value in
-    print(value) // 10
+    print(value) // 0 -> 10
 }
 
 variable.value = 10
@@ -230,14 +230,8 @@ Or implement `func asObservable()` like this.
 extension PrimitiveValue where Trait == ImmutableTrait {
     func asObservable() -> Observable<Element> {
         return Observable.create { [weak self] observer in
-            guard let me = self else { return Disposables.create() }
-
-            // onNext initial value
-            observer.onNext(me.value)
-
-            // observe changes and onNext that value
-            let dust = me.observe { observer.onNext($0) }
-            return Disposables.create { dust.clean() }
+            let dust = self?.observe { observer.onNext($0) }
+            return Disposables.create { dust?.clean() }
         }
     }
 }

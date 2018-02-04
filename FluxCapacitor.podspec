@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FluxCapacitor'
-  s.version          = '0.10.0'
+  s.version          = '0.10.1'
   s.summary          = 'This is what makes the Flux design pattern possible.'
 
 # This description is used to generate tags and improve search results.

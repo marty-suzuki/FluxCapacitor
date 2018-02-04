@@ -31,10 +31,16 @@ public final class PrimitiveValue<Trait: ValueTrait, Element> {
     /// - note: Default excuteQueue is `ExecuteQueue.current`.
     ///
     /// - parameter excuteQueue: Queue to notify changes on.
+    /// - parameter ignoreFirst: Ignore immediate value.
     /// - parameter changes: Changes handler of a value.
     ///
     /// - returns: A `Dust`
-    public func observe(on excuteQueue: ExecuteQueue = .current, changes: @escaping (Element) -> Void) -> Dust {
+    public func observe(on excuteQueue: ExecuteQueue = .current,
+                        ignoreFirst: Bool = false,
+                        changes: @escaping (Element) -> Void) -> Dust {
+        if !ignoreFirst {
+            changes(_value.rawValue)
+        }
         return notifyCenter.addObserver(excuteQueue: excuteQueue, changes: changes)
     }
 }

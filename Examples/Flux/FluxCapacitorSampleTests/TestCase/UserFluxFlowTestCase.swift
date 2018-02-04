@@ -9,8 +9,9 @@
 import XCTest
 
 @testable import FluxCapacitorSample
-import RxSwift
+
 import GithubKit
+import FluxCapacitor
 
 class UserFluxFlowTestCase: XCTestCase {
     var action: UserAction!
@@ -36,21 +37,20 @@ class UserFluxFlowTestCase: XCTestCase {
     func testLastSearchQuery() {
         let expectation = self.expectation(description: "wait for observe")
         
-        XCTAssertEqual(store.value.lastSearchQuery, "")
+        XCTAssertEqual(store.lastSearchQuery.value, "")
         
-        let disposable = store.lastSearchQuery
-            .skip(1)
-            .subscribe(onNext: { value in
+        let dust = store.lastSearchQuery
+            .observe { value in
+                if value != "marty-suzuki" { return }
                 XCTAssertEqual(value, "marty-suzuki")
-                
                 expectation.fulfill()
-            })
+            }
         
         action.fetchUsers(withQuery: "marty-suzuki", after: nil)
         
         waitForExpectations(timeout: 1, handler: nil)
         
-        disposable.dispose()
+        dust.clean()
     }
     
     func testSelectedUser() {
@@ -58,13 +58,9 @@ class UserFluxFlowTestCase: XCTestCase {
         
         let user = User.mock()
         
-        let disposable = store.selectedUser
-            .skip(1)
-            .subscribe(onNext: { selectedUser in
-                guard let selectedUser = selectedUser else {
-                    XCTFail()
-                    return
-                }
+        let dust = store.selectedUser
+            .observe { selectedUser in
+                guard let selectedUser = selectedUser else { return }
                 
                 XCTAssertEqual(selectedUser.id, user.id)
                 XCTAssertEqual(selectedUser.avatarURL, user.avatarURL)
@@ -75,13 +71,13 @@ class UserFluxFlowTestCase: XCTestCase {
                 XCTAssertEqual(selectedUser.url, user.url)
                 
                 expectation.fulfill()
-            })
+            }
         
         action.invoke(.selectedUser(user))
         
         waitForExpectations(timeout: 1, handler: nil)
         
-        disposable.dispose()
+        dust.clean()
     }
     
     func testFetchUser() {
@@ -91,17 +87,24 @@ class UserFluxFlowTestCase: XCTestCase {
         let pageInfo = PageInfo.mock()
         let totalCount = 10
         session.result = .success(Response<User>(nodes: [user], pageInfo: pageInfo, totalCount: totalCount))
-        
-        let disposable =
-            Observable.combineLatest(store.users.skip(1),
-                                     store.lastPageInfo.skip(1),
-                                     store.userTotalCount.skip(1))
-            .subscribe(onNext: { users, lastPageInfo, userTotalCount in
-                guard let firstUser = users.first, let lastPageInfo = lastPageInfo else {
-                    XCTFail()
-                    return
-                }
-                
+
+        let group = DispatchGroup()
+
+        group.enter()
+        group.enter()
+        group.enter()
+
+        group.notify(queue: .global()) {
+            expectation.fulfill()
+        }
+
+        let dustBuster = DustBuster()
+
+        var _user: User!
+        store.users
+            .observe {
+                guard let firstUser = $0.first else { return }
+
                 XCTAssertEqual(firstUser.id, user.id)
                 XCTAssertEqual(firstUser.avatarURL, user.avatarURL)
                 XCTAssertEqual(firstUser.followerCount, user.followerCount)
@@ -109,19 +112,41 @@ class UserFluxFlowTestCase: XCTestCase {
                 XCTAssertEqual(firstUser.login, user.login)
                 XCTAssertEqual(firstUser.repositoryCount, user.repositoryCount)
                 XCTAssertEqual(firstUser.url, user.url)
-                
+
+                _user = firstUser
+
+                group.leave()
+            }
+            .cleaned(by: dustBuster)
+
+        var _pageInfo: PageInfo!
+        store.lastPageInfo
+            .observe {
+                guard let lastPageInfo = $0 else { return }
+
                 XCTAssertEqual(lastPageInfo.hasNextPage, pageInfo.hasNextPage)
                 XCTAssertEqual(lastPageInfo.hasPreviousPage, pageInfo.hasPreviousPage)
-                
-                XCTAssertEqual(userTotalCount, totalCount)
-                
-                expectation.fulfill()
-            })
+
+                _pageInfo = lastPageInfo
+
+                group.leave()
+            }
+            .cleaned(by: dustBuster)
+
+        store.userTotalCount
+            .observe {
+                if _user == nil || _pageInfo == nil { return }
+
+                XCTAssertEqual(totalCount, $0)
+
+                group.leave()
+            }
+            .cleaned(by: dustBuster)
         
         action.fetchUsers(withQuery: "marty-su", after: nil)
         
         waitForExpectations(timeout: 1, handler: nil)
         
-        disposable.dispose()
+        dustBuster.clean()
     }
 }

@@ -25,7 +25,7 @@ class PrimitiveValueTests: XCTestCase {
     func testObserveAndClean() {
         let expect = expectation(description: "will change value")
 
-        let dust = variable.observe { value in
+        let dust = variable.observe(ignoreFirst: true) { value in
             XCTAssertEqual(value, 2)
             XCTAssertEqual(self.variable.value, 2)
             expect.fulfill()
@@ -39,10 +39,16 @@ class PrimitiveValueTests: XCTestCase {
     }
 
     func testCleanCalledBeforeNofity() {
-        variable.observe { _ in
-            XCTFail()
+        let expect = expectation(description: "will change value")
+
+        variable.observe { value in
+            XCTAssertEqual(value, 0)
+            XCTAssertEqual(self.variable.value, 0)
+            expect.fulfill()
         }
         .clean()
+
+        waitForExpectations(timeout: 0.1, handler: nil)
 
         variable.value = 1
     }
@@ -52,7 +58,7 @@ class PrimitiveValueTests: XCTestCase {
 
         var dustBuster = DustBuster()
 
-        variable.observe { value in
+        variable.observe(ignoreFirst: true) { value in
             XCTAssertEqual(value, 4)
             XCTAssertEqual(self.variable.value, 4)
             expect.fulfill()
@@ -67,16 +73,22 @@ class PrimitiveValueTests: XCTestCase {
     }
     
     func testDustBusterReleasedBeforeNofity() {
+        let expect = expectation(description: "will change value")
+
         var dustBuster = DustBuster()
 
-        variable.observe { _ in
-            XCTFail()
+        variable.observe { value in
+            XCTAssertEqual(value, 0)
+            XCTAssertEqual(self.variable.value, 0)
+            expect.fulfill()
         }
         .cleaned(by: dustBuster)
 
         dustBuster = DustBuster()
 
         variable.value = 3
+
+        waitForExpectations(timeout: 0.1, handler: nil)
     }
 
     func testInitialValueAsConstant() {
@@ -88,7 +100,7 @@ class PrimitiveValueTests: XCTestCase {
         let constant = Constant(variable)
         let expect = expectation(description: "will change value")
 
-        let dust = constant.observe { value in
+        let dust = constant.observe(ignoreFirst: true) { value in
             XCTAssertEqual(value, 2)
             XCTAssertEqual(constant.value, 2)
             expect.fulfill()
@@ -102,13 +114,19 @@ class PrimitiveValueTests: XCTestCase {
     }
 
     func testCleanCalledBeforeNofityAsConstant() {
+        let expect = expectation(description: "will change value")
+
         let constant = Constant(variable)
-        constant.observe { _ in
-            XCTFail()
+        constant.observe { value in
+            XCTAssertEqual(value, 0)
+            XCTAssertEqual(self.variable.value, 0)
+            expect.fulfill()
         }
         .clean()
 
         variable.value = 1
+
+        waitForExpectations(timeout: 0.1, handler: nil)
     }
 
     func testObserveAndDustButerAsConstant() {
@@ -117,7 +135,7 @@ class PrimitiveValueTests: XCTestCase {
 
         var dustBuster = DustBuster()
 
-        constant.observe { value in
+        constant.observe(ignoreFirst: true) { value in
             XCTAssertEqual(value, 4)
             XCTAssertEqual(constant.value, 4)
             expect.fulfill()
@@ -132,16 +150,22 @@ class PrimitiveValueTests: XCTestCase {
     }
 
     func testDustBusterReleasedBeforeNofityAsConstant() {
+        let expect = expectation(description: "will change value")
+
         let constant = Constant(variable)
         var dustBuster = DustBuster()
 
-        constant.observe { _ in
-            XCTFail()
+        constant.observe { value in
+            XCTAssertEqual(value, 0)
+            XCTAssertEqual(self.variable.value, 0)
+            expect.fulfill()
         }
         .cleaned(by: dustBuster)
 
         dustBuster = DustBuster()
 
         variable.value = 3
+
+        waitForExpectations(timeout: 0.1, handler: nil)
     }
 }

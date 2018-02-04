@@ -42,10 +42,7 @@ class RepositoryFluxFlowTestCase: XCTestCase {
         
         let dust = store.selectedRepository
             .observe {
-                guard let selectedRepository = $0 else {
-                    XCTFail()
-                    return
-                }
+                guard let selectedRepository = $0 else { return }
 
                 XCTAssertEqual(repository.name, selectedRepository.name)
                 XCTAssertEqual(repository.stargazerCount, selectedRepository.stargazerCount)
@@ -70,10 +67,7 @@ class RepositoryFluxFlowTestCase: XCTestCase {
         
         let dust = store.favorites
             .observe {
-                guard let favorite = $0.first else {
-                    XCTFail()
-                    return
-                }
+                guard let favorite = $0.first else { return }
 
                 XCTAssertEqual(repository.name, favorite.name)
                 XCTAssertEqual(repository.stargazerCount, favorite.stargazerCount)
@@ -108,14 +102,12 @@ class RepositoryFluxFlowTestCase: XCTestCase {
             expectation.fulfill()
         }
 
-        var dustBuster: DustBuster = DustBuster()
+        let dustBuster = DustBuster()
 
+        var _repository: Repository!
         store.repositories
             .observe {
-                guard let firstRepository = $0.first else {
-                    XCTFail()
-                    return
-                }
+                guard let firstRepository = $0.first else { return }
 
                 XCTAssertEqual(repository.name, firstRepository.name)
                 XCTAssertEqual(repository.stargazerCount, firstRepository.stargazerCount)
@@ -123,19 +115,21 @@ class RepositoryFluxFlowTestCase: XCTestCase {
                 XCTAssertEqual(repository.url, firstRepository.url)
                 XCTAssertEqual(repository.updatedAt, firstRepository.updatedAt)
 
+                _repository = firstRepository
+
                 group.leave()
             }
             .cleaned(by: dustBuster)
 
+        var _pageInfo: PageInfo!
         store.lastPageInfo
             .observe {
-                guard let lastPageInfo = $0 else {
-                    XCTFail()
-                    return
-                }
+                guard let lastPageInfo = $0 else { return }
 
                 XCTAssertEqual(lastPageInfo.hasNextPage, pageInfo.hasNextPage)
                 XCTAssertEqual(lastPageInfo.hasPreviousPage, pageInfo.hasPreviousPage)
+
+                _pageInfo = lastPageInfo
 
                 group.leave()
             }
@@ -143,6 +137,8 @@ class RepositoryFluxFlowTestCase: XCTestCase {
 
         store.repositoryTotalCount
             .observe {
+                if _repository == nil || _pageInfo == nil { return }
+
                 XCTAssertEqual($0, totalCount)
 
                 group.leave()
@@ -153,6 +149,6 @@ class RepositoryFluxFlowTestCase: XCTestCase {
         
         waitForExpectations(timeout: 1, handler: nil)
         
-        dustBuster = DustBuster()
+        dustBuster.clean()
     }
 }
