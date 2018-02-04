@@ -8,8 +8,8 @@
 
 import Foundation
 
+/// A pthread_mutex wrapper
 final class PThreadMutex {
-    
     private let mutex = UnsafeMutablePointer<pthread_mutex_t>.allocate(capacity: 1)
     
     init() {

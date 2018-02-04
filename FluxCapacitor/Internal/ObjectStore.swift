@@ -8,25 +8,26 @@
 
 import Foundation
 
+/// Store objects that adopting `Storable` protocol.
 final class ObjectStore {
-
     private let mutex = PThreadMutex()
-    private var observers: [DispatchKey : AnyObject] = [:]
+    private var observers: [DispatchStateKey : AnyObject] = [:]
     
     func object<T: Storable>() -> T? {
         defer { mutex.unlock() }; mutex.lock()
-        return observers[T.DispatchStateType.dispatchKey] as? T
+        return observers[T.DispatchStateType.key] as? T
     }
     
     func insert<T: Storable>(_ object: T) {
         defer { mutex.unlock() }; mutex.lock()
-        guard observers[T.DispatchStateType.dispatchKey] == nil else { return }
-        observers[T.DispatchStateType.dispatchKey] = object
+        let key = T.DispatchStateType.key
+        guard observers[key] == nil else { return }
+        observers[key] = object
     }
 
     func remove<T: Storable>(forType type: T.Type) {
         defer { mutex.unlock() }; mutex.lock()
-        observers[T.DispatchStateType.dispatchKey] = nil
+        observers[T.DispatchStateType.key] = nil
     }
     
     func removeAll() {
@@ -34,4 +35,3 @@ final class ObjectStore {
         observers.removeAll()
     }
 }
-

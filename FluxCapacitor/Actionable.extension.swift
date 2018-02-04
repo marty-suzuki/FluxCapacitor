@@ -9,7 +9,8 @@
 import Foundation
 
 extension Actionable {
-    public func invoke(_ dispatchValue: DispatchStateType) {
-        Dispatcher.shared.dispatch(dispatchValue)
+    /// Invokes a dispatch with dispatchState.
+    public func invoke(_ dispatchState: DispatchStateType) {
+        Dispatcher.shared.dispatch(dispatchState)
     }
 }

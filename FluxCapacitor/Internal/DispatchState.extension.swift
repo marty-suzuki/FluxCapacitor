@@ -8,22 +8,27 @@
 
 import Foundation
 
-struct DispatchKey: Hashable {
-    fileprivate let value: String
+// MARK: - DispatchStateKey
+
+/// Represents a key of DispatchState.
+struct DispatchStateKey: Hashable {
+    fileprivate let key: String
 
     var hashValue: Int {
-        return value.hashValue
+        return key.hashValue
+    }
+
+    static func == (lhs: DispatchStateKey, rhs: DispatchStateKey) -> Bool {
+        return lhs.key == rhs.key
     }
 }
 
-extension DispatchKey {
-    static func == (lhs: DispatchKey, rhs: DispatchKey) -> Bool {
-        return lhs.value == rhs.value
-    }
-}
+
+// MARK: - DispatchState extension
 
 extension DispatchState {
-    static var dispatchKey: DispatchKey {
-        return DispatchKey(value: String(describing: self))
+    /// Represents a specified key.
+    static var key: DispatchStateKey {
+        return DispatchStateKey(key: String(describing: self))
     }
 }

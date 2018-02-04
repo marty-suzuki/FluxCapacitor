@@ -55,7 +55,7 @@ class StoreTests: XCTestCase {
         
         let dustBuster = DustBuster()
         store.numbers
-            .oberve { _ in expectation.fulfill() }
+            .observe { _ in expectation.fulfill() }
             .cleaned(by: dustBuster)
         
         dispatcher.dispatch(Dispatcher.Test.removeNumber(1))
@@ -65,7 +65,7 @@ class StoreTests: XCTestCase {
     
     func testCleanedAndNotReceiveChanges() {
         var dustBuster: DustBuster? = DustBuster()
-        let dust = store.numbers.oberve { _ in XCTFail() }
+        let dust = store.numbers.observe { _ in XCTFail() }
         dust.cleaned(by: dustBuster!)
         dustBuster = nil
         

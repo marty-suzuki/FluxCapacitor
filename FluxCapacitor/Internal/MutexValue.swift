@@ -1,5 +1,5 @@
 //
-//  Wrapper.swift
+//  MutexValue.swift
 //  FluxCapacitor
 //
 //  Created by marty-suzuki on 2018/02/04.
@@ -8,22 +8,22 @@
 
 import Foundation
 
-final class Wrapper<Element> {
-
-    private var _value: Element
+/// A value wrapper
+final class MutexValue<Element> {
+    private var _rawValue: Element
     private let mutex = PThreadMutex()
 
-    var value: Element {
+    var rawValue: Element {
         get {
-            return _value
+            return _rawValue
         }
         set {
             defer { mutex.unlock() }; mutex.lock()
-            _value = newValue
+            _rawValue = newValue
         }
     }
 
-    init(_ value: Element) {
-        self._value = value
+    init(_ rawValue: Element) {
+        self._rawValue = rawValue
     }
 }

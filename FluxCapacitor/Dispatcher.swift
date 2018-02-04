@@ -8,18 +8,14 @@
 
 import Foundation
 
-// MARK: - Dispatcher
+/// Represents Flux-Dispatcher.
+///
+/// - seealso: [flux-concepts Dispatcher](https://github.com/facebook/flux/tree/master/examples/flux-concepts#dispatcher)
 public final class Dispatcher {
-    public static let shared = Dispatcher()
-
     let objectStore = ObjectStore()
 
     private init() {}
 
-    public func unregisterAll() {
-        objectStore.removeAll()
-    }
-    
     func register<T: Storable>(_ object: T) {
         objectStore.insert(object)
     }
@@ -34,5 +30,15 @@ public final class Dispatcher {
 
         let store = T.RelatedStoreType.instantiate()
         store.reduce(with: state)
+    }
+}
+
+extension Dispatcher {
+    /// Represents single Dispatcher.
+    public static let shared = Dispatcher()
+
+    /// Unregister all Stores dispatching.
+    public func unregisterAll() {
+        objectStore.removeAll()
     }
 }

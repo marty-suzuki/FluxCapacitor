@@ -8,8 +8,8 @@
 
 import Foundation
 
+/// Notify changes of values.
 final class ValueNotifyCenter<Element> {
-
     private struct Observer {
         fileprivate struct Token {
             let value = UUID().uuidString
@@ -20,26 +20,25 @@ final class ValueNotifyCenter<Element> {
         fileprivate let changes: (Element) -> ()
     }
 
-    private var objects: [Observer] = []
+    private var observers: [Observer] = []
     private let mutex = PThreadMutex()
 
     func addObserver(excuteQueue: ExecuteQueue, changes: @escaping (Element) -> Void) -> Dust {
-
         mutex.lock()
         let observer = Observer(token: .init(), excuteQueue: excuteQueue, changes: changes)
-        objects.append(observer)
+        observers.append(observer)
         let token = observer.token
         mutex.unlock()
 
         return Dust { [weak self] in
             guard let me = self else { return }
             defer { me.mutex.unlock() }; me.mutex.lock()
-            me.objects = me.objects.filter { $0.token.value != token.value }
+            me.observers = me.observers.filter { $0.token.value != token.value }
         }
     }
 
     func notifyChanges(value: Element) {
-        objects.forEach { observer in
+        observers.forEach { observer in
             let execute: () -> Void = {
                 observer.changes(value)
             }

@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		373E605E2025F5D200C99A7C /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E605D2025F5D200C99A7C /* Value.swift */; };
+		373E605E2025F5D200C99A7C /* PrimitiveValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E605D2025F5D200C99A7C /* PrimitiveValue.swift */; };
 		3780119B20237CCB00ABE5B0 /* ExecuteQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3780119A20237CCB00ABE5B0 /* ExecuteQueue.swift */; };
 		37B831A2202607DC00F3DCC8 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A0202607DC00F3DCC8 /* ObjectStore.swift */; };
 		37B831A3202607DC00F3DCC8 /* PThreadMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A1202607DC00F3DCC8 /* PThreadMutex.swift */; };
 		37B831A52026080500F3DCC8 /* DispatchState.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A42026080500F3DCC8 /* DispatchState.extension.swift */; };
 		37B831A72026083200F3DCC8 /* ValueNotifyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A62026083200F3DCC8 /* ValueNotifyCenter.swift */; };
-		37B831A9202608E400F3DCC8 /* Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A8202608E400F3DCC8 /* Wrapper.swift */; };
+		37B831A9202608E400F3DCC8 /* MutexValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B831A8202608E400F3DCC8 /* MutexValue.swift */; };
 		37BE2AFD1F38AF91003DC1F8 /* ActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BE2AFC1F38AF91003DC1F8 /* ActionTests.swift */; };
 		37D2AD2D1F76B716009738A7 /* FluxProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2AD2C1F76B716009738A7 /* FluxProtocols.swift */; };
 		9D7F42171F3876B1007827A7 /* TestAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F42161F3876B1007827A7 /* TestAction.swift */; };
@@ -39,13 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		373E605D2025F5D200C99A7C /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
+		373E605D2025F5D200C99A7C /* PrimitiveValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimitiveValue.swift; sourceTree = "<group>"; };
 		3780119A20237CCB00ABE5B0 /* ExecuteQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteQueue.swift; sourceTree = "<group>"; };
 		37B831A0202607DC00F3DCC8 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		37B831A1202607DC00F3DCC8 /* PThreadMutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PThreadMutex.swift; sourceTree = "<group>"; };
 		37B831A42026080500F3DCC8 /* DispatchState.extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchState.extension.swift; sourceTree = "<group>"; };
 		37B831A62026083200F3DCC8 /* ValueNotifyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueNotifyCenter.swift; sourceTree = "<group>"; };
-		37B831A8202608E400F3DCC8 /* Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wrapper.swift; sourceTree = "<group>"; };
+		37B831A8202608E400F3DCC8 /* MutexValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutexValue.swift; sourceTree = "<group>"; };
 		37BE2AFC1F38AF91003DC1F8 /* ActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTests.swift; sourceTree = "<group>"; };
 		37D2AD2C1F76B716009738A7 /* FluxProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluxProtocols.swift; sourceTree = "<group>"; };
 		9D7F42161F3876B1007827A7 /* TestAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAction.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 				37B831A0202607DC00F3DCC8 /* ObjectStore.swift */,
 				37B831A1202607DC00F3DCC8 /* PThreadMutex.swift */,
 				37B831A62026083200F3DCC8 /* ValueNotifyCenter.swift */,
-				37B831A8202608E400F3DCC8 /* Wrapper.swift */,
+				37B831A8202608E400F3DCC8 /* MutexValue.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -159,7 +159,7 @@
 				9DA490AA1F3873F1002E4D79 /* Dust.swift */,
 				9DA490A91F3873F1002E4D79 /* Dispatcher.swift */,
 				3780119A20237CCB00ABE5B0 /* ExecuteQueue.swift */,
-				373E605D2025F5D200C99A7C /* Value.swift */,
+				373E605D2025F5D200C99A7C /* PrimitiveValue.swift */,
 				9DA490AB1F3873F1002E4D79 /* FluxCapacitor.h */,
 				9DA490AC1F3873F1002E4D79 /* Info.plist */,
 			);
@@ -279,11 +279,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3780119B20237CCB00ABE5B0 /* ExecuteQueue.swift in Sources */,
-				373E605E2025F5D200C99A7C /* Value.swift in Sources */,
+				373E605E2025F5D200C99A7C /* PrimitiveValue.swift in Sources */,
 				37D2AD2D1F76B716009738A7 /* FluxProtocols.swift in Sources */,
 				9DA490B11F3873F1002E4D79 /* Dispatcher.swift in Sources */,
 				9DA490B61F3873F1002E4D79 /* Storable.extension.swift in Sources */,
-				37B831A9202608E400F3DCC8 /* Wrapper.swift in Sources */,
+				37B831A9202608E400F3DCC8 /* MutexValue.swift in Sources */,
 				37B831A2202607DC00F3DCC8 /* ObjectStore.swift in Sources */,
 				37B831A72026083200F3DCC8 /* ValueNotifyCenter.swift in Sources */,
 				37B831A52026080500F3DCC8 /* DispatchState.extension.swift in Sources */,
