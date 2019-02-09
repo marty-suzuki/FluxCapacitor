@@ -17,9 +17,9 @@ FluxCapacitor makes implementing [Flux](https://facebook.github.io/flux/) design
 
 ## Requirements
 
-- Xcode 9.2 or later
-- Swift 4.0.3 or later
-- iOS 9.0 or later
+- Xcode 10.1 or later
+- Swift 4.2 or later
+- iOS 10.0 or later
 
 ## Installation
 

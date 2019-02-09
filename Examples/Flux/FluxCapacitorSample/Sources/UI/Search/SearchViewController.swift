@@ -51,7 +51,7 @@ final class SearchViewController: UIViewController {
     }
 
     private func observeKeyboard() {
-        UIKeyboardWillShow.observe { [weak self] in
+        NotificationCenter.default.nok.observe(name: .keyboardWillShow) { [weak self] in
             self?.view.layoutIfNeeded()
             let extra = self?.tabBarController?.tabBar.bounds.height ?? 0
             self?.tableViewBottomConstraint.constant = $0.frame.size.height - extra
@@ -59,16 +59,16 @@ final class SearchViewController: UIViewController {
                 self?.view.layoutIfNeeded()
             }, completion: nil)
         }
-        .disposed(by: pool)
+            .invalidated(by: pool)
 
-        UIKeyboardWillHide.observe { [weak self] in
+        NotificationCenter.default.nok.observe(name: .keyboardWillHide) { [weak self] in
             self?.view.layoutIfNeeded()
             self?.tableViewBottomConstraint.constant = 0
             UIView.animate(withDuration: $0.animationDuration, delay: 0, options: $0.animationCurve, animations: {
                 self?.view.layoutIfNeeded()
             }, completion: nil)
         }
-        .disposed(by: pool)
+            .invalidated(by: pool)
     }
 
     private func observeUI() {

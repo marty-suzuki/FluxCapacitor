@@ -24,14 +24,13 @@ final class RepositoryViewController: SFSafariViewController {
     private let repository: Repository
 
     init?(action: RepositoryAction = .init(),
-          store: RepositoryStore = .instantiate(),
-          entersReaderIfAvailable: Bool = true) {
+          store: RepositoryStore = .instantiate()) {
         guard let repository = store.selectedRepository.value else { return nil }
         self.repository = repository
         self.action = action
         self.store = store
         
-        super.init(url: repository.url, entersReaderIfAvailable: entersReaderIfAvailable)
+        super.init(url: repository.url, configuration: .init())
         hidesBottomBarWhenPushed = true 
     }
 

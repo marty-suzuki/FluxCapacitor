@@ -8,7 +8,6 @@
 
 import NoticeObserveKit
 
-struct UIKeyboardWillShow: NoticeType {
-    typealias InfoType = UIKeyboardInfo
-    static let name: Notification.Name = .UIKeyboardWillShow
+extension Notice.Names {
+    static let keyboardWillShow = Notice.Name<UIKeyboardInfo>(UIResponder.keyboardWillShowNotification)
 }

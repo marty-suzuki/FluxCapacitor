@@ -75,7 +75,7 @@ final class UserRepositoryViewController: UIViewController {
 
     private var showRepository: AnyObserver<Void> {
         return Binder(self) { me, _ in
-            guard let webview = RepositoryViewController() else { return }
+            guard let webview = RepositoryViewController(()) else { return }
             me.navigationController?.pushViewController(webview, animated: true)
         }.asObserver()
     }

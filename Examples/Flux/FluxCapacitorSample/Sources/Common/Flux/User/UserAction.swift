@@ -29,6 +29,7 @@ final class UserAction: Actionable {
         invoke(.isUserFetching(true))
         let request = SearchUserRequest(query: query, after: after)
         session.send(request)
+            .debug()
             .subscribe(onNext: { [weak self] in
                 self?.invoke(.addUsers($0.nodes))
                 self?.invoke(.lastPageInfo($0.pageInfo))

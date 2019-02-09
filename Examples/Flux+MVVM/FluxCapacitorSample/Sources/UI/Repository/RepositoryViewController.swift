@@ -22,9 +22,9 @@ final class RepositoryViewController: SFSafariViewController {
                      favoriteButtonItemTap: self.favoriteButtonItem.rx.tap)
     }()
     
-    init?(entersReaderIfAvailable: Bool = true) {
+    init?(_: Void) {
         guard let url = RepositoryViewModel.selectedURL() else { return nil }
-        super.init(url: url, entersReaderIfAvailable: entersReaderIfAvailable)
+        super.init(url: url, configuration: .init())
         hidesBottomBarWhenPushed = true 
     }
 

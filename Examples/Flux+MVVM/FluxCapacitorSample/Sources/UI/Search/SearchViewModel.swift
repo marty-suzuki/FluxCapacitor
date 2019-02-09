@@ -59,15 +59,15 @@ final class SearchViewModel {
         viewWillAppear
             .subscribe(onNext: { [weak self] in
                 guard let me = self else { return }
-                UIKeyboardWillShow.observe { [weak self] in
+                NotificationCenter.default.nok.observe(name: .keyboardWillShow) { [weak self] in
                     self?._keyboardWillShow.onNext($0)
                 }
-                .disposed(by: me.pool)
+                .invalidated(by: me.pool)
                 
-                UIKeyboardWillHide.observe { [weak self] in
+                NotificationCenter.default.nok.observe(name: .keyboardWillHide) { [weak self] in
                     self?._keyboardWillHide.onNext($0)
                 }
-                .disposed(by: me.pool)
+                .invalidated(by: me.pool)
             })
             .disposed(by: disposeBag)
         

@@ -18,8 +18,8 @@ final class PThreadMutex {
     
     deinit {
         pthread_mutex_destroy(mutex)
-        mutex.deinitialize()
-        mutex.deallocate(capacity: 1)
+        mutex.deinitialize(count: 1)
+        mutex.deallocate()
     }
     
     func lock() {
